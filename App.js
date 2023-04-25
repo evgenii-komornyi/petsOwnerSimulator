@@ -1,20 +1,33 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NativeRouter } from 'react-router-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { View } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import { RoutesMap } from './src/routes/routes';
+
+import { StatusBar as Header } from './src/components/status-bar/status-bar.component';
+import { Navigation } from './src/components/navigation/navigation.component.jsx';
+
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { useMainInterval } from './src/hooks/common/useMainInterval.hook';
+
+import { styles } from './src/styles/global.styles';
+
+export default () => {
+    useMainInterval();
+
+    return (
+        <SafeAreaProvider>
+            <NativeRouter>
+                <View style={styles.container}>
+                    <Header />
+                    <RoutesMap />
+                    <Navigation />
+                    <StatusBar hidden />
+                </View>
+            </NativeRouter>
+        </SafeAreaProvider>
+    );
+};
