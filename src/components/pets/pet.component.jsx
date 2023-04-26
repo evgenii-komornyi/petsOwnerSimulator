@@ -7,6 +7,8 @@ import { PetCard } from './pet-card.component';
 import { Statistic } from '../statistic/statistic.component';
 import { Actions } from '../actions/actions.component';
 
+import { checkStatsToReturnCorrectImage } from '../../helpers/petsManipulations.helper';
+
 import { styles } from './pets.styles';
 import { styles as globalStyles } from '../../styles/global.styles';
 
@@ -21,10 +23,10 @@ export const Pet = ({
         <View style={styles.mainContainer}>
             <View style={styles.petContainer}>
                 <PetCard
-                    img={stats.mood !== 0 ? img.regular : img.sad}
+                    img={checkStatsToReturnCorrectImage(stats, img)}
                     name={name}
                     id={id}
-                    mood={stats.mood}
+                    stats={stats}
                     moodIncreasing={statsIncreasing.mood}
                     touchStart={touchStart}
                     touchEnd={touchEnd}

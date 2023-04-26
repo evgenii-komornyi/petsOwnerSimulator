@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { Constants } from '../constants/constants';
 
-import { cats } from '../helpers/cats';
+import { pets } from '../data/pets';
 import { addItem } from '../helpers/itemsManipulations.helper';
 
 import {
@@ -19,7 +19,7 @@ const ownerStore = (set, get) => ({
         impurity: 0,
         smell: 0,
     },
-    pets: [cats[2]],
+    pets: [pets[0].animals[2]],
     food: [],
     toys: [],
     litterBox: {},

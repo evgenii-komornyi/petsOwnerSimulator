@@ -4,11 +4,15 @@ import { useAudio } from '../common/useAudio.hook';
 
 import { Constants } from '../../constants/constants';
 
-export const usePetCard = (id, mood, moodIncreasing, config) => {
+export const usePetCard = (id, stats, moodIncreasing, config) => {
     const { setMoodLevel } = useOwnerStore();
     const [playSound] = useAudio();
 
     const onSwipe = (direction, { dx, dy }) => {
+        if (stats.health === 0 || stats.hunger === 0) {
+            return;
+        }
+
         const returnedDirection = getDirection(direction, dx, dy);
         playSound('purring');
 
@@ -16,41 +20,41 @@ export const usePetCard = (id, mood, moodIncreasing, config) => {
             case 'SWIPE_UP':
                 setMoodLevel(
                     id,
-                    mood >= Constants.MAX_MOOD_LEVEL
+                    stats.mood >= Constants.MAX_MOOD_LEVEL
                         ? Constants.MAX_MOOD_LEVEL
-                        : mood + moodIncreasing.up
+                        : stats.mood + moodIncreasing.up
                 );
                 break;
             case 'SWIPE_DOWN':
                 setMoodLevel(
                     id,
-                    mood >= Constants.MAX_MOOD_LEVEL
+                    stats.mood >= Constants.MAX_MOOD_LEVEL
                         ? Constants.MAX_MOOD_LEVEL
-                        : mood + moodIncreasing.down
+                        : stats.mood + moodIncreasing.down
                 );
                 break;
             case 'SWIPE_LEFT':
                 setMoodLevel(
                     id,
-                    mood >= Constants.MAX_MOOD_LEVEL
+                    stats.mood >= Constants.MAX_MOOD_LEVEL
                         ? Constants.MAX_MOOD_LEVEL
-                        : mood + moodIncreasing.left
+                        : stats.mood + moodIncreasing.left
                 );
                 break;
             case 'SWIPE_RIGHT':
                 setMoodLevel(
                     id,
-                    mood >= Constants.MAX_MOOD_LEVEL
+                    stats.mood >= Constants.MAX_MOOD_LEVEL
                         ? Constants.MAX_MOOD_LEVEL
-                        : mood + moodIncreasing.right
+                        : stats.mood + moodIncreasing.right
                 );
                 break;
             case 'SWIPE_DIAGONAL':
                 setMoodLevel(
                     id,
-                    mood >= Constants.MAX_MOOD_LEVEL
+                    stats.mood >= Constants.MAX_MOOD_LEVEL
                         ? Constants.MAX_MOOD_LEVEL
-                        : mood + moodIncreasing.diagonal
+                        : stats.mood + moodIncreasing.diagonal
                 );
                 break;
         }

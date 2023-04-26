@@ -1,10 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { icons } from '../../helpers/icons';
+import { icons } from '../../data/icons';
 import { Level } from './level.component';
 
 import { styles } from './statistic.styles';
+import { CustomText } from '../custom-text/custom-text.component';
 
 export const Statistic = ({ stats }) => {
     const checkIconByLevel = levelName =>
@@ -12,17 +13,14 @@ export const Statistic = ({ stats }) => {
 
     return (
         <View style={styles.mainContainer}>
-            <View
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    backgroundColor: 'black',
-                    width: '100%',
-                    display: 'none',
-                    height: 200,
-                    zIndex: 2,
-                }}
-            />
+            {stats.health === 0 && (
+                <View style={styles.deadContainer}>
+                    <CustomText
+                        text="Your pet has been taken to the shelter."
+                        style={styles.deadText}
+                    />
+                </View>
+            )}
             {stats.hasOwnProperty('health') && (
                 <Level
                     iconStyle={styles.iconLevel.health}
@@ -51,5 +49,3 @@ export const Statistic = ({ stats }) => {
         </View>
     );
 };
-
-// https://snack.expo.dev/@yoobidev/draggable-component?platform=android

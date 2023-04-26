@@ -1,3 +1,5 @@
+import { Constants } from '../constants/constants';
+
 export const modifyPetStat = (id, pets, statToModify, newStatValue) => {
     const petToModify = findObjectById(id, pets);
     petToModify.stats[statToModify] = newStatValue;
@@ -13,3 +15,15 @@ export const modifyItemStat = (id, items, statToModify, newStatValue) => {
 };
 
 const findObjectById = (id, array) => array.find(item => item.id === id);
+
+export const checkStatsToReturnCorrectImage = (stats, img) => {
+    if (stats.health === 0) {
+        return img.dead;
+    }
+
+    if (stats.mood === 0) {
+        return img.sad;
+    }
+
+    return img.regular;
+};

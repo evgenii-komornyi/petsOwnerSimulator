@@ -1,6 +1,6 @@
 import { Audio } from 'expo-av';
 
-import { sounds } from '../../helpers/sounds';
+import { sounds } from '../../data/sounds';
 
 export const useAudio = () => {
     const soundObject = new Audio.Sound();

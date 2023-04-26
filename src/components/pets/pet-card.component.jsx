@@ -18,12 +18,12 @@ export const PetCard = ({
     id,
     img,
     name,
-    mood,
+    stats,
     moodIncreasing,
     touchStart,
     touchEnd,
 }) => {
-    const [onSwipe] = usePetCard(id, mood, moodIncreasing, config);
+    const [onSwipe] = usePetCard(id, stats, moodIncreasing, config);
 
     return (
         <GestureRecognizer
@@ -35,8 +35,30 @@ export const PetCard = ({
                 onTouchStart={touchStart}
                 onTouchEnd={touchEnd}
             >
-                <Image source={img} style={styles.petImage} />
-                <CustomText text={name} style={styles.petName} />
+                <Image
+                    source={img}
+                    style={[
+                        styles.petImage,
+                        {
+                            backgroundColor:
+                                stats.health === 0
+                                    ? 'rgba(0, 0, 0, 0.8)'
+                                    : 'rgba(106, 90, 205, .8)',
+                        },
+                    ]}
+                />
+                <CustomText
+                    text={name}
+                    style={[
+                        styles.petName,
+                        {
+                            backgroundColor:
+                                stats.health === 0
+                                    ? 'rgba(255, 255, 255, 0.8)'
+                                    : 'rgba(218, 165, 32, 0.8)',
+                        },
+                    ]}
+                />
             </View>
         </GestureRecognizer>
     );

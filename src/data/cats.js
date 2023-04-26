@@ -14,7 +14,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/short_hair.png` },
         },
-        bio: '',
+        bio: 'Coffee was born in a small café from a stray mother, who came there for food and shelter. Luckily owners of the café were very helpful. From the first days when  Coffee started to walk, it was clear that it’s a special kitty.  Coffee has a so known wobbly cat syndrome – lack of the movement coordination that results in always looking a bit “drunk”. The café owners spent a lot of time and money trying to help the kitten, but some things just cannot be fixed. But Coffee doesn’t care about this condition and doesn’t feel being different. It’s a happy playful cat, that requires just a little bit more attention than the others. ',
         stats: {
             health: 100,
             hunger: 100,
@@ -51,7 +51,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/long_hair.png` },
         },
-        bio: '',
+        bio: 'Donut was sold as a purebred sphynx without documents. It didn’t take long for the hair to grow and for the new owners to realize they wasted their money on something they didn’t want. For several days Donut was sitting under the balcony meowing to get family’s attention and couldn’t understand, why it is not possible to come back home from this scary place. After that someone, who saw the whole story, brough Donut to the animal shelter. Donut is selective about the food and has a behavior of a noble cat: never would throw an item from the table, never would steal any food from the human’s plate or dumpster, never would go into the dirty litter box.',
         stats: {
             health: 100,
             hunger: 100,
@@ -90,7 +90,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/long_hair.png` },
         },
-        bio: '',
+        bio: 'Lucius was caught by the volunteers for the sterilization. Normally, cats are brought back to the colony after they recover, but Lucius was absolutely deaf, and volunteers decided, it is risky to let such a kitten live in the streets. Being deaf is quite usual for the white cats with the blue eyes. Lucius doesn’t react to any human critics, can sleep even in the middle of the apocalypse and isn’t afraid of the vacuum cleaner. But somehow Lucius always knows when the canned cat food is opened.',
         stats: {
             health: 100,
             hunger: 100,
@@ -127,7 +127,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/short_hair.png` },
         },
-        bio: '',
+        bio: 'Lucky suddenly appeared in front of a car in the middle of a forest road. Far away from the civilization, completely alone. The driver, who found this ball of black fur, took a long walk around the place, but hasn’t noticed any house or a stray cat family. Just an opened backpack, that smelled of cat piss. Lucky was smelly too and covered in pine needles. The kitten hopped into the car without invitation, and sat in the front seat, periodically turning his head to check, if savior is still around. Lucky indeed.',
         stats: {
             health: 100,
             hunger: 100,
@@ -166,7 +166,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/short_hair.png` },
         },
-        bio: '',
+        bio: 'Meesha was born in the summer house from a cat that children fed in their garden. Real stray kitten, who hissed at the humans and run away if someone tried to come closer. Nevertheless, Meesha knew every house, where people gladly shared their food with the homeless kittens, and always checked them all, living the best life. But happy summer ended with the autumn coming. People started to leave to the city. The village became empty. And it was scary. Much scarier than trying to befriend a human and Meesha came to the door of one of the last families still being here, meowing and asking to let in.',
         stats: {
             health: 100,
             hunger: 100,
@@ -242,7 +242,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/folded_ears.png` },
         },
-        bio: '',
+        bio: 'Owl is a purebred Scottish fold – a beautiful silver chinchilla with turquoise eyes and small ears. Almost whole life Owl spent in a dirty rusted cage in a kitten mill, producing dozens of offsprings. Fortunately, this place was found by the volunteers, who called the police and all the cats were taken to the vet and into a better shelter. Owl has weak paws with illegally removed nails, some chronic stomach disease and is not used to being a pet. Therefore, most of the time Owls spends lying on the windowsill looking at the sky, trees and birds. And sometimes even allows humans to stand nearby.',
         stats: {
             health: 100,
             hunger: 100,
@@ -281,7 +281,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/short_hair.png` },
         },
-        bio: '',
+        bio: 'For many years Picasso used to be the companion of the old lady. Quite home without any children or other animals, where Picasso spent the days sleeping, looking through the window and purring to the bellowed human. And always getting the most delicious pieces of food right from the table. Unfortunately, sometimes owners pass away earlier than their pets. Right now, Picasso is stressed and confused. Not old yet but losing the “cuteness contest” to the kittens and having troubles to adapt to the new home quickly.',
         stats: {
             health: 100,
             hunger: 100,
@@ -320,7 +320,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/short_hair.png` },
         },
-        bio: '',
+        bio: 'Shelter employees sometimes say Qwerty is cursed. Qwerty was first adopted as a little kitten, but even a month hasn’t passed, until the owners came back and said they appeared to be allergic to cats. It wasn’t long until new home was found, but just a few weeks later Qwerty was returned to the shelter after breaking very expensive vase. Third family kept Qwerty for almost a year, but then they decided to move to another country and claimed it wouldn’t be possible to take the cat there. Qwerty doesn’t lose hope to get adopted forever, purring and offering to pet the belly to everybody, who is coming to the shelter.',
         stats: {
             health: 100,
             hunger: 100,
@@ -357,7 +357,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/long_hair.png` },
         },
-        bio: '',
+        bio: 'Some adult noticed a screaming and hissing box in the hands of a group of the children. One of them said, there is a kitten inside, and mom doesn’t allow to keep it because of the allergies. The adult asked, if it would be then possible to get the kitten. At first children declined the offer, claiming they were planning to build a house for the cat in the basement, but then agreed to exchange it for some money to buy ice-cream. “It’s not very friendly” – they warned handing the box to the new owner – “It scratches and bites”. At the adult’s home kitten was sitting under the couch for almost a week. Sammy is still afraid of loud noises and children, but otherwise it’s one of the loveliest cats in the universe.',
         stats: {
             health: 100,
             hunger: 100,
@@ -396,7 +396,7 @@ export const cats = [
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/short_hair.png` },
         },
-        bio: '',
+        bio: 'Trickster is the sole survivor from the litter of kittens thrown into a dumpster in a closed box. Someone ensured, they wouldn’t make it out alive, securing the box with enormous amount of sticky tape. But Trickster was loud enough to be heard by a passing by human. Hungry, dehydrated and ill, Trickster was brought to the veterinary clinic. One eye lost the fight to the virus, the other one is left with impaired vision. But guess what – Trickster hasn’t lost faith in humanity. It’s a joyful and loving kitty ready to sleep on the lap of the human buddy forever. With just the small breaks for fun and food, of course.',
         stats: {
             health: 100,
             hunger: 100,

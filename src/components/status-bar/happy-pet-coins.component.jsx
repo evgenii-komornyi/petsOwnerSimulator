@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+
 import { Avatar } from '@rneui/themed';
 
 import { CustomText } from '../custom-text/custom-text.component';
 
 import useOwnerStore from '../../app/useOwnerStore';
 
-import { icons } from '../../helpers/icons';
+import { icons } from '../../data/icons';
 
 import { styles } from './status-bar.styles';
 

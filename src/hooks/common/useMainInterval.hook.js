@@ -69,86 +69,94 @@ export const useMainInterval = () => {
         }
     };
 
+    const isPetNotDead = health => health !== 0;
+
     useEffect(() => {
         interval = setInterval(() => {
             currentPets.current.length !== 0 &&
                 currentPets.current.map(pet => {
-                    if (pet.stats.hunger > 0) {
-                        if (
-                            pet.stats.hunger > 50 &&
-                            pet.stats.health < Constants.MAX_HEALTH_LEVEL
-                        ) {
+                    if (isPetNotDead(pet.health)) {
+                        if (pet.stats.hunger > 0) {
+                            if (
+                                pet.stats.hunger > 50 &&
+                                pet.stats.health < Constants.MAX_HEALTH_LEVEL
+                            ) {
+                                setHealthLevel(
+                                    pet.id,
+                                    pet.stats.health + 5 >
+                                        Constants.MAX_HEALTH_LEVEL
+                                        ? Constants.MAX_HEALTH_LEVEL
+                                        : pet.stats.health + 5
+                                );
+                            }
+
+                            setHungerLevel(
+                                pet.id,
+                                calculateNewStat(
+                                    pet.stats.hunger,
+                                    pet.stats.hunger - pet.statsReducing.hunger,
+                                    undefined,
+                                    1.5
+                                )
+                            );
+                        } else {
                             setHealthLevel(
                                 pet.id,
-                                pet.stats.health + 5 >
-                                    Constants.MAX_HEALTH_LEVEL
-                                    ? Constants.MAX_HEALTH_LEVEL
-                                    : pet.stats.health + 5
+                                calculateNewStat(
+                                    pet.stats.health,
+                                    pet.stats.health - pet.statsReducing.health,
+                                    undefined,
+                                    2
+                                )
                             );
                         }
 
-                        setHungerLevel(
+                        setDigestionLevel(
                             pet.id,
                             calculateNewStat(
-                                pet.stats.hunger,
-                                pet.stats.hunger - pet.statsReducing.hunger,
-                                undefined,
-                                1.5
+                                pet.stats.digestion,
+                                pet.stats.digestion -
+                                    pet.statsReducing.digestion
                             )
                         );
-                    } else {
-                        setHealthLevel(
-                            pet.id,
-                            calculateNewStat(
-                                pet.stats.health,
-                                pet.stats.health - pet.statsReducing.health,
-                                undefined,
-                                2
-                            )
-                        );
-                    }
 
-                    setDigestionLevel(
-                        pet.id,
-                        calculateNewStat(
-                            pet.stats.digestion,
-                            pet.stats.digestion - pet.statsReducing.digestion
-                        )
-                    );
-
-                    if (
-                        pet.stats.mood > 0 &&
-                        pet.stats.hunger > 0 &&
-                        pet.stats.health > 0
-                    ) {
-                        setHappyPetCoins(currentHappyPetCoins.current + 0.15);
-                    }
-
-                    let isPetPooped = false;
-                    if (pet.stats.digestion === 1) {
                         if (
-                            Object.keys(currentLitter.current).length !== 0 &&
-                            currentLitter.current.slots !== 0
+                            pet.stats.mood > 0 &&
+                            pet.stats.hunger > 0 &&
+                            pet.stats.health > 0
                         ) {
-                            poopInLitter();
-                            isPetPooped = true;
+                            setHappyPetCoins(
+                                currentHappyPetCoins.current + 0.15
+                            );
                         }
 
-                        if (!isPetPooped) poopOnCarpet();
+                        let isPetPooped = false;
+                        if (pet.stats.digestion === 1) {
+                            if (
+                                Object.keys(currentLitter.current).length !==
+                                    0 &&
+                                currentLitter.current.slots !== 0
+                            ) {
+                                poopInLitter();
+                                isPetPooped = true;
+                            }
 
-                        vibrate();
-                        playSound('poo');
+                            if (!isPetPooped) poopOnCarpet();
+
+                            vibrate();
+                            playSound('poo');
+                        }
+
+                        setMoodLevel(
+                            pet.id,
+                            calculateNewStat(
+                                pet.stats.mood,
+                                pet.stats.mood - pet.statsReducing.mood,
+                                'sad',
+                                1
+                            )
+                        );
                     }
-
-                    setMoodLevel(
-                        pet.id,
-                        calculateNewStat(
-                            pet.stats.mood,
-                            pet.stats.mood - pet.statsReducing.mood,
-                            'sad',
-                            1
-                        )
-                    );
 
                     return pet;
                 });

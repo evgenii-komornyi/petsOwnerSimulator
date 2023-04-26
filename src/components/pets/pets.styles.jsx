@@ -47,7 +47,6 @@ export const styles = StyleSheet.create({
         width: 170,
         height: 170,
         resizeMode: 'contain',
-        backgroundColor: 'rgba(106, 90, 205, .8)',
     },
     petName: {
         position: 'absolute',
@@ -57,7 +56,6 @@ export const styles = StyleSheet.create({
         borderTopRightRadius: 10,
         width: '90%',
         height: 30,
-        backgroundColor: 'rgba(218, 165, 32, 0.8)',
         color: 'black',
         textAlign: 'center',
         fontSize: 20,
