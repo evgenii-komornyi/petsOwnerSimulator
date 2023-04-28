@@ -32,6 +32,11 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 48,
     },
+    contentContainer: {
+        marginTop: 2,
+        paddingVertical: 10,
+        marginBottom: '30%',
+    },
     mainContainer: {
         flex: 1,
         flexDirection: 'column',
