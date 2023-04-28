@@ -1,4 +1,4 @@
-import { Icon } from '../icon/icon.component';
+import { Icon } from '../../components/icon/icon.component';
 import { Constants } from '../../constants/constants';
 
 export const useTabs = () => {

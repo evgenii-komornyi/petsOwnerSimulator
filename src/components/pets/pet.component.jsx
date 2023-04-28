@@ -17,7 +17,9 @@ export const Pet = ({
     touchStart,
     touchEnd,
 }) => {
-    const [isVisible, toggleVisibility, animatedHeight] = useToggleActions();
+    const [isVisible, toggleVisibility, animatedHeight] = useToggleActions(
+        stats.health
+    );
 
     return (
         <View style={styles.mainContainer}>
@@ -34,11 +36,11 @@ export const Pet = ({
                 <Pressable
                     style={({ pressed }) => [
                         globalStyles.container,
-                        pressed && styles.pressedStats,
+                        pressed && stats.health !== 0 && styles.pressedStats,
                     ]}
                     onLongPress={toggleVisibility}
                 >
-                    <Statistic stats={stats} />
+                    <Statistic stats={stats} name={name} id={id} />
                 </Pressable>
             </View>
             <View style={{ overflow: 'hidden' }}>

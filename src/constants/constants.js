@@ -19,6 +19,7 @@ export const Constants = {
     OCTICONS_ICON: 'octIcons',
     SIMPLELINESICONS_ICON: 'simpleLineIcons',
     ZOCIAL_ICON: 'zocial',
+    MAX_AVAILABLE_PETS: 4,
     MAX_FOOD_LEVEL: 100,
     MAX_HEALTH_LEVEL: 100,
     MAX_MOOD_LEVEL: 100,
@@ -43,4 +44,5 @@ export const Constants = {
     ASSETS_TOYS_FOLDER: 'asset:/images/toys',
     ASSETS_LITTER_BOXES_FOLDER: 'asset:/images/home-items/litter-boxes',
     ASSETS_HOUSES_FOLDER: 'asset:/images/home-items/houses',
+    MAIN_COLOR: '#6A5ACD',
 };

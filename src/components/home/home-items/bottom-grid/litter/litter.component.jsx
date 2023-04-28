@@ -10,7 +10,7 @@ import { useVibrate } from '../../../../../hooks/common/useVibrate.hook';
 import { styles } from './litter.styles';
 
 export const Litter = () => {
-    const { litterBox, cleanLitter } = useOwnerStore();
+    const { litterBox, cleanLitterBox } = useOwnerStore();
     const [playSound] = useAudio();
     const [vibrate] = useVibrate();
 
@@ -25,7 +25,7 @@ export const Litter = () => {
     };
 
     const cleanupLitter = () => {
-        cleanLitter();
+        cleanLitterBox();
         playSound('litterCleanup');
         vibrate();
     };

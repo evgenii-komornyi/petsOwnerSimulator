@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react';
 import { Animated } from 'react-native';
 
-export const useToggleActions = () => {
+export const useToggleActions = health => {
     const [isVisible, setIsVisible] = useState(false);
     const heightAnim = useRef(new Animated.Value(0)).current;
 
     const toggleVisibility = () => {
+        if (health === 0) return;
+
         setIsVisible(prev => !prev);
 
         Animated.timing(heightAnim, {

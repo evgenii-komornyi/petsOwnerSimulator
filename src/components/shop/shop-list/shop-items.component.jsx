@@ -9,6 +9,7 @@ import { styles } from './shop-list.styles';
 
 export const ShopItems = ({ item }) => {
     const parentItemCategory = item.title;
+
     return (
         <View style={styles.categoryContainer}>
             <View style={styles.categoryNameContainer}>

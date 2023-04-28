@@ -2,9 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-native';
 import Tabbar from '@mindinventory/react-native-tab-bar-interaction';
 
-import { useTabs } from './useTabs.hook';
+import { useTabs } from '../../hooks/common/useTabs.hook';
 
 import { styles } from './navigation.styles';
+import { Constants } from '../../constants/constants';
 
 export const Navigation = () => {
     const navigate = useNavigate();
@@ -19,9 +20,9 @@ export const Navigation = () => {
     return (
         <Tabbar
             tabs={tabs}
-            tabBarContainerBackground="#6A5ACD"
+            tabBarContainerBackground={Constants.MAIN_COLOR}
             tabBarBackground="#FFE4E1"
-            activeTabBackground="#6A5ACD"
+            activeTabBackground={Constants.MAIN_COLOR}
             labelStyle={styles.label}
             onTabChange={handleTabChange}
             transitionSpeed={100}

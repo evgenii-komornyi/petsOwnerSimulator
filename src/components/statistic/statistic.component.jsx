@@ -1,26 +1,20 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { icons } from '../../data/icons';
+import { Farewell } from '../farewell/farewell.component';
 import { Level } from './level.component';
 
-import { styles } from './statistic.styles';
-import { CustomText } from '../custom-text/custom-text.component';
+import { icons } from '../../data/icons';
 
-export const Statistic = ({ stats }) => {
+import { styles } from './statistic.styles';
+
+export const Statistic = ({ id, name, stats }) => {
     const checkIconByLevel = levelName =>
         icons[levelName][stats[levelName] > 30 ? 'full' : 'empty'];
 
     return (
         <View style={styles.mainContainer}>
-            {stats.health === 0 && (
-                <View style={styles.deadContainer}>
-                    <CustomText
-                        text="Your pet has been taken to the shelter."
-                        style={styles.deadText}
-                    />
-                </View>
-            )}
+            {stats.health === 0 && <Farewell name={name} id={id} />}
             {stats.hasOwnProperty('health') && (
                 <Level
                     iconStyle={styles.iconLevel.health}

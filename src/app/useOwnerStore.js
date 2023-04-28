@@ -3,9 +3,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { Constants } from '../constants/constants';
 
-import { pets } from '../data/pets';
 import { addItem } from '../helpers/itemsManipulations.helper';
-
 import {
     modifyPetStat,
     modifyItemStat,
@@ -19,7 +17,7 @@ const ownerStore = (set, get) => ({
         impurity: 0,
         smell: 0,
     },
-    pets: [pets[0].animals[2]],
+    pets: [],
     food: [],
     toys: [],
     litterBox: {},
@@ -27,6 +25,9 @@ const ownerStore = (set, get) => ({
 
     setHappyPetCoins: newValue => {
         set({ happyPetCoins: newValue });
+    },
+    adoptPet: pet => {
+        set(state => ({ ...state, pets: [...state.pets, pet] }));
     },
     buyItem: newItem => {
         const existingState = get()[newItem.type];
@@ -97,7 +98,7 @@ const ownerStore = (set, get) => ({
 
         set({ pets: modifiedPets, food: modifiedItems });
     },
-    poopInLitter: () => {
+    poopInLitterBox: () => {
         set(state => ({
             ...state,
             litterBox: {
@@ -122,7 +123,7 @@ const ownerStore = (set, get) => ({
     cleanRoom: () => {
         set(state => ({ ...state, home: { ...state.home, impurity: 0 } }));
     },
-    cleanLitter: () => {
+    cleanLitterBox: () => {
         set(state => ({
             ...state,
             litterBox: {
@@ -141,6 +142,17 @@ const ownerStore = (set, get) => ({
         set(state => ({
             ...state,
             home: { ...state.home, smell: newSmellValue },
+        }));
+    },
+    sayGoodbye: id => {
+        set(state => ({
+            ...state,
+            pets: state.pets.map(pet => {
+                if (pet.id === id) {
+                    return { ...pet, wasTaken: true };
+                }
+                return pet;
+            }),
         }));
     },
 });

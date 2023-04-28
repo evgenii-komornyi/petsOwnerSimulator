@@ -1,5 +1,3 @@
-import { Constants } from '../constants/constants';
-
 export const modifyPetStat = (id, pets, statToModify, newStatValue) => {
     const petToModify = findObjectById(id, pets);
     petToModify.stats[statToModify] = newStatValue;

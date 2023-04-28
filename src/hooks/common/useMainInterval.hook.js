@@ -23,7 +23,7 @@ export const useMainInterval = () => {
         setMoodLevel,
         setDigestionLevel,
         setHappyPetCoins,
-        poopInLitter,
+        poopInLitterBox,
         poopOnCarpet,
         setSmell,
     } = useOwnerStore();
@@ -75,7 +75,7 @@ export const useMainInterval = () => {
         interval = setInterval(() => {
             currentPets.current.length !== 0 &&
                 currentPets.current.map(pet => {
-                    if (isPetNotDead(pet.health)) {
+                    if (isPetNotDead(pet.stats.health)) {
                         if (pet.stats.hunger > 0) {
                             if (
                                 pet.stats.hunger > 50 &&
@@ -137,7 +137,7 @@ export const useMainInterval = () => {
                                     0 &&
                                 currentLitter.current.slots !== 0
                             ) {
-                                poopInLitter();
+                                poopInLitterBox();
                                 isPetPooped = true;
                             }
 

@@ -4,11 +4,33 @@ const { width } = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
     wrapperContainer: {
-        flex: 1,
-        marginBottom: 80,
+        flex: 8,
         ...(width >= 768 && {
             paddingHorizontal: '20%',
         }),
+    },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        marginBottom: 80,
+        alignItems: 'center',
+        alignContent: 'center',
+        ...(width >= 768 && {
+            paddingHorizontal: '20%',
+        }),
+    },
+    textContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 50,
+    },
+    emptyPetsText: {
+        fontSize: 20,
+    },
+    gameOverText: {
+        fontWeight: 'bold',
+        fontSize: 48,
     },
     mainContainer: {
         flex: 1,
