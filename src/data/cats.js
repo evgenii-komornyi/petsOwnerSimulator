@@ -16,9 +16,9 @@ export const cats = [
         },
         bio: 'Coffee was born in a small café from a stray mother, who came there for food and shelter. Luckily owners of the café were very helpful. From the first days when  Coffee started to walk, it was clear that it’s a special kitty.  Coffee has a so known wobbly cat syndrome – lack of the movement coordination that results in always looking a bit “drunk”. The café owners spent a lot of time and money trying to help the kitten, but some things just cannot be fixed. But Coffee doesn’t care about this condition and doesn’t feel being different. It’s a happy playful cat, that requires just a little bit more attention than the others. ',
         stats: {
-            health: 1,
-            hunger: 1,
-            mood: 1,
+            health: 100,
+            hunger: 100,
+            mood: 100,
             digestion: 30,
         },
         statsReducing: {
@@ -54,9 +54,9 @@ export const cats = [
         },
         bio: 'Donut was sold as a purebred sphynx without documents. It didn’t take long for the hair to grow and for the new owners to realize they wasted their money on something they didn’t want. For several days Donut was sitting under the balcony meowing to get family’s attention and couldn’t understand, why it is not possible to come back home from this scary place. After that someone, who saw the whole story, brough Donut to the animal shelter. Donut is selective about the food and has a behavior of a noble cat: never would throw an item from the table, never would steal any food from the human’s plate or dumpster, never would go into the dirty litter box.',
         stats: {
-            health: 2,
-            hunger: 2,
-            mood: 1,
+            health: 100,
+            hunger: 100,
+            mood: 100,
             digestion: 30,
         },
         statsReducing: {
@@ -94,9 +94,9 @@ export const cats = [
         },
         bio: 'Lucius was caught by the volunteers for the sterilization. Normally, cats are brought back to the colony after they recover, but Lucius was absolutely deaf, and volunteers decided, it is risky to let such a kitten live in the streets. Being deaf is quite usual for the white cats with the blue eyes. Lucius doesn’t react to any human critics, can sleep even in the middle of the apocalypse and isn’t afraid of the vacuum cleaner. But somehow Lucius always knows when the canned cat food is opened.',
         stats: {
-            health: 3,
-            hunger: 3,
-            mood: 3,
+            health: 100,
+            hunger: 100,
+            mood: 100,
             digestion: 30,
         },
         statsReducing: {
@@ -132,9 +132,9 @@ export const cats = [
         },
         bio: 'Lucky suddenly appeared in front of a car in the middle of a forest road. Far away from the civilization, completely alone. The driver, who found this ball of black fur, took a long walk around the place, but hasn’t noticed any house or a stray cat family. Just an opened backpack, that smelled of cat piss. Lucky was smelly too and covered in pine needles. The kitten hopped into the car without invitation, and sat in the front seat, periodically turning his head to check, if savior is still around. Lucky indeed.',
         stats: {
-            health: 1,
-            hunger: 1,
-            mood: 1,
+            health: 100,
+            hunger: 100,
+            mood: 100,
             digestion: 30,
         },
         statsReducing: {

@@ -11,8 +11,6 @@ npm-debug.*
 web-build/
 eas.json
 .prettierrc
-android/
-assets/
 
 # macOS
 .DS_Store
