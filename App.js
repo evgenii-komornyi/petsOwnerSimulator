@@ -12,11 +12,14 @@ import { Navigation } from './src/components/navigation/navigation.component.jsx
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useMainInterval } from './src/hooks/common/useMainInterval.hook';
+import { useSaveGame } from './src/hooks/common/useSaveGame.hook';
 
 import { styles } from './src/styles/global.styles';
 
 export default () => {
     useMainInterval();
+
+    useSaveGame();
 
     return (
         <SafeAreaProvider>

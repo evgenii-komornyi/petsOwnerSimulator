@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { Constants } from '../../../constants/constants';
 
 const { width } = Dimensions.get('screen');
 
@@ -40,7 +41,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: '#6A5ACD',
+        borderColor: Constants.MAIN_COLOR,
         borderRadius: 10,
     },
     itemWrapper: {
@@ -68,7 +69,16 @@ export const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: '90%',
+        height: 50,
         marginTop: 10,
+    },
+    buyButtonContainer: {
+        height: 50,
+        borderColor: Constants.MAIN_COLOR,
+        borderWidth: 1,
+    },
+    buttonStyle: {
+        backgroundColor: Constants.MAIN_COLOR,
     },
     buttonContentWrapper: {
         flex: 1,
@@ -78,5 +88,11 @@ export const styles = StyleSheet.create({
     quantityContainer: {
         flex: 1,
         flexDirection: 'row',
+        height: 50,
+        paddingVertical: 5,
+    },
+    quantityTitle: {
+        borderColor: Constants.MAIN_COLOR,
+        borderWidth: 1,
     },
 });

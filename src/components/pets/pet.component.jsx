@@ -38,7 +38,7 @@ export const Pet = ({
                         globalStyles.container,
                         pressed && stats.health !== 0 && styles.pressedStats,
                     ]}
-                    onLongPress={toggleVisibility}
+                    onPress={toggleVisibility}
                 >
                     <Statistic stats={stats} name={name} id={id} />
                 </Pressable>

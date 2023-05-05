@@ -3,10 +3,10 @@ import { View } from 'react-native';
 
 import { Chip } from '@rneui/themed';
 
-import { useBuyButton } from '../../../../hooks/logic/useBuyButton.hook';
 import { CustomButton } from './custom-button.component';
-import { styles } from '../shop-list.styles';
 import { BuyRenewButton } from './buy-renew-button.component';
+
+import { styles } from '../shop-list.styles';
 
 export const QuantityButtons = ({
     item,
@@ -32,7 +32,11 @@ export const QuantityButtons = ({
             {!checkedCategory && (
                 <>
                     <CustomButton content="-" onPress={decreaseQuantity} />
-                    <Chip title={`${quantity}`} type="outline" />
+                    <Chip
+                        title={`${quantity}`}
+                        type="outline"
+                        buttonStyle={styles.quantityTitle}
+                    />
                     <CustomButton content="+" onPress={increaseQuantity} />
                 </>
             )}

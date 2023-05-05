@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { readFromStorage, saveToStorage } from '../helpers/storage.helper';
+
 import { devtools } from 'zustand/middleware';
 import { Constants } from '../constants/constants';
 
@@ -23,6 +25,54 @@ const ownerStore = (set, get) => ({
     litterBox: {},
     catHouse: {},
 
+    isLoaded: false,
+
+    saveGame: () => {
+        const { happyPetCoins, home, pets, food, toys, litterBox, catHouse } =
+            get();
+        saveToStorage('owner', {
+            happyPetCoins,
+            home,
+            pets,
+            food,
+            toys,
+            litterBox,
+            catHouse,
+        });
+    },
+    loadGame: async () => {
+        try {
+            const owner = await readFromStorage('owner');
+
+            if (owner !== null) {
+                const {
+                    happyPetCoins,
+                    home,
+                    pets,
+                    food,
+                    toys,
+                    litterBox,
+                    catHouse,
+                } = owner;
+
+                set({
+                    happyPetCoins,
+                    home,
+                    pets,
+                    food,
+                    toys,
+                    litterBox,
+                    catHouse,
+                });
+
+                setTimeout(() => {
+                    set({ isLoaded: true });
+                }, 2000);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    },
     setHappyPetCoins: newValue => {
         set({ happyPetCoins: newValue });
     },

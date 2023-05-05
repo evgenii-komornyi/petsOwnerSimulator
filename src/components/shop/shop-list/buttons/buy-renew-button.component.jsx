@@ -3,6 +3,7 @@ import { Button } from '@rneui/themed';
 
 import useOwnerStore from '../../../../app/useOwnerStore';
 import { useToast } from '../../../../hooks/common/useToast.hook';
+import { styles } from '../shop-list.styles';
 
 export const BuyRenewButton = ({
     item,
@@ -40,5 +41,9 @@ export const BuyRenewButton = ({
         }
     };
 
-    return <Button onPress={buy}>{buttonTitle}</Button>;
+    return (
+        <Button onPress={buy} buttonStyle={styles.buttonStyle}>
+            {buttonTitle}
+        </Button>
+    );
 };

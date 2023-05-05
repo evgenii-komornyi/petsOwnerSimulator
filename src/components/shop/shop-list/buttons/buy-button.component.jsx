@@ -29,7 +29,8 @@ export const BuyButton = ({ item, category }) => {
         <View style={styles.buttonContainer}>
             <Button
                 type="outline"
-                onLongPress={() => setIsPressed(prev => !prev)}
+                onPress={() => setIsPressed(prev => !prev)}
+                buttonStyle={styles.buyButtonContainer}
             >
                 <View style={styles.buttonContentWrapper}>
                     {!isPressed ? (
