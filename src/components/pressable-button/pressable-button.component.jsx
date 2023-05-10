@@ -15,7 +15,7 @@ export const PressableButton = ({
     currentDigestionLevel,
     index,
 }) => {
-    const { feedPet, setDigestionLevel } = useOwnerStore();
+    const { feedPet, setDigestionLevel } = useOwnerStore(state => state);
     const [playSound] = useAudio();
 
     const [isDisabled, setIsDisabled] = useState(false);

@@ -13,7 +13,7 @@ import { Constants } from '../../constants/constants';
 import { styles } from './pets.styles';
 
 export const Pets = () => {
-    const { pets } = useOwnerStore();
+    const { pets } = useOwnerStore(state => state);
     const flatListRef = useRef(null);
 
     const handleTouchStart = () => {

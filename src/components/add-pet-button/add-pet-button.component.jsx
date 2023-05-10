@@ -12,7 +12,7 @@ import { styles } from './add-pet-button.styles';
 
 export const AddPetButton = () => {
     const navigate = useNavigate();
-    const { pets } = useOwnerStore();
+    const { pets } = useOwnerStore(state => state);
 
     const showTitle = () => {
         const availablePets = Constants.MAX_AVAILABLE_PETS - pets.length;

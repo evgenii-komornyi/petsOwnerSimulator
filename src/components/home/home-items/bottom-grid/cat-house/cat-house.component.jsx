@@ -6,7 +6,7 @@ import useOwnerStore from '../../../../../app/useOwnerStore';
 import { styles } from './cat-house.styles';
 
 export const CatHouse = () => {
-    const { catHouse } = useOwnerStore();
+    const { catHouse } = useOwnerStore(state => state);
 
     return (
         <View style={styles.catHouseContainer}>

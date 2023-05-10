@@ -8,7 +8,7 @@ import { styles } from './bottom-grid.styles';
 import useOwnerStore from '../../../../app/useOwnerStore';
 
 export const BottomGrid = () => {
-    const { litterBox, catHouse } = useOwnerStore();
+    const { litterBox, catHouse } = useOwnerStore(state => state);
 
     return (
         <View style={styles.bottomGridContainer}>

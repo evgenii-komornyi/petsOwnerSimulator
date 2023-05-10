@@ -13,7 +13,7 @@ export const Carpet = () => {
     const {
         home: { impurity },
         cleanRoom,
-    } = useOwnerStore();
+    } = useOwnerStore(state => state);
 
     const [playSound] = useAudio();
 

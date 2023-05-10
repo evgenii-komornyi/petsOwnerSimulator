@@ -11,7 +11,7 @@ import { icons } from '../../data/icons';
 import { styles } from './status-bar.styles';
 
 const HappyPetCoins = () => {
-    const { happyPetCoins } = useOwnerStore();
+    const { happyPetCoins } = useOwnerStore(state => state);
 
     return (
         <>

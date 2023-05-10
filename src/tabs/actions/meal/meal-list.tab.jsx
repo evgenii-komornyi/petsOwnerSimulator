@@ -9,7 +9,7 @@ import useOwnerStore from '../../../app/useOwnerStore';
 import { styles } from './meal-list.styles';
 
 export const MealList = ({ id, currentFoodLevel, currentDigestionLevel }) => {
-    const { food } = useOwnerStore();
+    const { food } = useOwnerStore(state => state);
 
     return (
         <View style={styles.container}>

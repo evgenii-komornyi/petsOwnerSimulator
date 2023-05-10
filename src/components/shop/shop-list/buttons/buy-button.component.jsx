@@ -41,7 +41,7 @@ export const BuyButton = ({ item, category }) => {
                                 color="black"
                                 size={20}
                             />
-                            <CustomText text={`${item.cost} HPC`} />
+                            <CustomText text={`${item.price} HPC`} />
                         </>
                     ) : (
                         <QuantityButtons

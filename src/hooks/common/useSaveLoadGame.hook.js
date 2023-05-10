@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { AppState } from 'react-native';
 import useOwnerStore from '../../app/useOwnerStore';
 
-export const useSaveGame = () => {
-    const { saveGame, loadGame } = useOwnerStore();
+export const useSaveLoadGame = () => {
+    const { saveGame, loadGame, isLoaded } = useOwnerStore(state => state);
 
     useEffect(() => {
         const handleAppStateChange = nextAppState => {
@@ -20,4 +20,6 @@ export const useSaveGame = () => {
             AppState.removeEventListener('change', handleAppStateChange);
         };
     }, []);
+
+    return isLoaded;
 };

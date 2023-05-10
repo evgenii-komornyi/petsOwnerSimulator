@@ -26,7 +26,7 @@ export const useMainInterval = () => {
         poopInLitterBox,
         poopOnCarpet,
         setSmell,
-    } = useOwnerStore();
+    } = useOwnerStore(state => state);
 
     const [vibrate] = useVibrate();
     const [playSound] = useAudio();
@@ -83,10 +83,12 @@ export const useMainInterval = () => {
                             ) {
                                 setHealthLevel(
                                     pet.id,
-                                    pet.stats.health + 5 >
+                                    pet.stats.health +
+                                        pet.statsIncreasing.health >
                                         Constants.MAX_HEALTH_LEVEL
                                         ? Constants.MAX_HEALTH_LEVEL
-                                        : pet.stats.health + 5
+                                        : pet.stats.health +
+                                              pet.statsIncreasing.health
                                 );
                             }
 

@@ -12,11 +12,13 @@ export const BuyRenewButton = ({
     resetQuantity,
     buttonTitle,
 }) => {
-    const { happyPetCoins, setHappyPetCoins, buyItem } = useOwnerStore();
+    const { happyPetCoins, setHappyPetCoins, buyItem } = useOwnerStore(
+        state => state
+    );
     const toastCaller = useToast();
 
     const buy = () => {
-        if (item.cost > happyPetCoins) {
+        if (item.price > happyPetCoins) {
             toastCaller(`You do not have enough money!`);
 
             return;
@@ -24,7 +26,7 @@ export const BuyRenewButton = ({
 
         if (item.type === 'food') {
             buyItem({ ...item, count: quantity });
-            setHappyPetCoins(happyPetCoins - item.cost * quantity);
+            setHappyPetCoins(happyPetCoins - item.price * quantity);
             setIsPressed(prev => !prev);
             resetQuantity();
             toastCaller(
@@ -34,7 +36,7 @@ export const BuyRenewButton = ({
             );
         } else {
             buyItem(item);
-            setHappyPetCoins(happyPetCoins - item.cost);
+            setHappyPetCoins(happyPetCoins - item.price);
             setIsPressed(prev => !prev);
             resetQuantity();
             toastCaller(`You bought ${item.name}!`);

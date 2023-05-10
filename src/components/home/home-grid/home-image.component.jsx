@@ -8,7 +8,7 @@ import { styles } from './home-grid.styles';
 export const HomeImage = ({ children }) => {
     const {
         home: { image },
-    } = useOwnerStore();
+    } = useOwnerStore(state => state);
 
     return (
         <ImageBackground

@@ -11,7 +11,7 @@ import { Constants } from '../../../../constants/constants';
 export const TopGrid = () => {
     const {
         home: { smell },
-    } = useOwnerStore();
+    } = useOwnerStore(state => state);
 
     return (
         <View style={styles.topGridContainer}>

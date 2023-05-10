@@ -17,7 +17,7 @@ export const Window = () => {
     const {
         home: { isWindowOpen },
         openCloseWindow,
-    } = useOwnerStore();
+    } = useOwnerStore(state => state);
 
     const [playSound] = useAudio();
 

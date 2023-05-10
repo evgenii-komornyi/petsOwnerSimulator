@@ -9,7 +9,7 @@ import { styles } from './farewell.styles';
 import { Button } from '@rneui/themed';
 
 export const Farewell = ({ id, name }) => {
-    const { sayGoodbye } = useOwnerStore();
+    const { sayGoodbye } = useOwnerStore(state => state);
 
     return (
         <View style={styles.farewellContainer}>

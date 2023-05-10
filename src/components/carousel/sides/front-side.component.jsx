@@ -9,7 +9,7 @@ import { styles } from './sides.styles';
 
 export const FrontSide = ({ item: pet }) => {
     const navigate = useNavigate();
-    const { adoptPet } = useOwnerStore();
+    const { adoptPet } = useOwnerStore(state => state);
 
     const adopt = () => {
         adoptPet(pet);

@@ -12,24 +12,31 @@ import { Navigation } from './src/components/navigation/navigation.component.jsx
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useMainInterval } from './src/hooks/common/useMainInterval.hook';
-import { useSaveGame } from './src/hooks/common/useSaveGame.hook';
+import { useSaveLoadGame } from './src/hooks/common/useSaveLoadGame.hook';
 
+import { Loader } from './src/components/loader/loader.component';
+
+import { loaders } from './src/data/loaders';
 import { styles } from './src/styles/global.styles';
 
 export default () => {
     useMainInterval();
 
-    useSaveGame();
+    const isLoaded = useSaveLoadGame();
 
     return (
         <SafeAreaProvider>
             <NativeRouter>
-                <View style={styles.container}>
-                    <Header />
-                    <RoutesMap />
-                    <Navigation />
-                    <StatusBar hidden />
-                </View>
+                {isLoaded ? (
+                    <View style={styles.container}>
+                        <Header />
+                        <RoutesMap />
+                        <Navigation />
+                        <StatusBar hidden />
+                    </View>
+                ) : (
+                    <Loader sourceFile={loaders.loading} />
+                )}
             </NativeRouter>
         </SafeAreaProvider>
     );

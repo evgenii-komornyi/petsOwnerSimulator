@@ -5,7 +5,7 @@ import { useAudio } from '../common/useAudio.hook';
 import { Constants } from '../../constants/constants';
 
 export const usePetCard = (id, stats, moodIncreasing, config) => {
-    const { setMoodLevel } = useOwnerStore();
+    const { setMoodLevel } = useOwnerStore(state => state);
     const [playSound] = useAudio();
 
     const onSwipe = (direction, { dx, dy }) => {
