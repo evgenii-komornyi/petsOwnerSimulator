@@ -30,7 +30,7 @@ export const Constants = {
     LANGUAGE: 'en',
     stats: {
         HEALTH: 'health',
-        HUNGER: 'hunger',
+        SATIETY: 'satiety',
         MOOD: 'mood',
         DIGESTION: 'digestion',
     },
@@ -45,4 +45,7 @@ export const Constants = {
     ASSETS_LITTER_BOXES_FOLDER: 'asset:/images/home-items/litter-boxes',
     ASSETS_HOUSES_FOLDER: 'asset:/images/home-items/houses',
     MAIN_COLOR: '#6A5ACD',
+    MAIN_INTERVAL: 15,
+    HEALTH_UP_THRESHOLD: 50,
+    HPC_DECREASE: 0.15,
 };

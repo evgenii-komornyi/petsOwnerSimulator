@@ -9,6 +9,7 @@ import { addItem } from '../helpers/itemsManipulations.helper';
 import {
     modifyPetStat,
     modifyItemStat,
+    calculatePetsStatsAfterLoading,
 } from '../helpers/petsManipulations.helper';
 
 const ownerStore = (set, get) => ({
@@ -25,11 +26,31 @@ const ownerStore = (set, get) => ({
     litterBox: {},
     catHouse: {},
 
+    meta: {
+        saveMoment: null,
+        FUE: {
+            petsScreen: true,
+            homeScreen: true,
+            shopScreen: true,
+            vetScreen: true,
+            carouselScreen: true,
+        },
+    },
+
     isLoaded: false,
 
     saveGame: () => {
-        const { happyPetCoins, home, pets, food, toys, litterBox, catHouse } =
-            get();
+        const {
+            happyPetCoins,
+            home,
+            pets,
+            food,
+            toys,
+            litterBox,
+            catHouse,
+            meta,
+        } = get();
+
         saveToStorage('owner', {
             happyPetCoins,
             home,
@@ -39,10 +60,23 @@ const ownerStore = (set, get) => ({
             litterBox,
             catHouse,
         });
+
+        saveToStorage('meta', meta);
+        saveToStorage('meta', {
+            ...meta,
+            saveMoment: new Date().toUTCString(),
+        });
     },
     loadGame: async () => {
         try {
             const owner = await readFromStorage('owner');
+            const meta = await readFromStorage('meta');
+
+            if (meta !== null) {
+                set({ meta: meta });
+
+                calculatePetsStatsAfterLoading(meta.saveMoment, owner);
+            }
 
             if (owner !== null) {
                 const {
@@ -65,10 +99,12 @@ const ownerStore = (set, get) => ({
                     catHouse,
                 });
 
-                setTimeout(() => {
-                    set({ isLoaded: true });
-                }, 2000);
+                set({ meta: meta });
             }
+
+            setTimeout(() => {
+                set({ isLoaded: true });
+            }, 2000);
         } catch (e) {
             console.error(e);
         }
@@ -87,12 +123,12 @@ const ownerStore = (set, get) => ({
             set({ [newItem.type]: newItem });
         }
     },
-    setHungerLevel: (id, newHungerLevel) => {
+    setSatietyLevel: (id, newSatietyLevel) => {
         const modifiedPets = modifyPetStat(
             id,
             get().pets,
-            Constants.stats.HUNGER,
-            newHungerLevel
+            Constants.stats.SATIETY,
+            newSatietyLevel
         );
 
         set({ pets: modifiedPets });
@@ -127,13 +163,13 @@ const ownerStore = (set, get) => ({
 
         set({ pets: modifiedPets });
     },
-    feedPet: (id, currentFoodLevel, item) => {
-        const newValue = currentFoodLevel + item.satisfaction;
+    feedPet: (id, currentSatietyLevel, item) => {
+        const newValue = currentSatietyLevel + item.satisfaction;
 
         const modifiedPets = modifyPetStat(
             id,
             get().pets,
-            Constants.stats.HUNGER,
+            Constants.stats.SATIETY,
             newValue >= Constants.MAX_FOOD_LEVEL
                 ? Constants.MAX_FOOD_LEVEL
                 : newValue

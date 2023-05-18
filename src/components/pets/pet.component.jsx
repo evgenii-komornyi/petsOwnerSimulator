@@ -60,7 +60,7 @@ export const Pet = ({
                         >
                             <Actions
                                 id={id}
-                                currentFoodLevel={stats.hunger}
+                                currentSatietyLevel={stats.satiety}
                                 currentDigestionLevel={stats.digestion}
                             />
                         </View>

@@ -9,11 +9,11 @@ import { Constants } from '../../../../constants/constants';
 import { styles } from '../shop-list.styles';
 
 export const ItemDescription = ({ item }) => {
-    const checkFoodType = foodType => {
+    const checkSatietyType = satietyType => {
         return (
             <Icon
                 type={Constants.MATERIALCOMMUNITYICONS_ICON}
-                icon={foodType}
+                icon={satietyType}
                 size={20}
                 color="white"
             />
@@ -24,7 +24,7 @@ export const ItemDescription = ({ item }) => {
         <View style={styles.itemDescription}>
             {item.hasOwnProperty('forAnimal') && (
                 <Chip
-                    icon={() => checkFoodType(item.forAnimal)}
+                    icon={() => checkSatietyType(item.forAnimal)}
                     containerStyle={{ marginVertical: 5 }}
                 />
             )}

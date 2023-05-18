@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
             container: { width: '10%', marginRight: 10 },
             icon: { width: 20, height: 20 },
         },
-        hunger: {
+        satiety: {
             container: { width: '10%', marginRight: 20 },
             icon: { width: 30, height: 22 },
         },

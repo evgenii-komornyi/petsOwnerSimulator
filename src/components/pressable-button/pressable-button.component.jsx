@@ -7,11 +7,12 @@ import useOwnerStore from '../../app/useOwnerStore';
 
 import { useAudio } from '../../hooks/common/useAudio.hook';
 import { styles } from './pressable-button.styles';
+import { Constants } from '../../constants/constants';
 
 export const PressableButton = ({
     catId,
     item,
-    currentFoodLevel,
+    currentSatietyLevel,
     currentDigestionLevel,
     index,
 }) => {
@@ -21,11 +22,11 @@ export const PressableButton = ({
     const [isDisabled, setIsDisabled] = useState(false);
 
     const feed = () => {
-        feedPet(catId, currentFoodLevel, item);
+        feedPet(catId, currentSatietyLevel, item);
         playSound('eating');
 
         if (currentDigestionLevel === 0) {
-            setDigestionLevel(catId, 30);
+            setDigestionLevel(catId, Constants.MAX_DIGESTION_LEVEL);
         }
 
         setIsDisabled(true);

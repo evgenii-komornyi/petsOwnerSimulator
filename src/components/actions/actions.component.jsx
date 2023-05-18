@@ -10,7 +10,7 @@ import { Constants } from '../../constants/constants';
 
 import { styles } from './actions.styles';
 
-export const Actions = ({ id, currentFoodLevel, currentDigestionLevel }) => {
+export const Actions = ({ id, currentSatietyLevel, currentDigestionLevel }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const buttons = [
@@ -34,7 +34,7 @@ export const Actions = ({ id, currentFoodLevel, currentDigestionLevel }) => {
                 return (
                     <MealList
                         id={id}
-                        currentFoodLevel={currentFoodLevel}
+                        currentSatietyLevel={currentSatietyLevel}
                         currentDigestionLevel={currentDigestionLevel}
                     />
                 );

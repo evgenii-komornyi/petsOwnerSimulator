@@ -9,7 +9,7 @@ export const usePetCard = (id, stats, moodIncreasing, config) => {
     const [playSound] = useAudio();
 
     const onSwipe = (direction, { dx, dy }) => {
-        if (stats.health === 0 || stats.hunger === 0) {
+        if (stats.health === 0 || stats.satiety === 0) {
             return;
         }
 

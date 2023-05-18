@@ -25,11 +25,11 @@ export const Statistic = ({ id, name, stats }) => {
                     }}
                 />
             )}
-            {stats.hasOwnProperty('hunger') && (
+            {stats.hasOwnProperty('satiety') && (
                 <Level
-                    iconStyle={styles.iconLevel.hunger}
-                    iconSource={checkIconByLevel('hunger')}
-                    statLevel={stats.hunger}
+                    iconStyle={styles.iconLevel.satiety}
+                    iconSource={checkIconByLevel('satiety')}
+                    statLevel={stats.satiety}
                 />
             )}
             {stats.hasOwnProperty('mood') && (

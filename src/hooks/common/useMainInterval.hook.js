@@ -8,8 +8,6 @@ import { Constants } from '../../constants/constants';
 import { useVibrate } from './useVibrate.hook';
 import { useAudio } from './useAudio.hook';
 
-const timer = 15;
-
 let interval = 0;
 
 export const useMainInterval = () => {
@@ -19,7 +17,7 @@ export const useMainInterval = () => {
         litterBox,
         home,
         setHealthLevel,
-        setHungerLevel,
+        setSatietyLevel,
         setMoodLevel,
         setDigestionLevel,
         setHappyPetCoins,
@@ -76,9 +74,10 @@ export const useMainInterval = () => {
             currentPets.current.length !== 0 &&
                 currentPets.current.map(pet => {
                     if (isPetNotDead(pet.stats.health)) {
-                        if (pet.stats.hunger > 0) {
+                        if (pet.stats.satiety > 0) {
                             if (
-                                pet.stats.hunger > 50 &&
+                                pet.stats.satiety >
+                                    Constants.HEALTH_UP_THRESHOLD &&
                                 pet.stats.health < Constants.MAX_HEALTH_LEVEL
                             ) {
                                 setHealthLevel(
@@ -92,11 +91,12 @@ export const useMainInterval = () => {
                                 );
                             }
 
-                            setHungerLevel(
+                            setSatietyLevel(
                                 pet.id,
                                 calculateNewStat(
-                                    pet.stats.hunger,
-                                    pet.stats.hunger - pet.statsReducing.hunger,
+                                    pet.stats.satiety,
+                                    pet.stats.satiety -
+                                        pet.statsReducing.satiety,
                                     undefined,
                                     1.5
                                 )
@@ -124,11 +124,12 @@ export const useMainInterval = () => {
 
                         if (
                             pet.stats.mood > 0 &&
-                            pet.stats.hunger > 0 &&
+                            pet.stats.satiety > 0 &&
                             pet.stats.health > 0
                         ) {
                             setHappyPetCoins(
-                                currentHappyPetCoins.current + 0.15
+                                currentHappyPetCoins.current +
+                                    Constants.HPC_DECREASE
                             );
                         }
 
@@ -180,7 +181,7 @@ export const useMainInterval = () => {
                         : currentHome.current.smell - 2
                 );
             }
-        }, timer * 1000);
+        }, Constants.MAIN_INTERVAL * 1000);
 
         return () => clearInterval(interval);
     }, []);

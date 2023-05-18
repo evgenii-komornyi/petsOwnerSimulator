@@ -8,7 +8,11 @@ import useOwnerStore from '../../../app/useOwnerStore';
 
 import { styles } from './meal-list.styles';
 
-export const MealList = ({ id, currentFoodLevel, currentDigestionLevel }) => {
+export const MealList = ({
+    id,
+    currentSatietyLevel,
+    currentDigestionLevel,
+}) => {
     const { food } = useOwnerStore(state => state);
 
     return (
@@ -19,7 +23,7 @@ export const MealList = ({ id, currentFoodLevel, currentDigestionLevel }) => {
                         <PressableButton
                             catId={id}
                             item={item}
-                            currentFoodLevel={currentFoodLevel}
+                            currentSatietyLevel={currentSatietyLevel}
                             currentDigestionLevel={currentDigestionLevel}
                             index={index}
                         />
