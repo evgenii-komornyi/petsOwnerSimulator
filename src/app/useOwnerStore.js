@@ -28,7 +28,7 @@ const ownerStore = (set, get) => ({
 
     meta: {
         saveMoment: null,
-        FUE: {
+        firstUserExperience: {
             petsScreen: true,
             homeScreen: true,
             shopScreen: true,
