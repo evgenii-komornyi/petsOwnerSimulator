@@ -2,10 +2,13 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { CatHouse } from './cat-house/cat-house.component';
-import { Litter } from './litter/litter.component';
+import { LitterBox } from './litter-box/litter-box.component';
+
+import useOwnerStore from '../../../../app/useOwnerStore';
+
+import { isObjectExists } from '../../../../helpers/objects.helper';
 
 import { styles } from './bottom-grid.styles';
-import useOwnerStore from '../../../../app/useOwnerStore';
 
 export const BottomGrid = () => {
     const { litterBox, catHouse } = useOwnerStore(state => state);
@@ -13,10 +16,10 @@ export const BottomGrid = () => {
     return (
         <View style={styles.bottomGridContainer}>
             <View style={styles.catHouseContainer}>
-                {Object.keys(catHouse).length !== 0 && <CatHouse />}
+                {isObjectExists(catHouse) && <CatHouse />}
             </View>
-            <View style={styles.litterContainer}>
-                {Object.keys(litterBox).length !== 0 && <Litter />}
+            <View style={styles.litterBoxContainer}>
+                {isObjectExists(litterBox) && <LitterBox />}
             </View>
         </View>
     );

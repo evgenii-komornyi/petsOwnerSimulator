@@ -7,15 +7,17 @@ import useOwnerStore from '../../../../../app/useOwnerStore';
 import { useAudio } from '../../../../../hooks/common/useAudio.hook';
 import { useVibrate } from '../../../../../hooks/common/useVibrate.hook';
 
-import { styles } from './litter.styles';
+import { isObjectExists } from '../../../../../helpers/objects.helper';
 
-export const Litter = () => {
+import { styles } from './litter-box.styles';
+
+export const LitterBox = () => {
     const { litterBox, cleanLitterBox } = useOwnerStore(state => state);
     const [playSound] = useAudio();
     const [vibrate] = useVibrate();
 
     const checkSlotsNumber = slots => {
-        if (Object.keys(litterBox).length === 0) return;
+        if (!isObjectExists(litterBox)) return;
 
         if (slots <= 3 && slots >= 1) return litterBox.image.used;
 
@@ -24,19 +26,19 @@ export const Litter = () => {
         return litterBox.image.empty;
     };
 
-    const cleanupLitter = () => {
+    const cleanupLitterBox = () => {
         cleanLitterBox();
-        playSound('litterCleanup');
+        playSound('litterBoxCleanup');
         vibrate();
     };
 
     return (
-        <View style={styles.litterContainer}>
-            <DoubleTap singleTap={cleanupLitter}>
+        <View style={styles.litterBoxContainer}>
+            <DoubleTap singleTap={cleanupLitterBox}>
                 <ImageBackground
                     resizeMode="contain"
                     source={checkSlotsNumber(litterBox.slots)}
-                    style={styles.litterImage}
+                    style={styles.litterBoxImage}
                 ></ImageBackground>
             </DoubleTap>
         </View>

@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-    litterContainer: {
+    litterBoxContainer: {
         position: 'relative',
         ...(width >= 360 &&
             width < 768 && {
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
             bottom: '42%',
         }),
     },
-    litterImage: {
+    litterBoxImage: {
         width: '100%',
         height: '100%',
     },

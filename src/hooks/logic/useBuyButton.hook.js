@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useOwnerStore from '../../app/useOwnerStore';
+import { isObjectExists } from '../../helpers/objects.helper';
 
 export const useBuyButton = () => {
     const [isPressed, setIsPressed] = useState(false);
@@ -32,7 +33,7 @@ export const useBuyButton = () => {
             checkLitterBoxCategory(category) &&
             checkOwnerLitterBoxIdAndShopItemId(item)
         ) {
-            if (Object.keys(litterBox).length !== 0) {
+            if (isObjectExists(litterBox)) {
                 return 'RENEW';
             }
         }
@@ -41,7 +42,7 @@ export const useBuyButton = () => {
             checkCatHouseCategory(category) &&
             checkOwnerCatHouseIdAndShopItemId(item)
         ) {
-            if (Object.keys(catHouse).length !== 0) {
+            if (isObjectExists(catHouse)) {
                 return 'RENEW';
             }
         }
