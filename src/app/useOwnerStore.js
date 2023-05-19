@@ -184,13 +184,12 @@ const ownerStore = (set, get) => ({
 
         set({ pets: modifiedPets, food: modifiedItems });
     },
-    poopInLitterBox: () => {
+    poopInLitterBox: newSlotsCount => {
         set(state => ({
             ...state,
             litterBox: {
                 ...state.litterBox,
-                slots:
-                    state.litterBox.slots !== 0 ? state.litterBox.slots - 1 : 0,
+                slots: newSlotsCount,
             },
         }));
     },

@@ -7,6 +7,7 @@ import { useCreateRef } from './useCreateRef.hook';
 import { Constants } from '../../constants/constants';
 import { useVibrate } from './useVibrate.hook';
 import { useAudio } from './useAudio.hook';
+import { isObjectExists } from '../../helpers/objects.helper';
 
 let interval = 0;
 
@@ -31,7 +32,7 @@ export const useMainInterval = () => {
 
     const currentPets = useCreateRef(pets);
     const currentHappyPetCoins = useCreateRef(happyPetCoins);
-    const currentLitter = useCreateRef(litterBox);
+    const currentLitterBox = useCreateRef(litterBox);
     const currentHome = useCreateRef(home);
 
     const calculateNewStat = (
@@ -42,32 +43,32 @@ export const useMainInterval = () => {
     ) => {
         let newStat = calculatedNewStat >= 0 ? calculatedNewStat : 0;
 
-        runVibrationAndSound(
-            currentStat,
-            newStat,
-            soundToPlay,
-            vibrateDuration
-        );
+        if (currentStat > 0) {
+            if (newStat === 0) {
+                runVibrationAndSound(soundToPlay, vibrateDuration);
+            }
+        }
 
         return newStat;
     };
 
-    const runVibrationAndSound = (
-        currentStat,
-        newStat,
-        soundToPlay,
-        vibrateDuration
-    ) => {
-        if (currentStat > 0) {
-            if (newStat === 0) {
-                if (soundToPlay !== undefined) playSound(soundToPlay);
+    const runVibrationAndSound = (soundToPlay, vibrateDuration) => {
+        if (soundToPlay !== undefined) playSound(soundToPlay);
 
-                if (vibrateDuration !== undefined) vibrate(vibrateDuration);
-            }
-        }
+        if (vibrateDuration !== undefined) vibrate(vibrateDuration);
     };
 
     const isPetNotDead = health => health !== 0;
+
+    const goToLitterBox = slots => {
+        if (slots > 0) {
+            poopInLitterBox(slots !== 0 ? slots - 1 : 0);
+
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     useEffect(() => {
         interval = setInterval(() => {
@@ -113,14 +114,30 @@ export const useMainInterval = () => {
                             );
                         }
 
-                        setDigestionLevel(
-                            pet.id,
-                            calculateNewStat(
-                                pet.stats.digestion,
-                                pet.stats.digestion -
-                                    pet.statsReducing.digestion
-                            )
-                        );
+                        if (pet.stats.digestion !== 0) {
+                            setDigestionLevel(
+                                pet.id,
+                                calculateNewStat(
+                                    pet.stats.digestion,
+                                    pet.stats.digestion -
+                                        pet.statsReducing.digestion
+                                )
+                            );
+
+                            if (pet.stats.digestion === 0) {
+                                if (
+                                    !isObjectExists(currentLitterBox.current) ||
+                                    !goToLitterBox(
+                                        currentLitterBox.current.slots
+                                    )
+                                ) {
+                                    poopOnCarpet();
+                                }
+
+                                playSound('poo');
+                                vibrate();
+                            }
+                        }
 
                         if (
                             pet.stats.mood > 0 &&
@@ -131,23 +148,6 @@ export const useMainInterval = () => {
                                 currentHappyPetCoins.current +
                                     Constants.HPC_DECREASE
                             );
-                        }
-
-                        let isPetPooped = false;
-                        if (pet.stats.digestion === 1) {
-                            if (
-                                Object.keys(currentLitter.current).length !==
-                                    0 &&
-                                currentLitter.current.slots !== 0
-                            ) {
-                                poopInLitterBox();
-                                isPetPooped = true;
-                            }
-
-                            if (!isPetPooped) poopOnCarpet();
-
-                            vibrate();
-                            playSound('poo');
                         }
 
                         setMoodLevel(
