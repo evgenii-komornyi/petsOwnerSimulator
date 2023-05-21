@@ -41,7 +41,7 @@ export const calculatePetsStatsAfterLoading = (saveMomentString, owner) => {
 
     const calculatedPetsBetweenSaveAndLoadMoments =
         calculatePetsBetweenSaveAndLoadMoments(
-            owner.pets,
+            owner,
             totalIntervalsInDifference
         );
 
@@ -61,10 +61,10 @@ const convertDateTimeToSeconds = dateTime => {
 };
 
 const calculatePetsBetweenSaveAndLoadMoments = (
-    pets,
+    owner,
     totalIntervalsInDifference
 ) => {
-    return pets.map(pet => {
+    return owner.pets.map(pet => {
         const newHealth = calculateHealth(
             pet.stats.health,
             pet.statsReducing.health,
