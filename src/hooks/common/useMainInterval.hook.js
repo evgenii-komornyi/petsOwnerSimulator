@@ -146,7 +146,7 @@ export const useMainInterval = () => {
                         ) {
                             setHappyPetCoins(
                                 currentHappyPetCoins.current +
-                                    Constants.HPC_DECREASE
+                                    Constants.HPC_INCREASE
                             );
                         }
 
@@ -165,20 +165,24 @@ export const useMainInterval = () => {
                 });
 
             if (currentHome.current.impurity !== 0) {
+                const calculatedSmellWithPoopsOnCarpet =
+                    currentHome.current.smell + currentHome.current.impurity;
+
                 setSmell(
-                    currentHome.current.smell + currentHome.current.impurity >
-                        Constants.MAX_HOME_SMELL
+                    calculatedSmellWithPoopsOnCarpet > Constants.MAX_HOME_SMELL
                         ? Constants.MAX_HOME_SMELL
-                        : currentHome.current.smell +
-                              currentHome.current.impurity
+                        : calculatedSmellWithPoopsOnCarpet
                 );
             }
 
+            const calculatedSmellWithOpenWindow =
+                currentHome.current.smell - Constants.HOME_SMELL_DECREASE;
+
             if (currentHome.current.isWindowOpen) {
                 setSmell(
-                    currentHome.current.smell - 2 < 0
+                    calculatedSmellWithOpenWindow < 0
                         ? 0
-                        : currentHome.current.smell - 2
+                        : calculatedSmellWithOpenWindow
                 );
             }
         }, Constants.MAIN_INTERVAL * 1000);

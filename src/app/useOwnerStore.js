@@ -9,8 +9,9 @@ import { addItem } from '../helpers/itemsManipulations.helper';
 import {
     modifyPetStat,
     modifyItemStat,
-    calculatePetsStatsAfterLoading,
 } from '../helpers/petsManipulations.helper';
+
+import { calculateOwnerAfterLoading } from '../helpers/load-game.helper';
 
 const ownerStore = (set, get) => ({
     happyPetCoins: 100.0,
@@ -69,16 +70,21 @@ const ownerStore = (set, get) => ({
     },
     loadGame: async () => {
         try {
-            const owner = await readFromStorage('owner');
+            const ownerFromStorage = await readFromStorage('owner');
             const meta = await readFromStorage('meta');
+
+            let calculatedOwner = null;
 
             if (meta !== null) {
                 set({ meta: meta });
 
-                calculatePetsStatsAfterLoading(meta.saveMoment, owner);
+                calculatedOwner = calculateOwnerAfterLoading(
+                    meta.saveMoment,
+                    ownerFromStorage
+                );
             }
 
-            if (owner !== null) {
+            if (calculatedOwner !== null) {
                 const {
                     happyPetCoins,
                     home,
@@ -87,7 +93,7 @@ const ownerStore = (set, get) => ({
                     toys,
                     litterBox,
                     catHouse,
-                } = owner;
+                } = calculatedOwner;
 
                 set({
                     happyPetCoins,
@@ -201,7 +207,8 @@ const ownerStore = (set, get) => ({
                 impurity:
                     state.home.impurity > Constants.MAX_HOME_IMPURITY
                         ? Constants.MAX_HOME_IMPURITY
-                        : state.home.impurity + 1,
+                        : state.home.impurity +
+                          Constants.HOME_IMPURITY_INCREASE,
             },
         }));
     },

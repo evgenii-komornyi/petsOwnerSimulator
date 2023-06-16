@@ -27,6 +27,8 @@ export const Constants = {
     MAX_LITTER_SLOTS: 4,
     MAX_HOME_IMPURITY: 100,
     MAX_HOME_SMELL: 100,
+    HOME_SMELL_DECREASE: 2,
+    HOME_IMPURITY_INCREASE: 1,
     LANGUAGE: 'en',
     stats: {
         HEALTH: 'health',
@@ -47,5 +49,5 @@ export const Constants = {
     MAIN_COLOR: '#6A5ACD',
     MAIN_INTERVAL: 15,
     HEALTH_UP_THRESHOLD: 50,
-    HPC_DECREASE: 0.15,
+    HPC_INCREASE: 0.15,
 };
