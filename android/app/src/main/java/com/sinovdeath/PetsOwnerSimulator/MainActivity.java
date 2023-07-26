@@ -7,6 +7,7 @@ import android.view.View;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.sinovdeath.PetsOwnerSimulator.Services.Game.GameService;
 
 import expo.modules.ReactActivityDelegateWrapper;
 
@@ -17,6 +18,7 @@ public class MainActivity extends ReactActivity {
     // coloring the background, status bar, and navigation bar.
     // This is required for expo-splash-screen.
     setTheme(R.style.AppTheme);
+
     super.onCreate(savedInstanceState);
   }
 
@@ -30,7 +32,6 @@ public class MainActivity extends ReactActivity {
             | View.SYSTEM_UI_FLAG_FULLSCREEN;
     decorView.setSystemUiVisibility(uiOptions);
   }
-
   @Override
   protected void onPause() {
     super.onPause();

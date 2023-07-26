@@ -9,7 +9,7 @@ import useOwnerStore from '../../../app/useOwnerStore';
 import { styles } from './play-list.styles';
 
 export const PlayList = () => {
-    const { toys } = useOwnerStore(state => state);
+    const { toys } = useOwnerStore(state => state.inventory);
 
     return (
         <View style={styles.container}>

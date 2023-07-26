@@ -11,7 +11,10 @@ export const ShopItem = ({ item, category }) => {
         <View style={styles.itemContainerStyle}>
             <View style={styles.itemWrapper}>
                 <View style={styles.itemImageContainer}>
-                    <Image source={item.image.new} style={styles.itemImage} />
+                    <Image
+                        source={{ uri: item.image.unused }}
+                        style={styles.itemImage}
+                    />
                 </View>
                 <ItemDescription item={item} />
             </View>

@@ -6,7 +6,7 @@ export const useBuyButton = () => {
     const [isPressed, setIsPressed] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
-    const { litterBox, catHouse } = useOwnerStore(state => state);
+    const { litterBox, catHouse } = useOwnerStore(state => state.inventory);
 
     const increaseQuantity = () => {
         setQuantity(prev => (prev + 1 > 9 ? 9 : prev + 1));

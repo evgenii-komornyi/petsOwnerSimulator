@@ -13,7 +13,7 @@ export const MealList = ({
     currentSatietyLevel,
     currentDigestionLevel,
 }) => {
-    const { food } = useOwnerStore(state => state);
+    const { food } = useOwnerStore(state => state.inventory);
 
     return (
         <View style={styles.container}>

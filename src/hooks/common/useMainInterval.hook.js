@@ -15,8 +15,9 @@ export const useMainInterval = () => {
     const {
         pets,
         happyPetCoins,
-        litterBox,
+        inventory: { litterBox },
         home,
+        getCurrentOwner,
         setHealthLevel,
         setSatietyLevel,
         setMoodLevel,
@@ -72,6 +73,7 @@ export const useMainInterval = () => {
 
     useEffect(() => {
         interval = setInterval(() => {
+            getCurrentOwner();
             currentPets.current.length !== 0 &&
                 currentPets.current.map(pet => {
                     if (isPetNotDead(pet.stats.health)) {
@@ -144,10 +146,7 @@ export const useMainInterval = () => {
                             pet.stats.satiety > 0 &&
                             pet.stats.health > 0
                         ) {
-                            setHappyPetCoins(
-                                currentHappyPetCoins.current +
-                                    Constants.HPC_INCREASE
-                            );
+                            setHappyPetCoins();
                         }
 
                         setMoodLevel(

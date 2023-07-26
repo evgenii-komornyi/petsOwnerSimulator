@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { NativeModules } from 'react-native';
 
 import { readFromStorage, saveToStorage } from '../helpers/storage.helper';
 
@@ -9,11 +10,20 @@ import { addItem } from '../helpers/itemsManipulations.helper';
 import {
     modifyPetStat,
     modifyItemStat,
+    convertPets,
 } from '../helpers/petsManipulations.helper';
 
 import { calculateOwnerAfterLoading } from '../helpers/load-game.helper';
+import { loadGame, saveGame } from '../modules/game.module';
+import {
+    adoptPet,
+    buyItem,
+    getCurrentOwner,
+    setHPC,
+} from '../modules/owner.module';
 
 const ownerStore = (set, get) => ({
+    name: '',
     happyPetCoins: 100.0,
     home: {
         image: { uri: 'asset:/images/backgrounds/home/room.png' },
@@ -22,111 +32,163 @@ const ownerStore = (set, get) => ({
         smell: 0,
     },
     pets: [],
-    food: [],
-    toys: [],
-    litterBox: {},
-    catHouse: {},
-
-    meta: {
-        saveMoment: null,
-        firstUserExperience: {
-            petsScreen: true,
-            homeScreen: true,
-            shopScreen: true,
-            vetScreen: true,
-            carouselScreen: true,
-        },
-    },
+    inventory: {},
 
     isLoaded: false,
 
-    saveGame: () => {
-        const {
-            happyPetCoins,
-            home,
-            pets,
-            food,
-            toys,
-            litterBox,
-            catHouse,
-            meta,
-        } = get();
-
-        saveToStorage('owner', {
-            happyPetCoins,
-            home,
-            pets,
-            food,
-            toys,
-            litterBox,
-            catHouse,
-        });
-
-        saveToStorage('meta', meta);
-        saveToStorage('meta', {
-            ...meta,
-            saveMoment: new Date().toUTCString(),
-        });
-    },
-    loadGame: async () => {
+    getCurrentOwner: async () => {
         try {
-            const ownerFromStorage = await readFromStorage('owner');
-            const meta = await readFromStorage('meta');
+            const owner = await getCurrentOwner();
 
-            let calculatedOwner = null;
+            if (owner) {
+                const { happyPetCoins, pets, name, inventory } =
+                    JSON.parse(owner);
 
-            if (meta !== null) {
-                set({ meta: meta });
+                const convertedPets = convertPets(pets);
 
-                calculatedOwner = calculateOwnerAfterLoading(
-                    meta.saveMoment,
-                    ownerFromStorage
-                );
+                set({ happyPetCoins, pets: convertedPets, name, inventory });
+
+                setTimeout(() => {
+                    set({ isLoaded: true });
+                }, 2000);
             }
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
 
-            if (calculatedOwner !== null) {
-                const {
-                    happyPetCoins,
-                    home,
-                    pets,
-                    food,
-                    toys,
-                    litterBox,
-                    catHouse,
-                } = calculatedOwner;
+    // saveGame: () => {
+    //     const {
+    //         happyPetCoins,
+    //         home,
+    //         pets,
+    //         food,
+    //         toys,
+    //         litterBox,
+    //         catHouse,
+    //         meta,
+    //     } = get();
 
-                set({
-                    happyPetCoins,
-                    home,
-                    pets,
-                    food,
-                    toys,
-                    litterBox,
-                    catHouse,
-                });
+    //     saveToStorage('owner', {
+    //         happyPetCoins,
+    //         home,
+    //         pets,
+    //         food,
+    //         toys,
+    //         litterBox,
+    //         catHouse,
+    //     });
 
-                set({ meta: meta });
-            }
+    //     saveToStorage('meta', meta);
+    //     saveToStorage('meta', {
+    //         ...meta,
+    //         saveMoment: new Date().toUTCString(),
+    //     });
+    // },
+    loadGameFromModule: async () => {
+        const owner = await loadGame();
+
+        if (owner) {
+            const { happyPetCoins, pets, name, inventory } = JSON.parse(owner);
+
+            const convertedPets = convertPets(pets);
+
+            set({ happyPetCoins, pets: convertedPets, name, inventory });
 
             setTimeout(() => {
                 set({ isLoaded: true });
             }, 2000);
-        } catch (e) {
-            console.error(e);
         }
     },
-    setHappyPetCoins: newValue => {
-        set({ happyPetCoins: newValue });
+    saveGameFromModule: () => {
+        saveGame();
     },
-    adoptPet: pet => {
-        set(state => ({ ...state, pets: [...state.pets, pet] }));
+    // loadGame: async () => {
+    //     try {
+    //         const ownerFromStorage = await readFromStorage('owner');
+    //         const meta = await readFromStorage('meta');
+
+    //         let calculatedOwner = null;
+
+    //         if (meta !== null) {
+    //             set({ meta: meta });
+
+    //             calculatedOwner = calculateOwnerAfterLoading(
+    //                 meta.saveMoment,
+    //                 ownerFromStorage
+    //             );
+    //         }
+
+    //         if (calculatedOwner !== null) {
+    //             const {
+    //                 happyPetCoins,
+    //                 home,
+    //                 pets,
+    //                 food,
+    //                 toys,
+    //                 litterBox,
+    //                 catHouse,
+    //             } = calculatedOwner;
+
+    //             set({
+    //                 happyPetCoins,
+    //                 home,
+    //                 pets,
+    //                 food,
+    //                 toys,
+    //                 litterBox,
+    //                 catHouse,
+    //             });
+
+    //             set({ meta: meta });
+    //         }
+
+    //         setTimeout(() => {
+    //             set({ isLoaded: true });
+    //         }, 2000);
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // },
+    setHappyPetCoins: async () => {
+        try {
+            const data = await setHPC();
+
+            if (data) {
+                const happyPetCoins = JSON.parse(data);
+
+                set({ happyPetCoins });
+            }
+        } catch (error) {
+            console.error(error);
+        }
     },
-    buyItem: newItem => {
-        const existingState = get()[newItem.type];
-        if (Array.isArray(existingState)) {
-            set({ [newItem.type]: addItem(existingState, newItem) });
-        } else if (typeof existingState === 'object') {
-            set({ [newItem.type]: newItem });
+    adoptPet: async (petType, pet) => {
+        try {
+            const data = await adoptPet(petType, JSON.stringify(pet));
+
+            if (data) {
+                const { pets } = JSON.parse(data);
+
+                const convertedPets = convertPets(pets);
+
+                set({ pets: convertedPets });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    buyItem: async newItem => {
+        try {
+            const data = await buyItem(newItem.type, JSON.stringify(newItem));
+
+            if (data) {
+                const { happyPetCoins, inventory } = JSON.parse(data);
+
+                set({ happyPetCoins, inventory });
+            }
+        } catch (error) {
+            console.error(error);
         }
     },
     setSatietyLevel: (id, newSatietyLevel) => {

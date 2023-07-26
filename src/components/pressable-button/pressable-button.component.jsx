@@ -44,7 +44,7 @@ export const PressableButton = ({
                 disabled={isDisabled}
             >
                 <Image
-                    source={item.image.new}
+                    source={{ uri: item.image.unused }}
                     style={[
                         styles.image,
                         {

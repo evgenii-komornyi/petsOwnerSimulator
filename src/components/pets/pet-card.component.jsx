@@ -36,7 +36,7 @@ export const PetCard = ({
                 onTouchEnd={touchEnd}
             >
                 <Image
-                    source={img}
+                    source={{ uri: img }}
                     style={[
                         styles.petImage,
                         {

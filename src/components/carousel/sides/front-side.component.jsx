@@ -7,18 +7,23 @@ import useOwnerStore from '../../../app/useOwnerStore';
 
 import { styles } from './sides.styles';
 
-export const FrontSide = ({ item: pet }) => {
+export const FrontSide = ({ type, item: pet }) => {
     const navigate = useNavigate();
     const { adoptPet } = useOwnerStore(state => state);
 
     const adopt = () => {
-        adoptPet(pet);
+        adoptPet(type, pet);
         navigate('/');
     };
 
     return (
         <View style={styles.cardFront}>
-            <Image source={pet.img.regular} style={styles.image} />
+            <Image
+                source={{
+                    uri: pet.img.regular,
+                }}
+                style={styles.image}
+            />
             <Button title={`Adopt ${pet.name}`} onPress={adopt} />
         </View>
     );
