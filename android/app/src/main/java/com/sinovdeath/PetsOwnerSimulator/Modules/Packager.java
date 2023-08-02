@@ -22,6 +22,8 @@ public class Packager implements ReactPackage {
         modules.add(new GameModule(reactApplicationContext));
         modules.add(new ShelterModule(reactApplicationContext));
         modules.add(new ShopModule(reactApplicationContext));
+        modules.add(new PetsModule(reactApplicationContext));
+        modules.add(new HomeModule(reactApplicationContext));
 
         return modules;
     }

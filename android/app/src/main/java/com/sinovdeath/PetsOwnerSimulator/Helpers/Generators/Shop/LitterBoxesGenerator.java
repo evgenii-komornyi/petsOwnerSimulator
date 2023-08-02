@@ -19,6 +19,7 @@ public class LitterBoxesGenerator {
         litterBox_lb1000.setId("lb-1000");
         litterBox_lb1000.setName("LB-1000");
         litterBox_lb1000.setSlots(4);
+        litterBox_lb1000.setMaxSlots(4);
         litterBox_lb1000.setType(ItemType.LITTER_BOX.getItemType());
         LitterBoxImage litterBox_lb1000Image = new LitterBoxImage();
         String lb_1000Id = litterBox_lb1000.getId();

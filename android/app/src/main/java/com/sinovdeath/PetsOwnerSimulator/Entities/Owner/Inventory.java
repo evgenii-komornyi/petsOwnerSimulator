@@ -16,8 +16,6 @@ public class Inventory {
     public Inventory() {
         this.food = new ArrayList<>();
         this.toys = new ArrayList<>();
-        this.litterBox = new LitterBox();
-        this.catHouse = new CatHouse();
     }
 
     public List<Item> getFood() {

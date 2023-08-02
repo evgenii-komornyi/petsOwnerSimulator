@@ -7,27 +7,16 @@ import useOwnerStore from '../../app/useOwnerStore';
 
 import { useAudio } from '../../hooks/common/useAudio.hook';
 import { styles } from './pressable-button.styles';
-import { Constants } from '../../constants/constants';
 
-export const PressableButton = ({
-    catId,
-    item,
-    currentSatietyLevel,
-    currentDigestionLevel,
-    index,
-}) => {
-    const { feedPet, setDigestionLevel } = useOwnerStore(state => state);
+export const PressableButton = ({ catId, item, index }) => {
+    const { feedPet } = useOwnerStore(state => state);
     const [playSound] = useAudio();
 
     const [isDisabled, setIsDisabled] = useState(false);
 
     const feed = () => {
-        feedPet(catId, currentSatietyLevel, item);
+        feedPet(catId, item.id);
         playSound('eating');
-
-        if (currentDigestionLevel === 0) {
-            setDigestionLevel(catId, Constants.MAX_DIGESTION_LEVEL);
-        }
 
         setIsDisabled(true);
 

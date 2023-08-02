@@ -28,4 +28,20 @@ public class Stats {
     public int getDigestion() {
         return digestion;
     }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setSatiety(int satiety) {
+        this.satiety = satiety;
+    }
+
+    public void setMood(int mood) {
+        this.mood = mood;
+    }
+
+    public void setDigestion(int digestion) {
+        this.digestion = digestion;
+    }
 }

@@ -1,7 +1,14 @@
 package com.sinovdeath.PetsOwnerSimulator.Entities.Pet;
 
+import com.google.android.exoplayer2.util.Log;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Home.Home;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Items.Item;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Items.LitterBox.LitterBox;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Stats.Stats;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Stats.StatsIncreasing;
+import com.sinovdeath.PetsOwnerSimulator.Helpers.Calculators.HomeStatsCalculator;
+import com.sinovdeath.PetsOwnerSimulator.Managers.OwnerManager;
 
 public abstract class Animal implements IAnimal {
     protected String id;
@@ -14,8 +21,17 @@ public abstract class Animal implements IAnimal {
     protected boolean wasTaken;
     protected String type;
 
-    public Animal() {
+    public Animal() {}
 
+    @Override
+    public void poop() {
+        Owner owner = OwnerManager.getCurrentOwner();
+        LitterBox litterBox = (LitterBox) owner.getInventory().getLitterBox();
+
+        if (litterBox == null || !litterBox.getPetPoop()) {
+            Home home = owner.getHome();
+            home.setPoopOnCarpetCount(HomeStatsCalculator.calculatePoopOnCarpetCount(home.getPoopOnCarpetCount()));
+        }
     }
 
     public String getId() {

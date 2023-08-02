@@ -18,19 +18,20 @@ import { loadGame, saveGame } from '../modules/game.module';
 import {
     adoptPet,
     buyItem,
+    cleanLitterBox,
+    cleanRoom,
+    feedPet,
     getCurrentOwner,
+    interactWithWindow,
     setHPC,
 } from '../modules/owner.module';
+import { calculatePetsStats } from '../modules/pets.module';
+import { calculateHomeStats } from '../modules/home.module';
 
 const ownerStore = (set, get) => ({
     name: '',
     happyPetCoins: 100.0,
-    home: {
-        image: { uri: 'asset:/images/backgrounds/home/room.png' },
-        isWindowOpen: false,
-        impurity: 0,
-        smell: 0,
-    },
+    home: {},
     pets: [],
     inventory: {},
 
@@ -41,12 +42,18 @@ const ownerStore = (set, get) => ({
             const owner = await getCurrentOwner();
 
             if (owner) {
-                const { happyPetCoins, pets, name, inventory } =
+                const { happyPetCoins, pets, name, inventory, home } =
                     JSON.parse(owner);
 
                 const convertedPets = convertPets(pets);
 
-                set({ happyPetCoins, pets: convertedPets, name, inventory });
+                set({
+                    happyPetCoins,
+                    pets: convertedPets,
+                    name,
+                    inventory,
+                    home,
+                });
 
                 setTimeout(() => {
                     set({ isLoaded: true });
@@ -85,24 +92,28 @@ const ownerStore = (set, get) => ({
     //         saveMoment: new Date().toUTCString(),
     //     });
     // },
+
     loadGameFromModule: async () => {
         const owner = await loadGame();
 
         if (owner) {
-            const { happyPetCoins, pets, name, inventory } = JSON.parse(owner);
+            const { happyPetCoins, pets, name, inventory, home } =
+                JSON.parse(owner);
 
             const convertedPets = convertPets(pets);
 
-            set({ happyPetCoins, pets: convertedPets, name, inventory });
+            set({ happyPetCoins, pets: convertedPets, name, inventory, home });
 
             setTimeout(() => {
                 set({ isLoaded: true });
             }, 2000);
         }
     },
+
     saveGameFromModule: () => {
         saveGame();
     },
+
     // loadGame: async () => {
     //     try {
     //         const ownerFromStorage = await readFromStorage('owner');
@@ -169,10 +180,23 @@ const ownerStore = (set, get) => ({
 
             if (data) {
                 const { pets } = JSON.parse(data);
-
                 const convertedPets = convertPets(pets);
 
                 set({ pets: convertedPets });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    feedPet: async (petId, itemId) => {
+        try {
+            const data = await feedPet(petId, itemId);
+
+            if (data) {
+                const { pets, inventory } = JSON.parse(data);
+                const convertedPets = convertPets(pets);
+
+                set({ pets: convertedPets, inventory });
             }
         } catch (error) {
             console.error(error);
@@ -191,113 +215,76 @@ const ownerStore = (set, get) => ({
             console.error(error);
         }
     },
-    setSatietyLevel: (id, newSatietyLevel) => {
-        const modifiedPets = modifyPetStat(
-            id,
-            get().pets,
-            Constants.stats.SATIETY,
-            newSatietyLevel
-        );
+    interactWithWindow: async () => {
+        try {
+            const data = await interactWithWindow();
 
-        set({ pets: modifiedPets });
-    },
-    setHealthLevel: (id, newHealthLevel) => {
-        const modifiedPets = modifyPetStat(
-            id,
-            get().pets,
-            Constants.stats.HEALTH,
-            newHealthLevel
-        );
+            if (data) {
+                const { home } = JSON.parse(data);
 
-        set({ pets: modifiedPets });
+                set({ home });
+            }
+        } catch (error) {
+            console.error(error);
+        }
     },
-    setMoodLevel: (id, newMoodLevel) => {
-        const modifiedPets = modifyPetStat(
-            id,
-            get().pets,
-            Constants.stats.MOOD,
-            newMoodLevel
-        );
+    cleanRoom: async () => {
+        try {
+            const data = await cleanRoom();
 
-        set({ pets: modifiedPets });
-    },
-    setDigestionLevel: (id, newDigestionLevel) => {
-        const modifiedPets = modifyPetStat(
-            id,
-            get().pets,
-            Constants.stats.DIGESTION,
-            newDigestionLevel
-        );
+            if (data) {
+                const { home } = JSON.parse(data);
 
-        set({ pets: modifiedPets });
+                set({ home });
+            }
+        } catch (error) {
+            console.error(error);
+        }
     },
-    feedPet: (id, currentSatietyLevel, item) => {
-        const newValue = currentSatietyLevel + item.satisfaction;
 
-        const modifiedPets = modifyPetStat(
-            id,
-            get().pets,
-            Constants.stats.SATIETY,
-            newValue >= Constants.MAX_FOOD_LEVEL
-                ? Constants.MAX_FOOD_LEVEL
-                : newValue
-        );
+    cleanLitterBox: async () => {
+        try {
+            const data = await cleanLitterBox();
 
-        const modifiedItems = modifyItemStat(
-            item.id,
-            get().food,
-            'count',
-            item.count - 1
-        );
+            if (data) {
+                const { inventory } = JSON.parse(data);
 
-        set({ pets: modifiedPets, food: modifiedItems });
+                set({ inventory });
+            }
+        } catch (error) {
+            console.error(error);
+        }
     },
-    poopInLitterBox: newSlotsCount => {
-        set(state => ({
-            ...state,
-            litterBox: {
-                ...state.litterBox,
-                slots: newSlotsCount,
-            },
-        }));
+
+    calculatePetsStats: async () => {
+        try {
+            const data = await calculatePetsStats();
+
+            if (data) {
+                const owner = JSON.parse(data);
+                const convertedPets = convertPets(owner.pets);
+
+                set({ pets: convertedPets });
+            }
+        } catch (error) {
+            console.error(error);
+        }
     },
-    poopOnCarpet: () => {
-        set(state => ({
-            ...state,
-            home: {
-                ...state.home,
-                impurity:
-                    state.home.impurity > Constants.MAX_HOME_IMPURITY
-                        ? Constants.MAX_HOME_IMPURITY
-                        : state.home.impurity +
-                          Constants.HOME_IMPURITY_INCREASE,
-            },
-        }));
+
+    calculateHomeStats: async () => {
+        try {
+            const data = await calculateHomeStats();
+
+            if (data) {
+                const { home } = JSON.parse(data);
+
+                set({ home });
+            }
+        } catch (error) {
+            console.error(error);
+        }
     },
-    cleanRoom: () => {
-        set(state => ({ ...state, home: { ...state.home, impurity: 0 } }));
-    },
-    cleanLitterBox: () => {
-        set(state => ({
-            ...state,
-            litterBox: {
-                ...state.litterBox,
-                slots: Constants.MAX_LITTER_SLOTS,
-            },
-        }));
-    },
-    openCloseWindow: () => {
-        set(state => ({
-            ...state,
-            home: { ...state.home, isWindowOpen: !state.home.isWindowOpen },
-        }));
-    },
-    setSmell: newSmellValue => {
-        set(state => ({
-            ...state,
-            home: { ...state.home, smell: newSmellValue },
-        }));
-    },
+
     sayGoodbye: id => {
         set(state => ({
             ...state,

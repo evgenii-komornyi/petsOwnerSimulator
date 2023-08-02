@@ -11,7 +11,7 @@ import { styles } from './carpet.styles';
 
 export const Carpet = () => {
     const {
-        home: { impurity },
+        home: { poopOnCarpetCount },
         cleanRoom,
     } = useOwnerStore(state => state);
 
@@ -28,7 +28,7 @@ export const Carpet = () => {
             resizeMode="contain"
             style={styles.carpetImage}
         >
-            {impurity > 0 && (
+            {poopOnCarpetCount > 0 && (
                 <DoubleTap singleTap={roomCleanup}>
                     <Image
                         source={{ uri: 'asset:/images/home-items/poop.png' }}

@@ -42,4 +42,13 @@ public class Food extends Item implements ICountable {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "count=" + count +
+                '}';
+    }
+
+
 }

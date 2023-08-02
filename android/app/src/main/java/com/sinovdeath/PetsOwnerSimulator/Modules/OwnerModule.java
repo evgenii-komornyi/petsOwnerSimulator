@@ -43,9 +43,25 @@ public class OwnerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void feedPet(ReadableMap params, Promise promise) {
+        promise.resolve(_ownerService.feedPet(params.getString("petId"), params.getString("itemId")));
+    }
+
+    @ReactMethod
     public void buyItem(ReadableMap params, Promise promise) {
         promise.resolve(_ownerService.buyItem(params.getString("itemType"), params.getString("itemToBuy")));
     }
+
+    @ReactMethod
+    public void interactWithWindow(Promise promise) { promise.resolve(_ownerService.interactWithWindow()); }
+
+    @ReactMethod
+    public void cleanRoom(Promise promise) {
+        promise.resolve(_ownerService.cleanRoom());
+    }
+
+    @ReactMethod
+    public void cleanLitterBox(Promise promise) { promise.resolve(_ownerService.cleanLitterBox()); }
 
     private String getCurrentOwnerInJSON() {
         return new Gson().toJson(OwnerManager.getCurrentOwner());

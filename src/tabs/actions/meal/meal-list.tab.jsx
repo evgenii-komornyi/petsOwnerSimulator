@@ -8,11 +8,7 @@ import useOwnerStore from '../../../app/useOwnerStore';
 
 import { styles } from './meal-list.styles';
 
-export const MealList = ({
-    id,
-    currentSatietyLevel,
-    currentDigestionLevel,
-}) => {
+export const MealList = ({ id }) => {
     const { food } = useOwnerStore(state => state.inventory);
 
     return (
@@ -20,13 +16,7 @@ export const MealList = ({
             {!food.every(item => item.count === 0) ? (
                 food.map((item, index) => (
                     <View key={item.id}>
-                        <PressableButton
-                            catId={id}
-                            item={item}
-                            currentSatietyLevel={currentSatietyLevel}
-                            currentDigestionLevel={currentDigestionLevel}
-                            index={index}
-                        />
+                        <PressableButton catId={id} item={item} index={index} />
                     </View>
                 ))
             ) : (

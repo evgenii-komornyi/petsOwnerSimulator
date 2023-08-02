@@ -1,36 +1,28 @@
 package com.sinovdeath.PetsOwnerSimulator.Entities.Home;
 
-import com.sinovdeath.PetsOwnerSimulator.Entities.Home.Items.Carpet.Carpet;
-import com.sinovdeath.PetsOwnerSimulator.Entities.Home.Items.Window.Window;
+import com.sinovdeath.PetsOwnerSimulator.Enums.WindowState;
+
+import java.util.Objects;
 
 public class Home {
-    private Integer impurity;
+    private Integer poopOnCarpetCount;
     private Integer smell;
     private Boolean isWindowOpen;
-    private Carpet carpet;
-    private Window window;
+    private Image image;
 
     public Home() {
-        this.impurity = 0;
+        this.poopOnCarpetCount = 0;
         this.smell = 0;
-        this.window = new Window();
-        this.carpet = new Carpet();
+        this.isWindowOpen = WindowState.CLOSED.getWindowState();
+        this.image = new Image();
     }
 
-    @Override
-    public String toString() {
-        return "Home{" +
-                "impurity=" + impurity +
-                ", smell=" + smell +
-                '}';
+    public Integer getPoopOnCarpetCount() {
+        return poopOnCarpetCount;
     }
 
-    public Integer getImpurity() {
-        return impurity;
-    }
-
-    public void setImpurity(Integer impurity) {
-        this.impurity = impurity;
+    public void setPoopOnCarpetCount(Integer poopOnCarpetCount) {
+        this.poopOnCarpetCount = poopOnCarpetCount;
     }
 
     public Integer getSmell() {
@@ -39,5 +31,48 @@ public class Home {
 
     public void setSmell(Integer smell) {
         this.smell = smell;
+    }
+
+    public Boolean getIsWindowOpen() {
+        return isWindowOpen;
+    }
+
+    public void setIsWindowOpen(Boolean windowOpen) {
+        isWindowOpen = windowOpen;
+    }
+
+    public Boolean checkIsWindowOpened() {
+        return isWindowOpen;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Home home = (Home) o;
+        return poopOnCarpetCount == home.poopOnCarpetCount && smell == home.smell && Objects.equals(isWindowOpen, home.isWindowOpen) && Objects.equals(image, home.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(poopOnCarpetCount, smell, isWindowOpen, image);
+    }
+
+    @Override
+    public String toString() {
+        return "Home{" +
+                "poopOnCarpetCount=" + poopOnCarpetCount +
+                ", smell=" + smell +
+                ", isWindowOpen=" + isWindowOpen +
+                ", image=" + image +
+                '}';
     }
 }
