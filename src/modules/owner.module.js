@@ -2,101 +2,43 @@ import { NativeModules } from 'react-native';
 
 const { Owner } = NativeModules;
 
-export const getCurrentOwner = async () => {
-    let data = null;
+export const getCurrentOwner = () => callOwnerAPI('getOwner');
 
+export const adoptPet = (petType, petToAdopt) =>
+    callOwnerAPI('adoptPet', { petType, petToAdopt });
+
+export const feedPet = (petId, itemId) =>
+    callOwnerAPI('feedPet', { petId, itemId });
+
+export const petPet = (petId, swipeDirection) =>
+    callOwnerAPI('petPet', { petId, swipeDirection });
+
+export const sayGoodbye = petId => callOwnerAPI('sayGoodbye', { petId });
+
+export const buyItem = (itemType, itemToBuy) =>
+    callOwnerAPI('buyItem', { itemType, itemToBuy });
+
+export const interactWithWindow = () => callOwnerAPI('interactWithWindow');
+
+export const cleanRoom = () => callOwnerAPI('cleanRoom');
+
+export const cleanLitterBox = () => callOwnerAPI('cleanLitterBox');
+
+export const setHPC = () => callOwnerAPI('updateHPC');
+
+const callOwnerAPI = async (method, params = null) => {
     try {
-        data = await Owner.getOwner();
-    } catch (error) {
-        console.log(error);
-    }
+        let data;
+        if (params) {
+            data = await Owner[method](params);
+        } else {
+            data = await Owner[method]();
+        }
 
-    return data;
-};
-
-export const adoptPet = async (petType, petToAdopt) => {
-    let data = null;
-
-    try {
-        data = await Owner.adoptPet({ petType, petToAdopt });
-    } catch (error) {
-        console.error(error);
-    }
-
-    return data;
-};
-
-export const feedPet = async (petId, itemId) => {
-    let data = null;
-
-    try {
-        data = await Owner.feedPet({
-            petId,
-            itemId,
-        });
-    } catch (error) {
-        console.error(error);
-    }
-
-    return data;
-};
-
-export const buyItem = async (itemType, itemToBuy) => {
-    let data = null;
-
-    try {
-        data = await Owner.buyItem({ itemType, itemToBuy });
+        return data;
     } catch (error) {
         console.error(error);
+
+        return null;
     }
-
-    return data;
-};
-
-export const interactWithWindow = async () => {
-    let data = null;
-
-    try {
-        data = await Owner.interactWithWindow();
-    } catch (error) {
-        console.error(error);
-    }
-
-    return data;
-};
-
-export const cleanRoom = async () => {
-    let data = null;
-
-    try {
-        data = await Owner.cleanRoom();
-    } catch (error) {
-        console.error(error);
-    }
-
-    return data;
-};
-
-export const cleanLitterBox = async () => {
-    let data = null;
-
-    try {
-        data = await Owner.cleanLitterBox();
-    } catch (error) {
-        console.error(error);
-    }
-
-    return data;
-};
-
-export const setHPC = async () => {
-    let data = null;
-
-    try {
-        data = await Owner.updateHPC();
-    } catch (error) {
-        console.error(error);
-    }
-
-    return data;
 };

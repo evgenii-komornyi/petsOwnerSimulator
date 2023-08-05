@@ -6,6 +6,7 @@ import com.sinovdeath.PetsOwnerSimulator.Entities.Items.ICountable;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Items.Item;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Pet.Animal;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Pet.IPettable;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Stats.Stats;
 
 import java.math.BigDecimal;
@@ -29,7 +30,7 @@ public class Calculator {
         return currentHPC.add(new BigDecimal(Constants.HPC_INCREMENT_VALUE));
     }
 
-    public static void calculatePetsInFeedingTime(List<HashMap<String, Animal>> pets, String petId, Food foodToFeedPet) {
+    public static void calculatePetInFeedingTime(List<HashMap<String, Animal>> pets, String petId, Food foodToFeedPet) {
         for (HashMap<String, Animal> petMap : pets) {
             Animal pet = petMap.get(petId);
             if (pet != null) {
@@ -37,8 +38,13 @@ public class Calculator {
                 int currentPetSatiety = currentPetStats.getSatiety();
 
                 if (foodToFeedPet != null) {
+                    int currentDigestion = currentPetStats.getDigestion();
+
                     currentPetStats.setSatiety(PetsStatsCalculator.increaseSatietyAfterFeeding(currentPetSatiety, foodToFeedPet.getSatisfaction()));
-                    currentPetStats.setDigestion(pet.getStatsIncreasing().getSatiety());
+
+                    if (currentDigestion == 0) {
+                        currentPetStats.setDigestion(pet.getStatsIncreasing().getDigestion());
+                    }
                 }
             }
         }
@@ -58,5 +64,27 @@ public class Calculator {
         }
 
         return foodToFeedPet;
+    }
+
+    public static void calculatePetInPettingTime(List<HashMap<String, Animal>> pets, String petId, String swipeDirection) {
+        for (HashMap<String, Animal> petMap : pets) {
+            Animal pet = petMap.get(petId);
+            if (pet != null) {
+                if (pet instanceof IPettable) {
+                    Stats currentPetStats = pet.getStats();
+
+                    currentPetStats.setMood(PetsStatsCalculator.increaseMoodBySwipeDirection(pet.getStatsIncreasing().getMood(), currentPetStats, swipeDirection));
+                }
+            }
+        }
+    }
+
+    public static void calculateIsPetTaken(List<HashMap<String, Animal>> pets, String petId) {
+        for (HashMap<String, Animal> petMap : pets) {
+            Animal pet = petMap.get(petId);
+            if (pet != null) {
+                pet.setWasTaken(true);
+            }
+        }
     }
 }

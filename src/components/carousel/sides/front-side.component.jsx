@@ -11,8 +11,8 @@ export const FrontSide = ({ type, item: pet }) => {
     const navigate = useNavigate();
     const { adoptPet } = useOwnerStore(state => state);
 
-    const adopt = () => {
-        adoptPet(type, pet);
+    const adopt = async () => {
+        await adoptPet(type, pet);
         navigate('/');
     };
 

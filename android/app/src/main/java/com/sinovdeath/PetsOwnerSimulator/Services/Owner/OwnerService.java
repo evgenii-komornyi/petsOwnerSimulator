@@ -2,6 +2,7 @@ package com.sinovdeath.PetsOwnerSimulator.Services.Owner;
 
 import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.Constants.Constants;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Alert.Alert;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Items.Food.Food;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Items.ICountable;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Items.Item;
@@ -13,6 +14,7 @@ import com.sinovdeath.PetsOwnerSimulator.Helpers.Converters.Converter;
 import com.sinovdeath.PetsOwnerSimulator.Helpers.Generators.Generator;
 import com.sinovdeath.PetsOwnerSimulator.Helpers.Workers.Worker;
 import com.sinovdeath.PetsOwnerSimulator.Managers.OwnerManager;
+import com.sinovdeath.PetsOwnerSimulator.Managers.SoundManager;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -40,9 +42,25 @@ public class OwnerService implements IOwnerService {
     @Override
     public String feedPet(String petId, String itemId) {
         Owner currentOwner = OwnerManager.getCurrentOwner();
-
         currentOwner.feedPet(petId, itemId);
+        OwnerManager.setOwner(currentOwner);
 
+        return Generator.generateJson(OwnerManager.getCurrentOwner());
+    }
+
+    @Override
+    public String petPet(String petId, String swipeDirection) {
+        Owner currentOwner = OwnerManager.getCurrentOwner();
+        currentOwner.petPet(petId, swipeDirection);
+        OwnerManager.setOwner(currentOwner);
+
+        return Generator.generateJson(OwnerManager.getCurrentOwner());
+    }
+
+    @Override
+    public String sayGoodbye(String petId) {
+        Owner currentOwner = OwnerManager.getCurrentOwner();
+        currentOwner.sayGoodbye(petId);
         OwnerManager.setOwner(currentOwner);
 
         return Generator.generateJson(OwnerManager.getCurrentOwner());

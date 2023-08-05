@@ -21,9 +21,9 @@ export const Window = () => {
 
     const [playSound] = useAudio();
 
-    const windowActions = () => {
-        interactWithWindow();
-        playSound(!isWindowOpen ? 'openWindow' : 'closeWindow');
+    const windowActions = async () => {
+        await interactWithWindow();
+        await playSound(!isWindowOpen ? 'openWindow' : 'closeWindow');
     };
 
     return (

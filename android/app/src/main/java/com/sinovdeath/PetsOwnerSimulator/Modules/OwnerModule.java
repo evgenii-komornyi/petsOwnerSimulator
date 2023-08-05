@@ -48,6 +48,16 @@ public class OwnerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void petPet(ReadableMap params, Promise promise) {
+        promise.resolve(_ownerService.petPet(params.getString("petId"), params.getString("swipeDirection")));
+    }
+
+    @ReactMethod
+    public void sayGoodbye(ReadableMap params, Promise promise) {
+        promise.resolve(_ownerService.sayGoodbye(params.getString("petId")));
+    }
+
+    @ReactMethod
     public void buyItem(ReadableMap params, Promise promise) {
         promise.resolve(_ownerService.buyItem(params.getString("itemType"), params.getString("itemToBuy")));
     }

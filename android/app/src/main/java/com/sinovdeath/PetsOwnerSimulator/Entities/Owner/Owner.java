@@ -2,6 +2,7 @@ package com.sinovdeath.PetsOwnerSimulator.Entities.Owner;
 
 import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.Constants.Constants;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Alert.Alert;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Home.Home;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Items.Food.Food;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Items.ICountable;
@@ -29,6 +30,7 @@ public class Owner implements IOwner, Serializable {
     private Home home;
     private final List<HashMap<String, Animal>> pets;
     private Inventory inventory;
+    private Alert alert;
 
     public Owner(String id, String name) {
         this.id = id;
@@ -62,8 +64,18 @@ public class Owner implements IOwner, Serializable {
         Food foodToFeedPet = Calculator.calculateFoodCountAfterFeeding(inventory.getFood(), itemId);
 
         if (foodToFeedPet != null) {
-            Calculator.calculatePetsInFeedingTime(pets, petId, foodToFeedPet);
+            Calculator.calculatePetInFeedingTime(pets, petId, foodToFeedPet);
         }
+    }
+
+    @Override
+    public void petPet(String petId, String swipeDirection) {
+        Calculator.calculatePetInPettingTime(pets, petId, swipeDirection);
+    }
+
+    @Override
+    public void sayGoodbye(String petId) {
+        Calculator.calculateIsPetTaken(pets, petId);
     }
 
     @Override
@@ -92,6 +104,10 @@ public class Owner implements IOwner, Serializable {
         return inventory;
     }
 
+    public Alert getAlert() {
+        return alert;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -106,6 +122,10 @@ public class Owner implements IOwner, Serializable {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public void setAlert(Alert alert) {
+        this.alert = alert;
     }
 
     @Override

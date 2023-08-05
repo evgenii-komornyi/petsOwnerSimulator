@@ -14,9 +14,9 @@ export const PressableButton = ({ catId, item, index }) => {
 
     const [isDisabled, setIsDisabled] = useState(false);
 
-    const feed = () => {
-        feedPet(catId, item.id);
-        playSound('eating');
+    const feed = async () => {
+        await feedPet(catId, item.id);
+        await playSound('eating');
 
         setIsDisabled(true);
 

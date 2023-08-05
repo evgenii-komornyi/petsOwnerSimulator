@@ -1,8 +1,9 @@
 package com.sinovdeath.PetsOwnerSimulator.Helpers.Calculators;
 
 import com.sinovdeath.PetsOwnerSimulator.Constants.Constants;
-
-import java.math.BigDecimal;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Stats.MoodStats;
+import com.sinovdeath.PetsOwnerSimulator.Entities.Stats.Stats;
+import com.sinovdeath.PetsOwnerSimulator.Enums.SwipeType;
 
 public class PetsStatsCalculator {
     public static Boolean isPetNotDead(int health) {
@@ -35,5 +36,26 @@ public class PetsStatsCalculator {
 
     public static int increaseSatietyAfterFeeding(int currentPetSatiety, int satisfaction) {
         return Math.min(currentPetSatiety + satisfaction, 100);
+    }
+
+    public static int increaseMoodBySwipeDirection(MoodStats moodIncrease, Stats currentPetStats, String swipeDirection) {
+        int currentMood = currentPetStats.getMood();
+        int calculatedMoodBySwipeDirection = 0;
+
+        if (swipeDirection == null) {
+            calculatedMoodBySwipeDirection = currentMood + 1;
+        } else if (swipeDirection.equals(SwipeType.UP.getSwipeDirection())) {
+            calculatedMoodBySwipeDirection = currentMood + moodIncrease.getUp();
+        } else if (swipeDirection.equals(SwipeType.DOWN.getSwipeDirection())) {
+            calculatedMoodBySwipeDirection = currentMood + moodIncrease.getDown();
+        } else if (swipeDirection.equals(SwipeType.RIGHT.getSwipeDirection())) {
+            calculatedMoodBySwipeDirection = currentMood + moodIncrease.getRight();
+        } else if (swipeDirection.equals(SwipeType.LEFT.getSwipeDirection())) {
+            calculatedMoodBySwipeDirection = currentMood + moodIncrease.getLeft();
+        } else if (swipeDirection.equals(SwipeType.DIAGONAL.getSwipeDirection())) {
+            calculatedMoodBySwipeDirection = currentMood + moodIncrease.getDiagonal();
+        }
+
+        return Math.min(calculatedMoodBySwipeDirection, Constants.MAX_MOOD_LEVEL);
     }
 }

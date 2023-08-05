@@ -7,13 +7,8 @@ import { devtools } from 'zustand/middleware';
 import { Constants } from '../constants/constants';
 
 import { addItem } from '../helpers/itemsManipulations.helper';
-import {
-    modifyPetStat,
-    modifyItemStat,
-    convertPets,
-} from '../helpers/petsManipulations.helper';
+import { convertPets } from '../helpers/petsManipulations.helper';
 
-import { calculateOwnerAfterLoading } from '../helpers/load-game.helper';
 import { loadGame, saveGame } from '../modules/game.module';
 import {
     adoptPet,
@@ -23,6 +18,8 @@ import {
     feedPet,
     getCurrentOwner,
     interactWithWindow,
+    petPet,
+    sayGoodbye,
     setHPC,
 } from '../modules/owner.module';
 import { calculatePetsStats } from '../modules/pets.module';
@@ -34,6 +31,7 @@ const ownerStore = (set, get) => ({
     home: {},
     pets: [],
     inventory: {},
+    alert: {},
 
     isLoaded: false,
 
@@ -53,6 +51,7 @@ const ownerStore = (set, get) => ({
                     name,
                     inventory,
                     home,
+                    alert,
                 });
 
                 setTimeout(() => {
@@ -202,6 +201,20 @@ const ownerStore = (set, get) => ({
             console.error(error);
         }
     },
+    petPet: async (petId, swipeDirection) => {
+        try {
+            const data = await petPet(petId, swipeDirection);
+
+            if (data) {
+                const { pets } = JSON.parse(data);
+                const convertedPets = convertPets(pets);
+
+                set({ pets: convertedPets });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    },
     buyItem: async newItem => {
         try {
             const data = await buyItem(newItem.type, JSON.stringify(newItem));
@@ -261,10 +274,10 @@ const ownerStore = (set, get) => ({
             const data = await calculatePetsStats();
 
             if (data) {
-                const owner = JSON.parse(data);
-                const convertedPets = convertPets(owner.pets);
+                const { pets, alert } = JSON.parse(data);
+                const convertedPets = convertPets(pets);
 
-                set({ pets: convertedPets });
+                set({ pets: convertedPets, alert });
             }
         } catch (error) {
             console.error(error);
@@ -285,16 +298,19 @@ const ownerStore = (set, get) => ({
         }
     },
 
-    sayGoodbye: id => {
-        set(state => ({
-            ...state,
-            pets: state.pets.map(pet => {
-                if (pet.id === id) {
-                    return { ...pet, wasTaken: true };
-                }
-                return pet;
-            }),
-        }));
+    sayGoodbye: async petId => {
+        try {
+            const data = await sayGoodbye(petId);
+
+            if (data) {
+                const owner = JSON.parse(data);
+                const convertedPets = convertPets(owner.pets);
+
+                set({ pets: convertedPets });
+            }
+        } catch (error) {
+            console.error(error);
+        }
     },
 });
 

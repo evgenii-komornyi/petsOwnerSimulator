@@ -17,9 +17,9 @@ export const Carpet = () => {
 
     const [playSound] = useAudio();
 
-    const roomCleanup = () => {
-        cleanRoom();
-        playSound('homeCleanup');
+    const roomCleanup = async () => {
+        await cleanRoom();
+        await playSound('homeCleanup');
     };
 
     return (

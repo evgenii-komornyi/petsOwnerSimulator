@@ -29,9 +29,9 @@ export const LitterBox = () => {
         return litterBox.image.empty;
     };
 
-    const cleanupLitterBox = () => {
-        cleanLitterBox();
-        playSound('litterBoxCleanup');
+    const cleanupLitterBox = async () => {
+        await cleanLitterBox();
+        await playSound('litterBoxCleanup');
         vibrate();
     };
 

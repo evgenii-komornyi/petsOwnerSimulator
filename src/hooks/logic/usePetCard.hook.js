@@ -2,62 +2,18 @@ import useOwnerStore from '../../app/useOwnerStore';
 
 import { useAudio } from '../common/useAudio.hook';
 
-import { Constants } from '../../constants/constants';
-
-export const usePetCard = (id, stats, moodIncreasing, config) => {
-    const { setMoodLevel } = useOwnerStore(state => state);
+export const usePetCard = (id, stats, config) => {
+    const { petPet } = useOwnerStore(state => state);
     const [playSound] = useAudio();
 
-    const onSwipe = (direction, { dx, dy }) => {
+    const onSwipe = async (direction, { dx, dy }) => {
         if (stats.health === 0 || stats.satiety === 0) {
             return;
         }
 
-        const returnedDirection = getDirection(direction, dx, dy);
-        playSound('purring');
+        await playSound('purring');
 
-        switch (returnedDirection) {
-            case 'SWIPE_UP':
-                setMoodLevel(
-                    id,
-                    stats.mood >= Constants.MAX_MOOD_LEVEL
-                        ? Constants.MAX_MOOD_LEVEL
-                        : stats.mood + moodIncreasing.up
-                );
-                break;
-            case 'SWIPE_DOWN':
-                setMoodLevel(
-                    id,
-                    stats.mood >= Constants.MAX_MOOD_LEVEL
-                        ? Constants.MAX_MOOD_LEVEL
-                        : stats.mood + moodIncreasing.down
-                );
-                break;
-            case 'SWIPE_LEFT':
-                setMoodLevel(
-                    id,
-                    stats.mood >= Constants.MAX_MOOD_LEVEL
-                        ? Constants.MAX_MOOD_LEVEL
-                        : stats.mood + moodIncreasing.left
-                );
-                break;
-            case 'SWIPE_RIGHT':
-                setMoodLevel(
-                    id,
-                    stats.mood >= Constants.MAX_MOOD_LEVEL
-                        ? Constants.MAX_MOOD_LEVEL
-                        : stats.mood + moodIncreasing.right
-                );
-                break;
-            case 'SWIPE_DIAGONAL':
-                setMoodLevel(
-                    id,
-                    stats.mood >= Constants.MAX_MOOD_LEVEL
-                        ? Constants.MAX_MOOD_LEVEL
-                        : stats.mood + moodIncreasing.diagonal
-                );
-                break;
-        }
+        await petPet(id, getDirection(direction, dx, dy));
     };
 
     const getDirection = (direction, dx, dy) => {

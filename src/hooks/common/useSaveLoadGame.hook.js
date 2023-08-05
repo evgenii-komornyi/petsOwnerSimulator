@@ -12,10 +12,10 @@ export const useSaveLoadGame = () => {
     } = useOwnerStore(state => state);
 
     useEffect(() => {
-        const handleAppStateChange = nextAppState => {
+        const handleAppStateChange = async nextAppState => {
             if (nextAppState === 'background' || nextAppState === 'inactive') {
                 // saveGame();
-                saveGameFromModule();
+                await saveGameFromModule();
             }
         };
 
