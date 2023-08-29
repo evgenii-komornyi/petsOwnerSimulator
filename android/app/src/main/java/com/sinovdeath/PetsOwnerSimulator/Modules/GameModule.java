@@ -6,6 +6,7 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
 import com.google.android.exoplayer2.util.Log;
 import com.google.gson.Gson;
 import com.sinovdeath.PetsOwnerSimulator.Entities.Owner.Owner;
@@ -35,8 +36,8 @@ public class GameModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void loadGame(Promise promise) {
-        _gameService.read();
+    public void loadGame(ReadableMap params, Promise promise) {
+        _gameService.read(params.getString("saveMoment"));
 
         Owner currentOwner = OwnerManager.getCurrentOwner();
         String ownerDTO = new Gson().toJson(currentOwner);

@@ -2,11 +2,11 @@ import { NativeModules } from 'react-native';
 
 const { Game } = NativeModules;
 
-export const loadGame = async () => {
+export const loadGame = async saveMoment => {
     let data = null;
 
     try {
-        data = await Game.loadGame();
+        data = await Game.loadGame({ saveMoment });
     } catch (error) {
         console.log(error);
     }

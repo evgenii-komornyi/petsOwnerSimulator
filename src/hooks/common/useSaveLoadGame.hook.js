@@ -3,26 +3,18 @@ import { AppState } from 'react-native';
 import useOwnerStore from '../../app/useOwnerStore';
 
 export const useSaveLoadGame = () => {
-    const {
-        saveGame,
-        loadGame,
-        loadGameFromModule,
-        saveGameFromModule,
-        isLoaded,
-    } = useOwnerStore(state => state);
+    const { saveGame, loadGame, isLoaded } = useOwnerStore(state => state);
 
     useEffect(() => {
         const handleAppStateChange = async nextAppState => {
             if (nextAppState === 'background' || nextAppState === 'inactive') {
-                // saveGame();
-                await saveGameFromModule();
+                await saveGame();
             }
         };
 
         AppState.addEventListener('change', handleAppStateChange);
 
-        // loadGame();
-        loadGameFromModule();
+        loadGame();
 
         return () => {
             AppState.removeEventListener('change', handleAppStateChange);

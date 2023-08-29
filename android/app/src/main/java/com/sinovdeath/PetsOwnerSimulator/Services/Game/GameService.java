@@ -21,7 +21,7 @@ public class GameService implements IGameService {
     }
 
     @Override
-    public void read() {
+    public void read(String saveMoment) {
         Owner existingOwnerInDB = _gameRepository.loadFromDB();
 
         if (existingOwnerInDB == null) {

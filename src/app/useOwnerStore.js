@@ -1,12 +1,9 @@
 import { create } from 'zustand';
-import { NativeModules } from 'react-native';
 
 import { readFromStorage, saveToStorage } from '../helpers/storage.helper';
 
 import { devtools } from 'zustand/middleware';
-import { Constants } from '../constants/constants';
 
-import { addItem } from '../helpers/itemsManipulations.helper';
 import { convertPets } from '../helpers/petsManipulations.helper';
 
 import { loadGame, saveGame } from '../modules/game.module';
@@ -32,6 +29,7 @@ const ownerStore = (set, get) => ({
     pets: [],
     inventory: {},
     alert: {},
+    meta: {},
 
     isLoaded: false,
 
@@ -63,54 +61,45 @@ const ownerStore = (set, get) => ({
         }
     },
 
-    // saveGame: () => {
-    //     const {
-    //         happyPetCoins,
-    //         home,
-    //         pets,
-    //         food,
-    //         toys,
-    //         litterBox,
-    //         catHouse,
-    //         meta,
-    //     } = get();
+    loadGame: async () => {
+        try {
+            const meta = await readFromStorage('meta');
 
-    //     saveToStorage('owner', {
-    //         happyPetCoins,
-    //         home,
-    //         pets,
-    //         food,
-    //         toys,
-    //         litterBox,
-    //         catHouse,
-    //     });
+            const owner = await loadGame(meta.saveMoment);
 
-    //     saveToStorage('meta', meta);
-    //     saveToStorage('meta', {
-    //         ...meta,
-    //         saveMoment: new Date().toUTCString(),
-    //     });
-    // },
+            if (owner) {
+                const { happyPetCoins, pets, name, inventory, home } =
+                    JSON.parse(owner);
 
-    loadGameFromModule: async () => {
-        const owner = await loadGame();
+                const convertedPets = convertPets(pets);
 
-        if (owner) {
-            const { happyPetCoins, pets, name, inventory, home } =
-                JSON.parse(owner);
+                set({
+                    happyPetCoins,
+                    pets: convertedPets,
+                    name,
+                    inventory,
+                    home,
+                });
 
-            const convertedPets = convertPets(pets);
-
-            set({ happyPetCoins, pets: convertedPets, name, inventory, home });
-
-            setTimeout(() => {
-                set({ isLoaded: true });
-            }, 2000);
+                setTimeout(() => {
+                    set({ isLoaded: true });
+                }, 2000);
+            }
+        } catch (error) {
+            console.error(error);
         }
     },
 
-    saveGameFromModule: () => {
-        saveGame();
+    saveGame: async () => {
+        try {
+            await saveGame();
+            await saveToStorage('meta', {
+                ...get().meta,
+                saveMoment: new Date().toUTCString(),
+            });
+        } catch (error) {
+            console.error(error);
+        }
     },
 
     // loadGame: async () => {
