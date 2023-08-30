@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 import { View, Image } from 'react-native';
@@ -7,7 +7,10 @@ import { CustomText } from '../custom-text/custom-text.component';
 
 import { usePetCard } from '../../hooks/logic/usePetCard.hook';
 
+import { Constants } from '../../constants/constants';
+
 import { styles } from './pets.styles';
+import { Tongue } from './pet-parts/tongue/tongue.component';
 
 const config = {
     velocityThreshold: 0.1,
@@ -39,6 +42,7 @@ export const PetCard = ({
                     source={{ uri: img }}
                     style={[
                         styles.petImage,
+                        styles.imageSize,
                         {
                             backgroundColor:
                                 stats.health === 0
@@ -47,6 +51,7 @@ export const PetCard = ({
                         },
                     ]}
                 />
+                <Tongue />
                 <CustomText
                     text={name}
                     style={[

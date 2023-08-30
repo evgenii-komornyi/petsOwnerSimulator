@@ -7,7 +7,6 @@ import android.view.View;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
-import com.sinovdeath.PetsOwnerSimulator.Services.Game.GameService;
 
 import expo.modules.ReactActivityDelegateWrapper;
 

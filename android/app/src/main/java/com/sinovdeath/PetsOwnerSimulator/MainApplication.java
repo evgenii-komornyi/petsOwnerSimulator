@@ -12,7 +12,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import com.sinovdeath.PetsOwnerSimulator.Modules.Packager;
+import com.sinovdeath.PetsOwnerSimulator.modules.Packager;
 import com.sinovdeath.PetsOwnerSimulator.newarchitecture.MainApplicationReactNativeHost;
 
 import expo.modules.ApplicationLifecycleDispatcher;

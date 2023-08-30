@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { PressableButton } from '../../../components/pressable-button/pressable-button.component';
+import { FeedButton } from '../../../components/pressable-button/feed-button.component';
 import { EmptyList } from '../../../components/empy-list/empty-list.component';
 
 import useOwnerStore from '../../../app/useOwnerStore';
@@ -16,7 +16,12 @@ export const MealList = ({ id }) => {
             {!food.every(item => item.count === 0) ? (
                 food.map((item, index) => (
                     <View key={item.id}>
-                        <PressableButton catId={id} item={item} index={index} />
+                        <FeedButton
+                            catId={id}
+                            item={item}
+                            index={index}
+                            actionType="feed"
+                        />
                     </View>
                 ))
             ) : (
