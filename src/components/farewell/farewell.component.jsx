@@ -22,7 +22,9 @@ export const Farewell = ({ id, name }) => {
                 type="outline"
                 buttonStyle={styles.buttonContainer}
                 titleStyle={styles.buttonTitle}
-                onPress={() => sayGoodbye(id)}
+                onPress={async () => {
+                    await sayGoodbye(id);
+                }}
             />
         </View>
     );

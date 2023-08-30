@@ -57,10 +57,10 @@ export const ItemDescription = ({ item }) => {
                     )}
                 />
             )}
-            {item.hasOwnProperty('slots') && (
+            {item.hasOwnProperty('maxSlots') && (
                 <Chip
                     color="warning"
-                    title={`${item.slots}`}
+                    title={`${item.maxSlots}`}
                     icon={() => (
                         <Icon
                             type={Constants.ENTYPO_ICON}

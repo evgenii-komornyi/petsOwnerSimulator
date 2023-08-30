@@ -8,22 +8,25 @@ import { pets } from '../../data/pets';
 
 import { styles } from './carousel.styles';
 import useOwnerStore from '../../app/useOwnerStore';
+import useShelterStore from '../../app/useShelterStore';
 
 export const PetsList = () => {
     const ownerPets = useOwnerStore(state => state.pets);
+    const { animals } = useShelterStore(state => state.shelter);
 
-    const renderItem = ({ item: { type, animals } }) => (
+    const renderItem = ({ item: { type, pets } }) => (
         <View style={styles.slide}>
             <View style={styles.typeContainer}>
                 <CustomText style={styles.type} text={type} />
             </View>
             <Pets
-                animals={animals.filter(
+                animals={pets.filter(
                     pet => !ownerPets.some(ownerPet => ownerPet.id === pet.id)
                 )}
+                type={type}
             />
         </View>
     );
 
-    return <FlatList data={pets} renderItem={renderItem} />;
+    return <FlatList data={animals} renderItem={renderItem} />;
 };

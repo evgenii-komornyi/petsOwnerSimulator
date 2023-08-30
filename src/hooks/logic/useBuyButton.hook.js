@@ -6,7 +6,7 @@ export const useBuyButton = () => {
     const [isPressed, setIsPressed] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
-    const { litterBox, catHouse } = useOwnerStore(state => state);
+    const { litterBox, catHouse } = useOwnerStore(state => state.inventory);
 
     const increaseQuantity = () => {
         setQuantity(prev => (prev + 1 > 9 ? 9 : prev + 1));
@@ -29,20 +29,20 @@ export const useBuyButton = () => {
     const checkOwnerCatHouseIdAndShopItemId = item => catHouse.id === item.id;
 
     const returnButtonTitle = (category, item) => {
-        if (
-            checkLitterBoxCategory(category) &&
-            checkOwnerLitterBoxIdAndShopItemId(item)
-        ) {
-            if (isObjectExists(litterBox)) {
+        if (checkLitterBoxCategory(category)) {
+            if (
+                isObjectExists(litterBox) &&
+                checkOwnerLitterBoxIdAndShopItemId(item)
+            ) {
                 return 'RENEW';
             }
         }
 
-        if (
-            checkCatHouseCategory(category) &&
-            checkOwnerCatHouseIdAndShopItemId(item)
-        ) {
-            if (isObjectExists(catHouse)) {
+        if (checkCatHouseCategory(category)) {
+            if (
+                isObjectExists(catHouse) &&
+                checkOwnerCatHouseIdAndShopItemId(item)
+            ) {
                 return 'RENEW';
             }
         }

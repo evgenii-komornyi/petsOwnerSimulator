@@ -12,7 +12,10 @@ import { isObjectExists } from '../../../../../helpers/objects.helper';
 import { styles } from './litter-box.styles';
 
 export const LitterBox = () => {
-    const { litterBox, cleanLitterBox } = useOwnerStore(state => state);
+    const {
+        inventory: { litterBox },
+        cleanLitterBox,
+    } = useOwnerStore(state => state);
     const [playSound] = useAudio();
     const [vibrate] = useVibrate();
 
@@ -26,9 +29,9 @@ export const LitterBox = () => {
         return litterBox.image.empty;
     };
 
-    const cleanupLitterBox = () => {
-        cleanLitterBox();
-        playSound('litterBoxCleanup');
+    const cleanupLitterBox = async () => {
+        await cleanLitterBox();
+        await playSound('litterBoxCleanup');
         vibrate();
     };
 
@@ -37,7 +40,7 @@ export const LitterBox = () => {
             <DoubleTap singleTap={cleanupLitterBox}>
                 <ImageBackground
                     resizeMode="contain"
-                    source={checkSlotsNumber(litterBox.slots)}
+                    source={{ uri: checkSlotsNumber(litterBox.slots) }}
                     style={styles.litterBoxImage}
                 ></ImageBackground>
             </DoubleTap>

@@ -46,6 +46,8 @@ export const Constants = {
     ASSETS_TOYS_FOLDER: 'asset:/images/toys',
     ASSETS_LITTER_BOXES_FOLDER: 'asset:/images/home-items/litter-boxes',
     ASSETS_HOUSES_FOLDER: 'asset:/images/home-items/houses',
+    ASSETS_TONGUE_FOLDER: 'asset:/images/tongue',
+    ASSETS_ILLNESS_FOLDER: 'asset:/images/illness',
     MAIN_COLOR: '#6A5ACD',
     MAIN_INTERVAL: 15,
     HEALTH_UP_THRESHOLD: 50,

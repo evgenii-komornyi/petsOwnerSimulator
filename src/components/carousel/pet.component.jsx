@@ -6,7 +6,7 @@ import { BackSide } from './sides/back-side.component';
 
 import { styles } from './carousel.styles';
 
-export const Pet = ({ item: { item }, scroll, scrollEnd }) => {
+export const Pet = ({ item: { item }, type, scroll, scrollEnd }) => {
     return (
         <FlipCard
             style={styles.card}
@@ -14,7 +14,7 @@ export const Pet = ({ item: { item }, scroll, scrollEnd }) => {
             perspective={1000}
             flipVertical={true}
         >
-            <FrontSide item={item} />
+            <FrontSide item={item} type={type} />
             <BackSide item={item} scroll={scroll} scrollEnd={scrollEnd} />
         </FlipCard>
     );

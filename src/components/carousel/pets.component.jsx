@@ -6,7 +6,7 @@ import { Pet } from './pet.component';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
-export const Pets = ({ animals }) => {
+export const Pets = ({ animals, type }) => {
     const [carouselScrollEnabled, setCarouselScrollEnabled] = useState(true);
 
     const handleScrollViewScroll = () => {
@@ -23,6 +23,7 @@ export const Pets = ({ animals }) => {
             renderItem={item => (
                 <Pet
                     item={item}
+                    type={type}
                     scroll={handleScrollViewScroll}
                     scrollEnd={handleCarouselMomentumScrollEnd}
                 />

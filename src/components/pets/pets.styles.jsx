@@ -71,8 +71,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     petImage: {
-        width: 170,
-        height: 170,
         resizeMode: 'contain',
     },
     petName: {
@@ -86,5 +84,13 @@ export const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         fontSize: 20,
+    },
+    tongueImage: {
+        position: 'absolute',
+        resizeMode: 'contain',
+    },
+    imageSize: {
+        width: 170,
+        height: 170,
     },
 });

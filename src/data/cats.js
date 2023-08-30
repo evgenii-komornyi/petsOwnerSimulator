@@ -395,18 +395,18 @@ export const cats = [
     },
     {
         id: 'cat-11',
-        name: 'Trickster',
+        name: 'Houdini',
         img: {
             regular: {
-                uri: `${Constants.ASSETS_CATS_FOLDER}/trickster/trickster.png`,
+                uri: `${Constants.ASSETS_CATS_FOLDER}/houdini/houdini.png`,
             },
-            sad: { uri: `${Constants.ASSETS_CATS_FOLDER}/trickster/sad.png` },
+            sad: { uri: `${Constants.ASSETS_CATS_FOLDER}/houdini/sad.png` },
             sleeping: {
-                uri: `${Constants.ASSETS_CATS_FOLDER}/trickster/sleeping.png`,
+                uri: `${Constants.ASSETS_CATS_FOLDER}/houdini/sleeping.png`,
             },
             dead: { uri: `${Constants.ASSETS_DEAD_FOLDER}/short_hair.png` },
         },
-        bio: 'Trickster is the sole survivor from the litter of kittens thrown into a dumpster in a closed box. Someone ensured, they wouldn’t make it out alive, securing the box with enormous amount of sticky tape. But Trickster was loud enough to be heard by a passing by human. Hungry, dehydrated and ill, Trickster was brought to the veterinary clinic. One eye lost the fight to the virus, the other one is left with impaired vision. But guess what – Trickster hasn’t lost faith in humanity. It’s a joyful and loving kitty ready to sleep on the lap of the human buddy forever. With just the small breaks for fun and food, of course.',
+        bio: 'Houdini is the sole survivor from the litter of kittens thrown into a dumpster in a closed box. Someone ensured, they wouldn’t make it out alive, securing the box with enormous amount of sticky tape. But Houdini was loud enough to be heard by a passing by human. Hungry, dehydrated and ill, Houdini was brought to the veterinary clinic. One eye lost the fight to the virus, the other one is left with impaired vision. But guess what – Houdini hasn’t lost faith in humanity. It’s a joyful and loving kitty ready to sleep on the lap of the human buddy forever. With just the small breaks for fun and food, of course.',
         stats: {
             health: 100,
             satiety: 100,

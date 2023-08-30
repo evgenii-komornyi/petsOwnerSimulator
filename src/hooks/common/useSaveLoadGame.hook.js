@@ -6,9 +6,9 @@ export const useSaveLoadGame = () => {
     const { saveGame, loadGame, isLoaded } = useOwnerStore(state => state);
 
     useEffect(() => {
-        const handleAppStateChange = nextAppState => {
+        const handleAppStateChange = async nextAppState => {
             if (nextAppState === 'background' || nextAppState === 'inactive') {
-                saveGame();
+                await saveGame();
             }
         };
 

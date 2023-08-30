@@ -24,4 +24,7 @@ export const checkStatsToReturnCorrectImage = (stats, img) => {
     return img.regular;
 };
 
+export const convertPets = originalPets =>
+    originalPets.map(animal => Object.values(animal)[0]);
+
 const findObjectById = (id, array) => array.find(item => item.id === id);

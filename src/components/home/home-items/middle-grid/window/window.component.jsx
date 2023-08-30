@@ -16,14 +16,14 @@ const closed = {
 export const Window = () => {
     const {
         home: { isWindowOpen },
-        openCloseWindow,
+        interactWithWindow,
     } = useOwnerStore(state => state);
 
     const [playSound] = useAudio();
 
-    const windowActions = () => {
-        openCloseWindow();
-        playSound(!isWindowOpen ? 'openWindow' : 'closeWindow');
+    const windowActions = async () => {
+        await interactWithWindow();
+        await playSound(!isWindowOpen ? 'openWindow' : 'closeWindow');
     };
 
     return (
