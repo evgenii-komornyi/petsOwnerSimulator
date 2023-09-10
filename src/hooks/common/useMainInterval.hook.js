@@ -18,10 +18,10 @@ export const useMainInterval = () => {
     useEffect(() => {
         const fetchData = async () => {
             await getCurrentOwner();
-            await calculatePetsStats();
             await calculateHomeStats();
         };
         interval = setInterval(() => {
+            calculatePetsStats();
             fetchData();
         }, Constants.MAIN_INTERVAL * 1000);
 
@@ -30,7 +30,7 @@ export const useMainInterval = () => {
 
     useEffect(() => {
         const handleAlert = async () => {
-            if (Object.keys(alert).length !== 0) {
+            if (alert && Object.keys(alert).length !== 0) {
                 if (alert.hasOwnProperty('sound')) {
                     await playSound(alert.sound.fileName);
                 }

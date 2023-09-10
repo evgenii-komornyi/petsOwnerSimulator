@@ -1,6 +1,6 @@
-import useOwnerStore from '../../app/useOwnerStore';
+import useOwnerStore from '../../../app/useOwnerStore';
 
-import { useAudio } from '../common/useAudio.hook';
+import { useAudio } from '../../common/useAudio.hook';
 
 export const usePetCard = (id, stats, config) => {
     const { petPet } = useOwnerStore(state => state);

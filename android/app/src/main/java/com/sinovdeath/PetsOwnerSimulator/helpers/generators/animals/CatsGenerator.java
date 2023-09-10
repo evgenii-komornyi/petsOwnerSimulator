@@ -2,6 +2,7 @@ package com.sinovdeath.PetsOwnerSimulator.helpers.generators.animals;
 
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
+import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animation;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Cat;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Image;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.MoodStats;
@@ -16,6 +17,8 @@ import java.util.List;
 public class CatsGenerator {
     public static List<Animal> generateCats() {
         List<Animal> cats = new ArrayList<>();
+        String catLick = String.format("%s/%s%s", Constants.ASSETS_TONGUE_FOLDER, "lick", Constants.ANIMATION_EXT);
+        Animation lickAnimation = new Animation(catLick);
 
         Animal coffee = new Cat();
         coffee.setId("cat-1");
@@ -26,13 +29,16 @@ public class CatsGenerator {
         String coffeeSleeping = String.format("%s/%s/%s%s", Constants.ASSETS_CATS_FOLDER, coffeeName, UriType.SLEEPING.getUriValue(), Constants.IMAGE_EXT);
         String coffeeDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image coffeeImage = new Image(coffeeRegularUri, coffeeSad, coffeeSleeping, coffeeDead);
+        coffee.setAnimation(lickAnimation);
         coffee.setImg(coffeeImage);
-        Stats coffeeStats = new Stats(100, 100, 100, 30);
+        Stats coffeeMaxValues = new Stats(720, 720, 360, 60);
+        coffee.setMaxValues(coffeeMaxValues);
+        Stats coffeeStats = new Stats(coffeeMaxValues.getHealth(), coffeeMaxValues.getSatiety(), coffeeMaxValues.getMood(), coffeeMaxValues.getDigestion());
         coffee.setStats(coffeeStats);
         Stats coffeeStatsReducing = new Stats(1, 1, 1, 1);
         coffee.setStatsReducing(coffeeStatsReducing);
-        MoodStats coffeeMoodStats = new MoodStats(5, 35, 5, 5, 35);
-        StatsIncreasing coffeeStatsIncreasing = new StatsIncreasing(1,1,coffeeMoodStats,30);
+        MoodStats coffeeMoodStats = new MoodStats(10, 70, 10, 10, 70);
+        StatsIncreasing coffeeStatsIncreasing = new StatsIncreasing(1,1,coffeeMoodStats,60);
         coffee.setStatsIncreasing(coffeeStatsIncreasing);
         coffee.setWasTaken(false);
         coffee.setBio("Coffee was born in a small café from a stray mother, who came there for food and shelter. Luckily owners of the café were very helpful. From the first days when  Coffee started to walk, it was clear that it’s a special kitty.  Coffee has a so known wobbly cat syndrome – lack of the movement coordination that results in always looking a bit “drunk”. The café owners spent a lot of time and money trying to help the kitten, but some things just cannot be fixed. But Coffee doesn’t care about this condition and doesn’t feel being different. It’s a happy playful cat, that requires just a little bit more attention than the others.");
@@ -48,7 +54,10 @@ public class CatsGenerator {
         String donutDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.LONG_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image donutImage = new Image(donutRegularUri, donutSad, donutSleeping, donutDead);
         donut.setImg(donutImage);
-        Stats donutStats = new Stats(100, 100, 100, 30);
+        donut.setAnimation(lickAnimation);
+        Stats donutMaxValues = new Stats(720, 720, 360, 60);
+        donut.setMaxValues(donutMaxValues);
+        Stats donutStats = new Stats(donutMaxValues.getHealth(), donutMaxValues.getSatiety(), donutMaxValues.getMood(), donutMaxValues.getDigestion());
         donut.setStats(donutStats);
         Stats donutStatsReducing = new Stats(1, 1, 1, 1);
         donut.setStatsReducing(donutStatsReducing);
@@ -69,7 +78,10 @@ public class CatsGenerator {
         String luciusDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.LONG_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image luciusImage = new Image(luciusRegularUri, luciusSad, luciusSleeping, luciusDead);
         lucius.setImg(luciusImage);
-        Stats luciusStats = new Stats(100, 100, 100, 30);
+        lucius.setAnimation(lickAnimation);
+        Stats luciusMaxValues = new Stats(720, 720, 360, 60);
+        lucius.setMaxValues(luciusMaxValues);
+        Stats luciusStats = new Stats(luciusMaxValues.getHealth(), luciusMaxValues.getSatiety(), luciusMaxValues.getMood(), luciusMaxValues.getDigestion());
         lucius.setStats(luciusStats);
         Stats luciusStatsReducing = new Stats(1, 1, 1, 1);
         lucius.setStatsReducing(luciusStatsReducing);
@@ -90,7 +102,10 @@ public class CatsGenerator {
         String luckyDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image luckyImage = new Image(luckyRegularUri, luckySad, luckySleeping, luckyDead);
         lucky.setImg(luckyImage);
-        Stats luckyStats = new Stats(100, 100, 100, 30);
+        lucky.setAnimation(lickAnimation);
+        Stats luckyMaxValues = new Stats(720, 720, 360, 60);
+        lucky.setMaxValues(luckyMaxValues);
+        Stats luckyStats = new Stats(luckyMaxValues.getHealth(), luckyMaxValues.getSatiety(), luckyMaxValues.getMood(), luckyMaxValues.getDigestion());
         lucky.setStats(luckyStats);
         Stats luckyStatsReducing = new Stats(1, 1, 1, 1);
         lucky.setStatsReducing(luckyStatsReducing);
@@ -111,7 +126,10 @@ public class CatsGenerator {
         String meeshaDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image meeshaImage = new Image(meeshaRegularUri, meeshaSad, meeshaSleeping, meeshaDead);
         meesha.setImg(meeshaImage);
-        Stats meeshaStats = new Stats(100, 100, 100, 30);
+        meesha.setAnimation(lickAnimation);
+        Stats meeshaMaxValues = new Stats(720, 720, 360, 60);
+        meesha.setMaxValues(meeshaMaxValues);
+        Stats meeshaStats = new Stats(meeshaMaxValues.getHealth(), meeshaMaxValues.getSatiety(), meeshaMaxValues.getMood(), meeshaMaxValues.getDigestion());
         meesha.setStats(meeshaStats);
         Stats meeshaStatsReducing = new Stats(1, 1, 1, 1);
         meesha.setStatsReducing(meeshaStatsReducing);
@@ -132,7 +150,10 @@ public class CatsGenerator {
         String muffinDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image muffinImage = new Image(muffinRegularUri, muffinSad, muffinSleeping, muffinDead);
         muffin.setImg(muffinImage);
-        Stats muffinStats = new Stats(100, 100, 100, 30);
+        muffin.setAnimation(lickAnimation);
+        Stats muffinMaxValues = new Stats(720, 720, 360, 60);
+        muffin.setMaxValues(muffinMaxValues);
+        Stats muffinStats = new Stats(muffinMaxValues.getHealth(), muffinMaxValues.getSatiety(), muffinMaxValues.getMood(), muffinMaxValues.getDigestion());
         muffin.setStats(muffinStats);
         Stats muffinStatsReducing = new Stats(1, 1, 1, 1);
         muffin.setStatsReducing(muffinStatsReducing);
@@ -153,7 +174,10 @@ public class CatsGenerator {
         String owlDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.FOLDED_EARS.getUriValue(), Constants.IMAGE_EXT);
         Image owlImage = new Image(owlRegularUri, owlSad, owlSleeping, owlDead);
         owl.setImg(owlImage);
-        Stats owlStats = new Stats(100, 100, 100, 30);
+        owl.setAnimation(lickAnimation);
+        Stats owlMaxValues = new Stats(720, 720, 360, 60);
+        owl.setMaxValues(owlMaxValues);
+        Stats owlStats = new Stats(owlMaxValues.getHealth(), owlMaxValues.getSatiety(), owlMaxValues.getMood(), owlMaxValues.getDigestion());
         owl.setStats(owlStats);
         Stats owlStatsReducing = new Stats(1, 1, 1, 1);
         owl.setStatsReducing(owlStatsReducing);
@@ -174,7 +198,10 @@ public class CatsGenerator {
         String picassoDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image picassoImage = new Image(picassoRegularUri, picassoSad, picassoSleeping, picassoDead);
         picasso.setImg(picassoImage);
-        Stats picassoStats = new Stats(100, 100, 100, 30);
+        picasso.setAnimation(lickAnimation);
+        Stats picassoMaxValues = new Stats(720, 720, 360, 60);
+        picasso.setMaxValues(picassoMaxValues);
+        Stats picassoStats = new Stats(picassoMaxValues.getHealth(), picassoMaxValues.getSatiety(), picassoMaxValues.getMood(), picassoMaxValues.getDigestion());
         picasso.setStats(picassoStats);
         Stats picassoStatsReducing = new Stats(1, 1, 1, 1);
         picasso.setStatsReducing(picassoStatsReducing);
@@ -195,7 +222,10 @@ public class CatsGenerator {
         String qwertyDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image qwertyImage = new Image(qwertyRegularUri, qwertySad, qwertySleeping, qwertyDead);
         qwerty.setImg(qwertyImage);
-        Stats qwertyStats = new Stats(100, 100, 100, 30);
+        qwerty.setAnimation(lickAnimation);
+        Stats qwertyMaxValues = new Stats(720, 720, 360, 60);
+        qwerty.setMaxValues(qwertyMaxValues);
+        Stats qwertyStats = new Stats(qwertyMaxValues.getHealth(), qwertyMaxValues.getSatiety(), qwertyMaxValues.getMood(), qwertyMaxValues.getDigestion());
         qwerty.setStats(qwertyStats);
         Stats qwertyStatsReducing = new Stats(1, 1, 1, 1);
         qwerty.setStatsReducing(qwertyStatsReducing);
@@ -216,7 +246,10 @@ public class CatsGenerator {
         String sammyDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.LONG_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image sammyImage = new Image(sammyRegularUri, sammySad, sammySleeping, sammyDead);
         sammy.setImg(sammyImage);
-        Stats sammyStats = new Stats(100, 100, 100, 30);
+        sammy.setAnimation(lickAnimation);
+        Stats sammyMaxValues = new Stats(720, 720, 360, 60);
+        sammy.setMaxValues(sammyMaxValues);
+        Stats sammyStats = new Stats(sammyMaxValues.getHealth(), sammyMaxValues.getSatiety(), sammyMaxValues.getMood(), sammyMaxValues.getDigestion());
         sammy.setStats(sammyStats);
         Stats sammyStatsReducing = new Stats(1, 1, 1, 1);
         sammy.setStatsReducing(sammyStatsReducing);
@@ -237,7 +270,10 @@ public class CatsGenerator {
         String houdiniDead = String.format("%s/%s%s", Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image houdiniImage = new Image(houdiniRegularUri, houdiniSad, houdiniSleeping, houdiniDead);
         houdini.setImg(houdiniImage);
-        Stats houdiniStats = new Stats(100, 100, 100, 30);
+        houdini.setAnimation(lickAnimation);
+        Stats houdiniMaxValues = new Stats(720, 720, 360, 60);
+        houdini.setMaxValues(houdiniMaxValues);
+        Stats houdiniStats = new Stats(houdiniMaxValues.getHealth(), houdiniMaxValues.getSatiety(), houdiniMaxValues.getMood(), houdiniMaxValues.getDigestion());
         houdini.setStats(houdiniStats);
         Stats houdiniStatsReducing = new Stats(1, 1, 1, 1);
         houdini.setStatsReducing(houdiniStatsReducing);

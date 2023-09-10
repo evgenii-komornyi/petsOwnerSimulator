@@ -1,18 +1,11 @@
 package com.sinovdeath.PetsOwnerSimulator.constants;
 
 public class Constants {
+    public static final int INTERVALS_COUNT = 60;
+
     public static final String DATABASE_NAME = "PETS_OWNER_SIMULATOR_DB.pos";
     public static final String HPC = "100.00";
     public static final String HPC_INCREMENT_VALUE = "0.15";
-
-    public static final int HEALTH_UP_THRESHOLD = 50;
-    public static final int MAX_HEALTH_LEVEL = 100;
-
-    public static final int MAX_SATIETY_LEVEL = 100;
-
-    public static final int MAX_MOOD_LEVEL = 100;
-
-    public static final int MAX_DIGESTION_LEVEL = 30;
 
     public static final int MAX_POOP_ON_CARPET_COUNT = 100;
     public static final int POOP_ON_CARPET_COUNT_INCREASE = 1;
@@ -22,6 +15,11 @@ public class Constants {
     public static final String ASSETS_ROOMS = "asset:/images/backgrounds/home";
     public static final String DEFAULT_ROOM = "room";
 
+    public static final int ROOM_WIDTH = 1317;
+    public static final int ROOM_HEIGHT = 2223;
+    public static final int MENU_HEIGHT = 65;
+    public static final int HEADER_HEIGHT = 50;
+
     public static final String ASSETS_CATS_FOLDER = "asset:/images/cats";
     public static final String ASSETS_DEAD_FOLDER = "asset:/images/dead-pets";
 
@@ -29,5 +27,7 @@ public class Constants {
     public static final String ASSETS_TOYS_FOLDER = "asset:/images/toys";
     public static final String ASSETS_LITTER_BOXES_FOLDER = "asset:/images/home-items/litter-boxes";
     public static final String ASSETS_HOUSES_FOLDER = "asset:/images/home-items/houses";
+    public static final String ASSETS_TONGUE_FOLDER = "asset:/animation/pets/lick";
     public static final String IMAGE_EXT = ".png";
+    public static final String ANIMATION_EXT = ".gif";
 }

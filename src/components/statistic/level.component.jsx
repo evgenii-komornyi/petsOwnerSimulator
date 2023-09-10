@@ -7,6 +7,7 @@ import { styles } from './statistic.styles';
 export const Level = ({
     iconSource,
     statLevel,
+    maxLevel,
     iconStyle,
     additionalStyle = {},
 }) => {
@@ -17,7 +18,7 @@ export const Level = ({
             </View>
             <View style={styles.barContainer}>
                 <LinearProgress
-                    value={statLevel / 100}
+                    value={statLevel / maxLevel}
                     style={styles.bar}
                     color={`${
                         statLevel > 30 ? 'rgba(0, 200, 0, 1)' : 'rgb(255, 0, 0)'

@@ -13,7 +13,10 @@ export const ShopItems = ({ item }) => {
     return (
         <View style={styles.categoryContainer}>
             <View style={styles.categoryNameContainer}>
-                <CustomText text={item.title} style={styles.categoryName} />
+                <CustomText
+                    text={parentItemCategory}
+                    style={styles.categoryName}
+                />
             </View>
             <FlatList
                 data={item.items}

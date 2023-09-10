@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 import { View, Image } from 'react-native';
 
 import { CustomText } from '../custom-text/custom-text.component';
+import { Animation } from '../animation/animation.component';
 
-import { usePetCard } from '../../hooks/logic/usePetCard.hook';
-
-import { Constants } from '../../constants/constants';
+import { usePetCard } from '../../hooks/logic/pets/usePetCard.hook';
 
 import { styles } from './pets.styles';
-import { Tongue } from './pet-parts/tongue/tongue.component';
 
 const config = {
     velocityThreshold: 0.1,
@@ -20,6 +18,7 @@ const config = {
 export const PetCard = ({
     id,
     img,
+    animation,
     name,
     stats,
     moodIncreasing,
@@ -51,7 +50,8 @@ export const PetCard = ({
                         },
                     ]}
                 />
-                <Tongue />
+                {/* <Tongue petId={id} tongueAnimation={tongue} /> */}
+                <Animation petId={id} animation={animation} />
                 <CustomText
                     text={name}
                     style={[

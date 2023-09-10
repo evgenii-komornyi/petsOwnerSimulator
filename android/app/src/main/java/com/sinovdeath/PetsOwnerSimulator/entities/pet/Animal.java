@@ -12,7 +12,9 @@ public abstract class Animal implements IAnimal {
     protected String id;
     protected String name;
     protected Image img;
+    protected Animation animation;
     protected String bio;
+    protected Stats maxValues;
     protected Stats stats;
     protected Stats statsReducing;
     protected StatsIncreasing statsIncreasing;
@@ -56,6 +58,10 @@ public abstract class Animal implements IAnimal {
         this.img = img;
     }
 
+    public Animation getAnimation() { return animation; }
+
+    public void setAnimation(Animation animation) { this.animation = animation; }
+
     public String getBio() {
         return bio;
     }
@@ -63,6 +69,10 @@ public abstract class Animal implements IAnimal {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+    public Stats getMaxValues() { return maxValues; }
+
+    public void setMaxValues(Stats maxValues) { this.maxValues = maxValues; }
 
     public Stats getStats() {
         return stats;

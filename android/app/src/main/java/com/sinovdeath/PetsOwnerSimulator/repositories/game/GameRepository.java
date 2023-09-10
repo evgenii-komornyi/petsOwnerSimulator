@@ -1,4 +1,4 @@
-package com.sinovdeath.PetsOwnerSimulator.Repositories.game;
+package com.sinovdeath.PetsOwnerSimulator.repositories.game;
 
 import android.content.Context;
 

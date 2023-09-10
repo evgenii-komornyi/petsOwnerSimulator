@@ -1,12 +1,12 @@
 import React from 'react';
 import { Pressable, Image } from 'react-native';
-
 import { Badge } from '@rneui/base';
 
-import { styles } from './pressable-button.styles';
-import { useFeedButton } from '../../hooks/logic/useFeedButton.hook';
+import { useFeedButton } from '../../hooks/logic/owner/useFeedButton.hook';
 
-export const FeedButton = ({ catId, item, index }) => {
+import { styles } from './pressable-button.styles';
+
+export const FoodButton = ({ catId, item, index }) => {
     const [isDisabled, feed] = useFeedButton(catId, item);
 
     return (

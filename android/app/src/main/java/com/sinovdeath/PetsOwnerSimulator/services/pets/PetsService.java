@@ -1,6 +1,5 @@
 package com.sinovdeath.PetsOwnerSimulator.services.pets;
 
-import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.alert.Alert;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class PetsService implements IPetsService {
     @Override
-    public String calculateStats() {
+    public void calculateStats() {
         Owner currentOwner = OwnerManager.getCurrentOwner();
 
         if (!currentOwner.getPets().isEmpty()) {
@@ -27,13 +26,15 @@ public class PetsService implements IPetsService {
                         int currentSatietyLevel = pet.getStats().getSatiety();
                         int currentMoodLevel = pet.getStats().getMood();
                         int currentDigestionLevel = pet.getStats().getDigestion();
+                        int maxHealthLevel = pet.getMaxValues().getHealth();
+                        double healthThreshold = maxHealthLevel * 0.5;
                         Alert tmpAlert = new Alert();
                         currentOwner.setAlert(tmpAlert);
 
                         if (PetsStatsCalculator.isPetNotDead(currentHealthLevel)) {
                             if (currentSatietyLevel > 0) {
-                                if (currentSatietyLevel > Constants.HEALTH_UP_THRESHOLD && currentHealthLevel < Constants.MAX_HEALTH_LEVEL) {
-                                    pet.getStats().setHealth(PetsStatsCalculator.increaseHealthLevel(currentHealthLevel, pet.getStatsIncreasing().getHealth()));
+                                if (currentSatietyLevel > healthThreshold && currentHealthLevel < maxHealthLevel) {
+                                    pet.getStats().setHealth(PetsStatsCalculator.increaseHealthLevel(currentHealthLevel, pet.getStatsIncreasing().getHealth(), maxHealthLevel));
                                 }
 
                                 int newSatiety = PetsStatsCalculator.decreaseSatietyLevel(currentSatietyLevel, pet.getStatsReducing().getSatiety());
@@ -87,8 +88,6 @@ public class PetsService implements IPetsService {
         }
 
         OwnerManager.setOwner(currentOwner);
-
-        return Generator.generateJson(OwnerManager.getCurrentOwner());
     }
 
     private Alert _checkAndCreateAlert(Alert tmpAlert) {

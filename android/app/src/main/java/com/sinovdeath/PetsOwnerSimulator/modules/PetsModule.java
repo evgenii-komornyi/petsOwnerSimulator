@@ -6,11 +6,12 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.sinovdeath.PetsOwnerSimulator.services.pets.IPetsService;
 import com.sinovdeath.PetsOwnerSimulator.services.pets.PetsService;
 
 public class PetsModule extends ReactContextBaseJavaModule {
-    ReactApplicationContext _context;
-    PetsService _petsService;
+    private ReactApplicationContext _context;
+    private static IPetsService _petsService;
 
     public PetsModule(ReactApplicationContext context) {
         super(context);
@@ -25,7 +26,11 @@ public class PetsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void calculateStats(Promise promise) {
-        promise.resolve(_petsService.calculateStats());
+    public void calculateStats() {
+        _petsService.calculateStats();
+    }
+
+    public static synchronized IPetsService getPetsService() {
+        return _petsService;
     }
 }

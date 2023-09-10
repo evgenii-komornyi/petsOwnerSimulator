@@ -12,18 +12,6 @@ export const modifyItemStat = (id, items, statToModify, newStatValue) => {
     return items;
 };
 
-export const checkStatsToReturnCorrectImage = (stats, img) => {
-    if (stats.health === 0) {
-        return img.dead;
-    }
-
-    if (stats.mood === 0) {
-        return img.sad;
-    }
-
-    return img.regular;
-};
-
 export const convertPets = originalPets =>
     originalPets.map(animal => Object.values(animal)[0]);
 

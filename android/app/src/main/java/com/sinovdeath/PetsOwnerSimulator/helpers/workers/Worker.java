@@ -2,12 +2,11 @@ package com.sinovdeath.PetsOwnerSimulator.helpers.workers;
 
 import com.sinovdeath.PetsOwnerSimulator.entities.items.ICountable;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
-import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
 
 import java.util.List;
 
 public class Worker {
-    public static List<Item> addItem(List<Item> items, Item newItem, Owner owner) {
+    public static List<Item> addItem(List<Item> items, Item newItem) {
         if (newItem instanceof ICountable) {
             boolean itemExists = false;
             for (Item existingItem : items) {

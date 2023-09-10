@@ -64,8 +64,13 @@ const ownerStore = (set, get) => ({
     loadGame: async () => {
         try {
             const meta = await readFromStorage('meta');
+            let owner;
 
-            const owner = await loadGame(meta.saveMoment);
+            if (!meta) {
+                owner = await loadGame(new Date().toUTCString());
+            } else {
+                owner = await loadGame(meta.saveMoment);
+            }
 
             if (owner) {
                 const { happyPetCoins, pets, name, inventory, home } =
@@ -258,19 +263,8 @@ const ownerStore = (set, get) => ({
         }
     },
 
-    calculatePetsStats: async () => {
-        try {
-            const data = await calculatePetsStats();
-
-            if (data) {
-                const { pets, alert } = JSON.parse(data);
-                const convertedPets = convertPets(pets);
-
-                set({ pets: convertedPets, alert });
-            }
-        } catch (error) {
-            console.error(error);
-        }
+    calculatePetsStats: () => {
+        calculatePetsStats();
     },
 
     calculateHomeStats: async () => {

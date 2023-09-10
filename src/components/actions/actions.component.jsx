@@ -39,7 +39,7 @@ export const Actions = ({ id, currentSatietyLevel, currentDigestionLevel }) => {
                     />
                 );
             case 1:
-                return <PlayList />;
+                return <PlayList id={id} />;
         }
     };
 

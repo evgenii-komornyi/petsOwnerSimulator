@@ -4,6 +4,7 @@ import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.FoodImage;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
+import com.sinovdeath.PetsOwnerSimulator.enums.ItemFor;
 import com.sinovdeath.PetsOwnerSimulator.enums.ItemType;
 
 import java.math.BigDecimal;
@@ -18,12 +19,13 @@ public class FoodGenerator {
         chicken_10k.setId("chicken-10k");
         chicken_10k.setName("chicken");
         chicken_10k.setType(ItemType.FOOD.getItemType().toLowerCase());
-        chicken_10k.setForAnimal("cat");
+        chicken_10k.setForAnimal(ItemFor.CAT);
         FoodImage chicken_10kImage = new FoodImage();
         chicken_10kImage.setUnused(String.format("%s/%s%s", Constants.ASSETS_FOOD_FOLDER, chicken_10k.getName(), Constants.IMAGE_EXT));
         chicken_10k.setImage(chicken_10kImage);
-        chicken_10k.setSatisfaction(20);
+        chicken_10k.setSatisfaction(144);
         chicken_10k.setPrice(new BigDecimal("5.00"));
+        chicken_10k.setCount(0);
 
         food.add(chicken_10k);
 

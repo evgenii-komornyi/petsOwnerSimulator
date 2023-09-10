@@ -15,7 +15,7 @@ export const QuantityButtons = ({
     decreaseQuantity,
     increaseQuantity,
     resetQuantity,
-    checkedCategory,
+    checkedItem,
     buttonTitle,
 }) => {
     return (
@@ -23,13 +23,11 @@ export const QuantityButtons = ({
             style={[
                 styles.quantityContainer,
                 {
-                    justifyContent: !checkedCategory
-                        ? 'space-between'
-                        : 'center',
+                    justifyContent: checkedItem ? 'space-between' : 'center',
                 },
             ]}
         >
-            {!checkedCategory && (
+            {checkedItem && (
                 <>
                     <CustomButton content="-" onPress={decreaseQuantity} />
                     <Chip

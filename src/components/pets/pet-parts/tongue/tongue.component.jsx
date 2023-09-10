@@ -1,22 +1,24 @@
 import React from 'react';
 import { Image } from 'react-native';
 
-import { useTongue } from '../../../../hooks/logic/useTongue.hook';
+import useTongueStore from '../../../../app/useTongueStore';
 
 import { styles as commonStyle } from '../../pets.styles';
 import { styles } from './tongue.styles';
 
-export const Tongue = () => {
-    const [imageIndex, isTongueVisible, tongueImages] = useTongue();
+export const Tongue = ({ tongueAnimation }) => {
+    const { isTongueVisible } = useTongueStore(state => state);
 
     return (
-        isTongueVisible && (
-            <Image
-                source={{
-                    uri: tongueImages[imageIndex],
-                }}
-                style={[styles.tongueImage, commonStyle.imageSize]}
-            />
-        )
+        <Image
+            source={
+                isTongueVisible
+                    ? {
+                          uri: tongueAnimation,
+                      }
+                    : null
+            }
+            style={[styles.tongueImage, commonStyle.imageSize]}
+        />
     );
 };

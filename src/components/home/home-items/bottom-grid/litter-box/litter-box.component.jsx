@@ -5,7 +5,6 @@ import { DoubleTap } from '../../../../double-tap/double-tap.component';
 import useOwnerStore from '../../../../../app/useOwnerStore';
 
 import { useAudio } from '../../../../../hooks/common/useAudio.hook';
-import { useVibrate } from '../../../../../hooks/common/useVibrate.hook';
 
 import { isObjectExists } from '../../../../../helpers/objects.helper';
 
@@ -17,7 +16,6 @@ export const LitterBox = () => {
         cleanLitterBox,
     } = useOwnerStore(state => state);
     const [playSound] = useAudio();
-    const [vibrate] = useVibrate();
 
     const checkSlotsNumber = slots => {
         if (!isObjectExists(litterBox)) return;
@@ -32,7 +30,6 @@ export const LitterBox = () => {
     const cleanupLitterBox = async () => {
         await cleanLitterBox();
         await playSound('litterBoxCleanup');
-        vibrate();
     };
 
     return (

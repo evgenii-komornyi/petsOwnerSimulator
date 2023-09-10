@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
-import com.sinovdeath.PetsOwnerSimulator.entities.items.toys.Toys;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.Toy;
 
 import java.lang.reflect.Type;
 
@@ -20,7 +20,7 @@ public class ItemDeserializer implements JsonDeserializer<Item> {
             case "food":
                 return context.deserialize(json, Food.class);
             case "toys":
-                return context.deserialize(json, Toys.class);
+                return context.deserialize(json, Toy.class);
             // Add more cases for other subclasses of Item if needed
             default:
                 throw new JsonParseException("Unknown item type: " + type);

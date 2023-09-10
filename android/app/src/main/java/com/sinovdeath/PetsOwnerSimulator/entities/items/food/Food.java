@@ -4,7 +4,6 @@ import com.sinovdeath.PetsOwnerSimulator.entities.items.ICountable;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 
 public class Food extends Item implements ICountable {
-    private String forAnimal;
     private FoodImage image;
     private Integer satisfaction;
     private Integer count;
@@ -12,17 +11,8 @@ public class Food extends Item implements ICountable {
     public Integer getSatisfaction() {
         return satisfaction;
     }
-
     public void setSatisfaction(Integer satisfaction) {
         this.satisfaction = satisfaction;
-    }
-
-    public String getForAnimal() {
-        return forAnimal;
-    }
-
-    public void setForAnimal(String forAnimal) {
-        this.forAnimal = forAnimal;
     }
 
     public FoodImage getImage() {
@@ -46,9 +36,14 @@ public class Food extends Item implements ICountable {
     @Override
     public String toString() {
         return "Food{" +
-                "count=" + count +
+                "image=" + image +
+                ", satisfaction=" + satisfaction +
+                ", count=" + count +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", forAnimal='" + forAnimal + '\'' +
+                ", price=" + price +
                 '}';
     }
-
-
 }

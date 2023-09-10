@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { View } from 'react-native';
 
-import { FeedButton } from '../../../components/pressable-button/feed-button.component';
+import { FoodButton } from '../../../components/pressable-button/food-button.component';
 import { EmptyList } from '../../../components/empy-list/empty-list.component';
 
 import useOwnerStore from '../../../app/useOwnerStore';
@@ -15,14 +15,14 @@ export const MealList = ({ id }) => {
         <View style={styles.container}>
             {!food.every(item => item.count === 0) ? (
                 food.map((item, index) => (
-                    <View key={item.id}>
-                        <FeedButton
+                    <Fragment key={item.id}>
+                        <FoodButton
                             catId={id}
                             item={item}
                             index={index}
                             actionType="feed"
                         />
-                    </View>
+                    </Fragment>
                 ))
             ) : (
                 <EmptyList text="You do not have any food. Buy some food!" />

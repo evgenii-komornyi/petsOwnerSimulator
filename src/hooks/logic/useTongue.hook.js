@@ -14,7 +14,7 @@ let animationIntervalId;
 
 export const useTongue = () => {
     const [imageIndex, setImageIndex] = useState(0);
-    const { isTongueVisible } = useTongueStore(state => state);
+    const { feedingPetId, isTongueVisible } = useTongueStore(state => state);
 
     useEffect(() => {
         if (isTongueVisible) {
@@ -23,10 +23,15 @@ export const useTongue = () => {
                     prevIndex => (prevIndex + 1) % tongueImages.length
                 );
             }, 150);
+        } else {
+            clearInterval(animationIntervalId);
+            setImageIndex(0);
         }
 
-        return () => clearInterval(animationIntervalId);
-    }, [isTongueVisible, imageIndex]);
+        return () => {
+            clearInterval(animationIntervalId);
+        };
+    }, [isTongueVisible]);
 
-    return [imageIndex, isTongueVisible, tongueImages];
+    return { feedingPetId, imageIndex, isTongueVisible, tongueImages };
 };

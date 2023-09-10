@@ -85,10 +85,6 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
     },
-    tongueImage: {
-        position: 'absolute',
-        resizeMode: 'contain',
-    },
     imageSize: {
         width: 170,
         height: 170,

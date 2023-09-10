@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-native';
 import { Button } from '@rneui/themed';
 
 import useOwnerStore from '../../app/useOwnerStore';
+import { useAdoptButton } from '../../hooks/logic/pets/useAdoptButton.hook';
 
 import { Icon } from '../icon/icon.component';
 
@@ -13,22 +14,7 @@ import { styles } from './add-pet-button.styles';
 export const AddPetButton = () => {
     const navigate = useNavigate();
     const { pets } = useOwnerStore(state => state);
-
-    const showTitle = () => {
-        const availablePets = Constants.MAX_AVAILABLE_PETS - pets.length;
-
-        if (pets.length === 0) {
-            return 'Adopt a pet';
-        } else {
-            if (availablePets !== 0) {
-                return `You can adopt ${availablePets} more pet${
-                    availablePets > 1 ? 's' : ''
-                }`;
-            } else {
-                return `You cannot adopt any pets`;
-            }
-        }
-    };
+    const { showTitle } = useAdoptButton(pets);
 
     return (
         <Button

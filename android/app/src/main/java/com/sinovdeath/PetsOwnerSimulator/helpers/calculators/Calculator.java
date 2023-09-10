@@ -40,7 +40,7 @@ public class Calculator {
                 if (foodToFeedPet != null) {
                     int currentDigestion = currentPetStats.getDigestion();
 
-                    currentPetStats.setSatiety(PetsStatsCalculator.increaseSatietyAfterFeeding(currentPetSatiety, foodToFeedPet.getSatisfaction()));
+                    currentPetStats.setSatiety(PetsStatsCalculator.increaseSatietyAfterFeeding(currentPetSatiety, foodToFeedPet.getSatisfaction(), pet.getMaxValues().getSatiety()));
 
                     if (currentDigestion == 0) {
                         currentPetStats.setDigestion(pet.getStatsIncreasing().getDigestion());
@@ -73,7 +73,7 @@ public class Calculator {
                 if (pet instanceof IPettable) {
                     Stats currentPetStats = pet.getStats();
 
-                    currentPetStats.setMood(PetsStatsCalculator.increaseMoodBySwipeDirection(pet.getStatsIncreasing().getMood(), currentPetStats, swipeDirection));
+                    currentPetStats.setMood(PetsStatsCalculator.increaseMoodBySwipeDirection(pet.getStatsIncreasing().getMood(), currentPetStats, pet.getMaxValues().getMood(), swipeDirection));
                 }
             }
         }

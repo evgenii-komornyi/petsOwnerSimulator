@@ -72,6 +72,21 @@ export const ItemDescription = ({ item }) => {
                     containerStyle={{ marginVertical: 5 }}
                 />
             )}
+            {item.hasOwnProperty('durability') && (
+                <Chip
+                    color="warning"
+                    title={`${item.durability}`}
+                    icon={() => (
+                        <Icon
+                            type={Constants.MATERIALICONS_ICON}
+                            icon="shield"
+                            size={20}
+                            color="white"
+                        />
+                    )}
+                    containerStyle={{ marginVertical: 5 }}
+                />
+            )}
         </View>
     );
 };

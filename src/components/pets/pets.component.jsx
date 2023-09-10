@@ -1,12 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { FlatList, View } from 'react-native';
-
-import useOwnerStore from '../../app/useOwnerStore';
 
 import { Pet } from './pet.component';
 import { NoPets } from './no-pets.component';
 import { AddPetButton } from '../add-pet-button/add-pet-button.component';
 import { GameOver } from './game-over.component';
+
+import { usePets } from '../../hooks/logic/pets/usePets.hook';
+import useOwnerStore from '../../app/useOwnerStore';
 
 import { Constants } from '../../constants/constants';
 
@@ -14,27 +15,14 @@ import { styles } from './pets.styles';
 
 export const Pets = () => {
     const { pets } = useOwnerStore(state => state);
-
-    const flatListRef = useRef(null);
-
-    const handleTouchStart = () => {
-        flatListRef.current.setNativeProps({
-            scrollEnabled: false,
-        });
-    };
-
-    const handleTouchEnd = () => {
-        flatListRef.current.setNativeProps({
-            scrollEnabled: true,
-        });
-    };
+    const { flatListRef, handleTouchStart, handleTouchEnd } = usePets(pets);
 
     return (
         <>
             <View style={styles.wrapperContainer}>
                 {pets.length === 0 ? (
                     <NoPets />
-                ) : pets.length >= Constants.MAX_AVAILABLE_PETS &&
+                ) : pets.length === Constants.MAX_AVAILABLE_PETS &&
                   pets.every(pet => pet.wasTaken) ? (
                     <GameOver />
                 ) : (

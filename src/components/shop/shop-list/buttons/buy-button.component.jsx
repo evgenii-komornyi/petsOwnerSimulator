@@ -4,13 +4,13 @@ import { Button } from '@rneui/themed';
 
 import { Icon } from '../../../icon/icon.component';
 import { CustomText } from '../../../custom-text/custom-text.component';
+import { QuantityButtons } from './quantity-buttons.component';
 
-import { useBuyButton } from '../../../../hooks/logic/useBuyButton.hook';
+import { useBuyButton } from '../../../../hooks/logic/shop/useBuyButton.hook';
 
 import { Constants } from '../../../../constants/constants';
 
 import { styles } from '../shop-list.styles';
-import { QuantityButtons } from './quantity-buttons.component';
 
 export const BuyButton = ({ item, category }) => {
     const [
@@ -20,8 +20,7 @@ export const BuyButton = ({ item, category }) => {
         decreaseQuantity,
         increaseQuantity,
         resetQuantity,
-        checkLitterBoxCategory,
-        checkCatHouseCategory,
+        checkIsItemCountable,
         returnButtonTitle,
     ] = useBuyButton();
 
@@ -52,11 +51,8 @@ export const BuyButton = ({ item, category }) => {
                             decreaseQuantity={decreaseQuantity}
                             increaseQuantity={increaseQuantity}
                             resetQuantity={resetQuantity}
-                            checkedCategory={
-                                checkLitterBoxCategory(category) ||
-                                checkCatHouseCategory(category)
-                            }
-                            buttonTitle={returnButtonTitle(category, item)}
+                            checkedItem={checkIsItemCountable(item)}
+                            buttonTitle={returnButtonTitle(item)}
                         />
                     )}
                 </View>

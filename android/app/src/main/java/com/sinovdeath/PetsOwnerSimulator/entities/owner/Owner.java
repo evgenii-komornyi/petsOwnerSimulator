@@ -1,5 +1,7 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.owner;
 
+import androidx.annotation.NonNull;
+
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.alert.Alert;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Owner implements IOwner, Serializable {
-    private String id;
+    private final String id;
     private String name;
     private BigDecimal happyPetCoins;
     private Home home;
@@ -134,6 +136,7 @@ public class Owner implements IOwner, Serializable {
         return Objects.hash(id, name, happyPetCoins, home, pets, inventory);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Owner{" +

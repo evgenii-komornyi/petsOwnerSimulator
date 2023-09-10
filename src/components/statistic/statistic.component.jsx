@@ -8,7 +8,7 @@ import { icons } from '../../data/icons';
 
 import { styles } from './statistic.styles';
 
-export const Statistic = ({ id, name, stats }) => {
+export const Statistic = ({ id, name, stats, maxValues }) => {
     const checkIconByLevel = levelName =>
         icons[levelName][stats[levelName] > 30 ? 'full' : 'empty'];
 
@@ -20,6 +20,7 @@ export const Statistic = ({ id, name, stats }) => {
                     iconStyle={styles.iconLevel.health}
                     iconSource={checkIconByLevel('health')}
                     statLevel={stats.health}
+                    maxLevel={maxValues.health}
                     additionalStyle={{
                         borderTopRightRadius: 10,
                     }}
@@ -30,6 +31,7 @@ export const Statistic = ({ id, name, stats }) => {
                     iconStyle={styles.iconLevel.satiety}
                     iconSource={checkIconByLevel('satiety')}
                     statLevel={stats.satiety}
+                    maxLevel={maxValues.satiety}
                 />
             )}
             {stats.hasOwnProperty('mood') && (
@@ -37,6 +39,7 @@ export const Statistic = ({ id, name, stats }) => {
                     iconStyle={styles.iconLevel.mood}
                     iconSource={checkIconByLevel('mood')}
                     statLevel={stats.mood}
+                    maxLevel={maxValues.mood}
                     additionalStyle={{ borderBottomRightRadius: 10 }}
                 />
             )}

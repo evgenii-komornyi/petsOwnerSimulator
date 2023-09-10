@@ -14,8 +14,8 @@ public class PetsStatsCalculator {
         return health > 0 && satiety > 0 && mood > 0;
     }
 
-    public static int increaseHealthLevel(int currentHealthLevel, int increaseValue) {
-        return  Math.min(currentHealthLevel + increaseValue, Constants.MAX_HEALTH_LEVEL);
+    public static int increaseHealthLevel(int currentHealthLevel, int increaseValue, int maxHealthLevel) {
+        return  Math.min(currentHealthLevel + increaseValue, maxHealthLevel);
     }
 
     public static int decreaseHealthLevel(int currentHealthLevel, int decreaseValue) {
@@ -34,11 +34,11 @@ public class PetsStatsCalculator {
         return Math.max(currentMoodLevel - decreaseValue, 0);
     }
 
-    public static int increaseSatietyAfterFeeding(int currentPetSatiety, int satisfaction) {
-        return Math.min(currentPetSatiety + satisfaction, 100);
+    public static int increaseSatietyAfterFeeding(int currentPetSatiety, int satisfaction, int maxSatietyLevel) {
+        return Math.min(currentPetSatiety + satisfaction, maxSatietyLevel);
     }
 
-    public static int increaseMoodBySwipeDirection(MoodStats moodIncrease, Stats currentPetStats, String swipeDirection) {
+    public static int increaseMoodBySwipeDirection(MoodStats moodIncrease, Stats currentPetStats, int maxMoodLevel, String swipeDirection) {
         int currentMood = currentPetStats.getMood();
         int calculatedMoodBySwipeDirection = 0;
 
@@ -56,6 +56,6 @@ public class PetsStatsCalculator {
             calculatedMoodBySwipeDirection = currentMood + moodIncrease.getDiagonal();
         }
 
-        return Math.min(calculatedMoodBySwipeDirection, Constants.MAX_MOOD_LEVEL);
+        return Math.min(calculatedMoodBySwipeDirection, maxMoodLevel);
     }
 }

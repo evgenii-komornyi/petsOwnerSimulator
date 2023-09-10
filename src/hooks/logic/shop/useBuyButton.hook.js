@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import useOwnerStore from '../../app/useOwnerStore';
-import { isObjectExists } from '../../helpers/objects.helper';
+import useOwnerStore from '../../../app/useOwnerStore';
+import { isObjectExists } from '../../../helpers/objects.helper';
 
 export const useBuyButton = () => {
     const [isPressed, setIsPressed] = useState(false);
@@ -20,25 +20,22 @@ export const useBuyButton = () => {
         setQuantity(1);
     };
 
-    const checkLitterBoxCategory = category => category === 'Litter Boxes';
-
     const checkOwnerLitterBoxIdAndShopItemId = item => litterBox.id === item.id;
-
-    const checkCatHouseCategory = category => category === 'Houses';
 
     const checkOwnerCatHouseIdAndShopItemId = item => catHouse.id === item.id;
 
-    const returnButtonTitle = (category, item) => {
-        if (checkLitterBoxCategory(category)) {
+    const checkIsItemCountable = itemToCheck =>
+        itemToCheck.hasOwnProperty('count');
+
+    const returnButtonTitle = item => {
+        if (!checkIsItemCountable(item)) {
             if (
                 isObjectExists(litterBox) &&
                 checkOwnerLitterBoxIdAndShopItemId(item)
             ) {
                 return 'RENEW';
             }
-        }
 
-        if (checkCatHouseCategory(category)) {
             if (
                 isObjectExists(catHouse) &&
                 checkOwnerCatHouseIdAndShopItemId(item)
@@ -57,8 +54,7 @@ export const useBuyButton = () => {
         decreaseQuantity,
         increaseQuantity,
         resetQuantity,
-        checkLitterBoxCategory,
-        checkCatHouseCategory,
+        checkIsItemCountable,
         returnButtonTitle,
     ];
 };
