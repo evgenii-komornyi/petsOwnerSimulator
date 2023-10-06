@@ -1,5 +1,6 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.owner;
 
+import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
 
 public interface IOwner {
@@ -10,4 +11,5 @@ public interface IOwner {
     void sayGoodbye(String petId);
     void cleanRoom();
     void cleanLitterBox();
+    void putItemInRoom(Item itemToPut);
 }

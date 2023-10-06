@@ -9,11 +9,12 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.google.gson.Gson;
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
+import com.sinovdeath.PetsOwnerSimulator.services.owner.IOwnerService;
 import com.sinovdeath.PetsOwnerSimulator.services.owner.OwnerService;
 
 public class OwnerModule extends ReactContextBaseJavaModule {
-    ReactApplicationContext _context;
-    OwnerService _ownerService;
+    private final ReactApplicationContext _context;
+    private final IOwnerService _ownerService;
 
     public OwnerModule(ReactApplicationContext context) {
         super(context);
@@ -72,6 +73,11 @@ public class OwnerModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void cleanLitterBox(Promise promise) { promise.resolve(_ownerService.cleanLitterBox()); }
+
+    @ReactMethod
+    public void putItemInRoom(ReadableMap params, Promise promise) {
+        promise.resolve(_ownerService.putItemInRoom(params.getString("itemType"), params.getString("itemToPut")));
+    }
 
     private String getCurrentOwnerInJSON() {
         return new Gson().toJson(OwnerManager.getCurrentOwner());

@@ -1,5 +1,6 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.items;
 
+import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
 import com.sinovdeath.PetsOwnerSimulator.enums.ItemFor;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ public abstract class Item {
     protected String type;
     protected String forAnimal;
     protected BigDecimal price;
+    protected Stats stats;
 
     public String getId() {
         return id;
@@ -50,4 +52,8 @@ public abstract class Item {
     public void setForAnimal(ItemFor forAnimal) {
         this.forAnimal = forAnimal.getItemFor();
     }
+
+    public Stats getStats() { return stats; }
+
+    public void setStats(Stats stats) { this.stats = stats; }
 }

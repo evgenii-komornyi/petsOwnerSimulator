@@ -2,7 +2,6 @@ package com.sinovdeath.PetsOwnerSimulator.modules;
 
 import androidx.annotation.NonNull;
 
-import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -10,7 +9,7 @@ import com.sinovdeath.PetsOwnerSimulator.services.pets.IPetsService;
 import com.sinovdeath.PetsOwnerSimulator.services.pets.PetsService;
 
 public class PetsModule extends ReactContextBaseJavaModule {
-    private ReactApplicationContext _context;
+    private final ReactApplicationContext _context;
     private static IPetsService _petsService;
 
     public PetsModule(ReactApplicationContext context) {

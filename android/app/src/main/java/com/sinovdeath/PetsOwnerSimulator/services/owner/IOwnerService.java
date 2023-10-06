@@ -10,4 +10,5 @@ public interface IOwnerService {
     String interactWithWindow();
     String cleanRoom();
     String cleanLitterBox();
+    String putItemInRoom(String itemType, String itemToPut);
 }

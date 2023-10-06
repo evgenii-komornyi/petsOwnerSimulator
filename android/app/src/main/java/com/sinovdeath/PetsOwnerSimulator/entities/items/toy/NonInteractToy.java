@@ -3,15 +3,15 @@ package com.sinovdeath.PetsOwnerSimulator.entities.items.toy;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.ICountable;
 
 public class NonInteractToy extends Toy implements ICountable {
-    private Integer count;
+    private int count;
 
     @Override
-    public Integer getCount() {
+    public int getCount() {
         return this.count;
     }
 
     @Override
-    public void setCount(Integer count) {
+    public void setCount(int count) {
         this.count = count;
     }
 

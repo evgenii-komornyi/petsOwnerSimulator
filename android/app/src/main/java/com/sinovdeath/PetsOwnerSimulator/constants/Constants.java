@@ -15,11 +15,6 @@ public class Constants {
     public static final String ASSETS_ROOMS = "asset:/images/backgrounds/home";
     public static final String DEFAULT_ROOM = "room";
 
-    public static final int ROOM_WIDTH = 1317;
-    public static final int ROOM_HEIGHT = 2223;
-    public static final int MENU_HEIGHT = 65;
-    public static final int HEADER_HEIGHT = 50;
-
     public static final String ASSETS_CATS_FOLDER = "asset:/images/cats";
     public static final String ASSETS_DEAD_FOLDER = "asset:/images/dead-pets";
 
@@ -30,4 +25,7 @@ public class Constants {
     public static final String ASSETS_TONGUE_FOLDER = "asset:/animation/pets/lick";
     public static final String IMAGE_EXT = ".png";
     public static final String ANIMATION_EXT = ".gif";
+
+    public static final String SHORT_PATH_FORMAT = "%s/%s%s";
+    public static final String LONG_PATH_FORMAT = "%s/%s/%s%s";
 }

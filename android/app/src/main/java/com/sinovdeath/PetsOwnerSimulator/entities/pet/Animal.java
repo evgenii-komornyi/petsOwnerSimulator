@@ -1,6 +1,6 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.pet;
 
-import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
@@ -26,11 +26,11 @@ public abstract class Animal implements IAnimal {
     @Override
     public void poop() {
         Owner owner = OwnerManager.getCurrentOwner();
-        LitterBox litterBox = (LitterBox) owner.getInventory().getLitterBox();
+        LivingRoom livingRoom = owner.getHome().getLivingRoom();
+        LitterBox litterBox = (LitterBox) livingRoom.getLitterBox();
 
         if (litterBox == null || !litterBox.getPetPoop()) {
-            Home home = owner.getHome();
-            home.setPoopOnCarpetCount(HomeStatsCalculator.calculatePoopOnCarpetCount(home.getPoopOnCarpetCount()));
+            livingRoom.setPoopOnCarpetCount(HomeStatsCalculator.calculatePoopOnCarpetCount(livingRoom.getPoopOnCarpetCount()));
         }
     }
 
@@ -98,7 +98,7 @@ public abstract class Animal implements IAnimal {
         this.statsIncreasing = statsIncreasing;
     }
 
-    public boolean isWasTaken() {
+    public boolean getWasTaken() {
         return wasTaken;
     }
 

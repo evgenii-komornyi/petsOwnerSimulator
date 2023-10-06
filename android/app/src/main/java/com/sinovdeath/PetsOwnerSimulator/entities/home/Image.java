@@ -1,13 +1,9 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.home;
 
-import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
+import java.io.Serializable;
 
-public class Image {
+public class Image implements Serializable {
     private String uri;
-
-    public Image() {
-        this.uri = String.format("%s/%s%s", Constants.ASSETS_ROOMS, Constants.DEFAULT_ROOM, Constants.IMAGE_EXT);
-    }
 
     public String getUri() {
         return uri;
@@ -15,5 +11,12 @@ public class Image {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "uri='" + uri + '\'' +
+                '}';
     }
 }

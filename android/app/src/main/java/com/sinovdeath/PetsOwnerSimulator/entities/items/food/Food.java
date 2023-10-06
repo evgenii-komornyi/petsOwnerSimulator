@@ -24,12 +24,12 @@ public class Food extends Item implements ICountable {
     }
 
     @Override
-    public Integer getCount() {
+    public int getCount() {
         return count;
     }
 
     @Override
-    public void setCount(Integer count) {
+    public void setCount(int count) {
         this.count = count;
     }
 

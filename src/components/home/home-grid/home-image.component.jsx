@@ -7,7 +7,9 @@ import { styles } from './home-grid.styles';
 
 export const HomeImage = ({ children }) => {
     const {
-        home: { image },
+        home: {
+            livingRoom: { image },
+        },
     } = useOwnerStore(state => state);
 
     return (

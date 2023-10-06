@@ -15,7 +15,9 @@ const closed = {
 
 export const Window = () => {
     const {
-        home: { isWindowOpen },
+        home: {
+            livingRoom: { isWindowOpen },
+        },
         interactWithWindow,
     } = useOwnerStore(state => state);
 

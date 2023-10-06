@@ -10,7 +10,7 @@ import { Constants } from '../../constants/constants';
 
 import { styles } from './actions.styles';
 
-export const Actions = ({ id, currentSatietyLevel, currentDigestionLevel }) => {
+export const Actions = ({ petId }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const buttons = [
@@ -31,15 +31,9 @@ export const Actions = ({ id, currentSatietyLevel, currentDigestionLevel }) => {
     const renderComponents = () => {
         switch (selectedIndex) {
             case 0:
-                return (
-                    <MealList
-                        id={id}
-                        currentSatietyLevel={currentSatietyLevel}
-                        currentDigestionLevel={currentDigestionLevel}
-                    />
-                );
+                return <MealList petId={petId} />;
             case 1:
-                return <PlayList id={id} />;
+                return <PlayList petId={petId} />;
         }
     };
 

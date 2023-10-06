@@ -64,11 +64,7 @@ export const Pet = ({
                                 height: 130,
                             }}
                         >
-                            <Actions
-                                id={id}
-                                currentSatietyLevel={stats.satiety}
-                                currentDigestionLevel={stats.digestion}
-                            />
+                            <Actions petId={id} />
                         </View>
                     )}
                 </Animated.View>

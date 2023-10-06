@@ -11,7 +11,9 @@ import { styles } from './carpet.styles';
 
 export const Carpet = () => {
     const {
-        home: { poopOnCarpetCount },
+        home: {
+            livingRoom: { poopOnCarpetCount },
+        },
         cleanRoom,
     } = useOwnerStore(state => state);
 

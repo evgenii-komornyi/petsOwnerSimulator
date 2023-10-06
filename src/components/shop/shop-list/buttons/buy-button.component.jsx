@@ -13,23 +13,28 @@ import { Constants } from '../../../../constants/constants';
 import { styles } from '../shop-list.styles';
 
 export const BuyButton = ({ item, category }) => {
-    const [
+    const {
         isPressed,
         setIsPressed,
+        isDisabled,
         quantity,
         decreaseQuantity,
         increaseQuantity,
         resetQuantity,
         checkIsItemCountable,
         returnButtonTitle,
-    ] = useBuyButton();
+    } = useBuyButton();
 
     return (
         <View style={styles.buttonContainer}>
             <Button
                 type="outline"
+                disabled={isDisabled}
                 onPress={() => setIsPressed(prev => !prev)}
-                buttonStyle={styles.buyButtonContainer}
+                buttonStyle={[
+                    styles.buyButtonContainer,
+                    isDisabled && { backgroundColor: '#fff' },
+                ]}
             >
                 <View style={styles.buttonContentWrapper}>
                     {!isPressed ? (

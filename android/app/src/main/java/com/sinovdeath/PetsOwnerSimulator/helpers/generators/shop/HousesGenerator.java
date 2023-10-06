@@ -6,6 +6,7 @@ import com.sinovdeath.PetsOwnerSimulator.entities.items.house.HouseImage;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 import com.sinovdeath.PetsOwnerSimulator.enums.ItemType;
 import com.sinovdeath.PetsOwnerSimulator.enums.UriType;
+import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class HousesGenerator {
         catHouse_ch9000.setName("CH-9000");
         catHouse_ch9000.setType(ItemType.CAT_HOUSE.getItemType());
         HouseImage catHouse_ch9000Image = new HouseImage();
-        catHouse_ch9000Image.setUnused(String.format("%s/%s/%s%s", Constants.ASSETS_HOUSES_FOLDER, catHouse_ch9000.getId(), UriType.UNUSED.getUriValue(), Constants.IMAGE_EXT));
+        catHouse_ch9000Image.setUnused(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_HOUSES_FOLDER, catHouse_ch9000.getId(), UriType.UNUSED.getUriValue(), Constants.IMAGE_EXT));
         catHouse_ch9000.setImage(catHouse_ch9000Image);
         catHouse_ch9000.setPrice(new BigDecimal("20.00"));
 

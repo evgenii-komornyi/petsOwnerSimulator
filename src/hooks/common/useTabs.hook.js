@@ -63,25 +63,25 @@ export const useTabs = () => {
                 />
             ),
         },
-        {
-            path: '/vet',
-            name: 'Vet',
-            activeIcon: (
-                <Icon
-                    type={Constants.FONTAWESOME5_ICON}
-                    icon="hospital"
-                    size={Constants.MENU_ICON_SIZE}
-                    color="white"
-                />
-            ),
-            inactiveIcon: (
-                <Icon
-                    type={Constants.FONTAWESOME5_ICON}
-                    icon="hospital"
-                    size={Constants.MEDIUM_ICON_SIZE}
-                    color="white"
-                />
-            ),
-        },
+        // {
+        //     path: '/vet',
+        //     name: 'Vet',
+        //     activeIcon: (
+        //         <Icon
+        //             type={Constants.FONTAWESOME5_ICON}
+        //             icon="hospital"
+        //             size={Constants.MENU_ICON_SIZE}
+        //             color="white"
+        //         />
+        //     ),
+        //     inactiveIcon: (
+        //         <Icon
+        //             type={Constants.FONTAWESOME5_ICON}
+        //             icon="hospital"
+        //             size={Constants.MEDIUM_ICON_SIZE}
+        //             color="white"
+        //         />
+        //     ),
+        // },
     ];
 };

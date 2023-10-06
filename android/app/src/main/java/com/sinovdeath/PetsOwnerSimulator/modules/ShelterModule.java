@@ -10,8 +10,8 @@ import com.google.gson.Gson;
 import com.sinovdeath.PetsOwnerSimulator.entities.shelter.Shelter;
 
 public class ShelterModule extends ReactContextBaseJavaModule {
-    ReactApplicationContext _context;
-    Shelter _shelter;
+    private final ReactApplicationContext _context;
+    private final Shelter _shelter;
 
     public ShelterModule(ReactApplicationContext context) {
         super(context);

@@ -10,8 +10,8 @@ import com.google.gson.Gson;
 import com.sinovdeath.PetsOwnerSimulator.entities.shop.Shop;
 
 public class ShopModule extends ReactContextBaseJavaModule {
-    ReactApplicationContext _context;
-    Shop _shop;
+    private final ReactApplicationContext _context;
+    private final Shop _shop;
 
     public ShopModule(ReactApplicationContext context) {
         super(context);

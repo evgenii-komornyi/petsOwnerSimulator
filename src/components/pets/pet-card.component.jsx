@@ -50,7 +50,6 @@ export const PetCard = ({
                         },
                     ]}
                 />
-                {/* <Tongue petId={id} tongueAnimation={tongue} /> */}
                 <Animation petId={id} animation={animation} />
                 <CustomText
                     text={name}

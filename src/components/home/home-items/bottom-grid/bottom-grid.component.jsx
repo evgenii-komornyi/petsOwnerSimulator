@@ -11,7 +11,9 @@ import { isObjectExists } from '../../../../helpers/objects.helper';
 import { styles } from './bottom-grid.styles';
 
 export const BottomGrid = () => {
-    const { litterBox, catHouse } = useOwnerStore(state => state.inventory);
+    const { litterBox, catHouse } = useOwnerStore(
+        state => state.home.livingRoom
+    );
 
     return (
         <View style={styles.bottomGridContainer}>

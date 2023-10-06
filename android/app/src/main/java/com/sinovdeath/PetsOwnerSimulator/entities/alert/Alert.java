@@ -1,5 +1,7 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.alert;
 
+import androidx.annotation.NonNull;
+
 public class Alert {
     private Sound sound;
     private Vibration vibration;
@@ -20,6 +22,7 @@ public class Alert {
         this.vibration = vibration;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Alert{" +

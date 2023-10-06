@@ -19,7 +19,7 @@ export const Constants = {
     OCTICONS_ICON: 'octIcons',
     SIMPLELINESICONS_ICON: 'simpleLineIcons',
     ZOCIAL_ICON: 'zocial',
-    MAX_AVAILABLE_PETS: 4,
+    MAX_AVAILABLE_PETS: 2,
     MAX_FOOD_LEVEL: 100,
     MAX_HEALTH_LEVEL: 100,
     MAX_MOOD_LEVEL: 100,

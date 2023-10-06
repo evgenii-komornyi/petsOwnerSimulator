@@ -14,8 +14,8 @@ import com.sinovdeath.PetsOwnerSimulator.services.game.GameService;
 import com.sinovdeath.PetsOwnerSimulator.services.game.IGameService;
 
 public class GameModule extends ReactContextBaseJavaModule {
-    ReactApplicationContext _context;
-    IGameService _gameService;
+    private final ReactApplicationContext _context;
+    private final IGameService _gameService;
 
     public GameModule(ReactApplicationContext context) {
         super(context);

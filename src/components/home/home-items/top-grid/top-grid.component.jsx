@@ -10,7 +10,9 @@ import { Constants } from '../../../../constants/constants';
 
 export const TopGrid = () => {
     const {
-        home: { smell },
+        home: {
+            livingRoom: { smell },
+        },
     } = useOwnerStore(state => state);
 
     return (

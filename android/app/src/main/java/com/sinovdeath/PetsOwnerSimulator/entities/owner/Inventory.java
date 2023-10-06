@@ -1,15 +1,15 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.owner;
 
+import com.sinovdeath.PetsOwnerSimulator.entities.items.ICountable;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inventory {
+public class Inventory implements Serializable {
     private List<Item> food;
     private List<Item> toys;
-    private Item litterBox;
-    private Item catHouse;
 
     public Inventory() {
         this.food = new ArrayList<>();
@@ -19,33 +19,38 @@ public class Inventory {
     public List<Item> getFood() {
         return food;
     }
-
     public List<Item> getToys() {
         return toys;
     }
 
-    public Item getLitterBox() {
-        return litterBox;
+    public void setFood(List<Item> food) { this.food = food; }
+    public void setToys(List<Item> toys) { this.toys = toys; }
+
+    public void addFood(Item newFood) {
+        if (!_hasChangedItemCount(food, newFood)) {
+            food.add(newFood);
+        }
     }
 
-    public Item getCatHouse() {
-        return catHouse;
+    public void addToy(Item newToy) {
+        if (!_hasChangedItemCount(toys, newToy)) {
+            toys.add(newToy);
+        }
     }
 
-    public void setLitterBox(Item litterBox) {
-        this.litterBox = litterBox;
-    }
+    private boolean _hasChangedItemCount(List<Item> itemsInInventory, Item countableItemToChange) {
+        for (Item existingItem : itemsInInventory) {
+            if (existingItem.getId().equals(countableItemToChange.getId())) {
+                if (existingItem instanceof ICountable && countableItemToChange instanceof ICountable) {
+                    ((ICountable) existingItem).setCount(((ICountable) existingItem).getCount() +
+                            ((ICountable) countableItemToChange).getCount());
+                }
 
-    public void setCatHouse(Item catHouse) {
-        this.catHouse = catHouse;
-    }
+                return true;
+            }
+        }
 
-    public void setFood(List<Item> food) {
-        this.food = food;
-    }
-
-    public void setToys(List<Item> toys) {
-        this.toys = toys;
+        return false;
     }
 
     @Override
@@ -53,8 +58,6 @@ public class Inventory {
         return "Inventory{" +
                 "food=" + food +
                 ", toys=" + toys +
-                ", litterBox=" + litterBox +
-                ", catHouse=" + catHouse +
                 '}';
     }
 }

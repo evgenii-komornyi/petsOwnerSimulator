@@ -6,8 +6,8 @@ import { useFeedButton } from '../../hooks/logic/owner/useFeedButton.hook';
 
 import { styles } from './pressable-button.styles';
 
-export const FoodButton = ({ catId, item, index }) => {
-    const [isDisabled, feed] = useFeedButton(catId, item);
+export const FoodButton = ({ petId, item, index }) => {
+    const [isDisabled, feed] = useFeedButton(petId, item);
 
     return (
         item.count > 0 && (

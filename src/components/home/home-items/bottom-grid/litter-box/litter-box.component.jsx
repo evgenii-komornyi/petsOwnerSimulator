@@ -6,19 +6,19 @@ import useOwnerStore from '../../../../../app/useOwnerStore';
 
 import { useAudio } from '../../../../../hooks/common/useAudio.hook';
 
-import { isObjectExists } from '../../../../../helpers/objects.helper';
-
 import { styles } from './litter-box.styles';
 
 export const LitterBox = () => {
     const {
-        inventory: { litterBox },
+        home: {
+            livingRoom: { litterBox },
+        },
         cleanLitterBox,
     } = useOwnerStore(state => state);
     const [playSound] = useAudio();
 
     const checkSlotsNumber = slots => {
-        if (!isObjectExists(litterBox)) return;
+        if (Object.keys(litterBox).length === 0) return;
 
         if (slots <= 3 && slots >= 1) return litterBox.image.used;
 
@@ -33,14 +33,16 @@ export const LitterBox = () => {
     };
 
     return (
-        <View style={styles.litterBoxContainer}>
-            <DoubleTap singleTap={cleanupLitterBox}>
-                <ImageBackground
-                    resizeMode="contain"
-                    source={{ uri: checkSlotsNumber(litterBox.slots) }}
-                    style={styles.litterBoxImage}
-                ></ImageBackground>
-            </DoubleTap>
-        </View>
+        Object.keys(litterBox).length !== 0 && (
+            <View style={styles.litterBoxContainer}>
+                <DoubleTap singleTap={cleanupLitterBox}>
+                    <ImageBackground
+                        resizeMode="contain"
+                        source={{ uri: checkSlotsNumber(litterBox.slots) }}
+                        style={styles.litterBoxImage}
+                    ></ImageBackground>
+                </DoubleTap>
+            </View>
+        )
     );
 };

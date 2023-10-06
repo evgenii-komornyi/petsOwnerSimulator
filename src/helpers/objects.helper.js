@@ -1,1 +1,2 @@
-export const isObjectExists = obj => obj !== undefined;
+export const isObjectExists = obj =>
+    obj !== undefined && Object.keys(obj).length !== 0;

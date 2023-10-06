@@ -3,13 +3,13 @@ package com.sinovdeath.PetsOwnerSimulator.enums;
 public enum WindowState {
     OPENED(true), CLOSED(false);
 
-    private Boolean windowState;
+    private boolean windowState;
 
-    WindowState(Boolean state) {
+    WindowState(boolean state) {
         this.windowState = state;
     }
 
-    public Boolean getWindowState() {
+    public boolean getWindowState() {
         return windowState;
     }
 }

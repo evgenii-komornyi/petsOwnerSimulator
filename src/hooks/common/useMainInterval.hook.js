@@ -20,6 +20,7 @@ export const useMainInterval = () => {
             await getCurrentOwner();
             await calculateHomeStats();
         };
+
         interval = setInterval(() => {
             calculatePetsStats();
             fetchData();

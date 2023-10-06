@@ -26,6 +26,9 @@ export const cleanLitterBox = () => callOwnerAPI('cleanLitterBox');
 
 export const setHPC = () => callOwnerAPI('updateHPC');
 
+export const putItemInRoom = (itemType, itemToPut) =>
+    callOwnerAPI('putItemInRoom', { itemType, itemToPut });
+
 const callOwnerAPI = async (method, params = null) => {
     try {
         let data;

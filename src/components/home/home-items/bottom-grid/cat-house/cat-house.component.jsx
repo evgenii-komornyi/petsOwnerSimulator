@@ -7,16 +7,20 @@ import { styles } from './cat-house.styles';
 
 export const CatHouse = () => {
     const {
-        inventory: { catHouse },
+        home: {
+            livingRoom: { catHouse },
+        },
     } = useOwnerStore(state => state);
 
     return (
-        <View style={styles.catHouseContainer}>
-            <ImageBackground
-                resizeMode="contain"
-                source={{ uri: catHouse.image.unused }}
-                style={styles.catHouseImage}
-            ></ImageBackground>
-        </View>
+        Object.keys(catHouse).length !== 0 && (
+            <View style={styles.catHouseContainer}>
+                <ImageBackground
+                    resizeMode="contain"
+                    source={{ uri: catHouse.image.unused }}
+                    style={styles.catHouseImage}
+                ></ImageBackground>
+            </View>
+        )
     );
 };

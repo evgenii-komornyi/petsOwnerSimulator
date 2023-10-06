@@ -3,7 +3,7 @@ import useOwnerStore from '../../../app/useOwnerStore';
 import useAnimationStore from '../../../app/useAnimationStore';
 import { useAudio } from '../../common/useAudio.hook';
 
-export const useFeedButton = (catId, item) => {
+export const useFeedButton = (petId, item) => {
     const { feedPet } = useOwnerStore(state => state);
     const { startAnimation, stopAnimation } = useAnimationStore(state => state);
     const [playSound] = useAudio();
@@ -11,18 +11,18 @@ export const useFeedButton = (catId, item) => {
     const [isDisabled, setIsDisabled] = useState(false);
 
     const feed = async () => {
-        await feedPet(catId, item.id);
+        await feedPet(petId, item.id);
         await playSound('eating');
 
         setIsDisabled(true);
-        startAnimation('lick', catId);
+        startAnimation('lick', petId);
 
         setTimeout(() => {
             setIsDisabled(false);
-            stopAnimation('lick', catId);
+            stopAnimation('lick', petId);
         }, 2000);
 
-        return catId;
+        return petId;
     };
 
     return [isDisabled, feed];

@@ -44,6 +44,11 @@ export const styles = StyleSheet.create({
         borderColor: Constants.MAIN_COLOR,
         borderRadius: 10,
     },
+    forAnimalContainer: {
+        position: 'absolute',
+        top: -10,
+        left: 60,
+    },
     itemWrapper: {
         flex: 1,
         flexDirection: 'row',

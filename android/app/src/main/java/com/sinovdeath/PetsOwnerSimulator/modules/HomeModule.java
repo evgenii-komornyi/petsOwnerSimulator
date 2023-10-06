@@ -7,10 +7,12 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.sinovdeath.PetsOwnerSimulator.services.home.HomeService;
+import com.sinovdeath.PetsOwnerSimulator.services.home.IHomeService;
+import com.sinovdeath.PetsOwnerSimulator.services.pets.IPetsService;
 
 public class HomeModule extends ReactContextBaseJavaModule {
-    ReactApplicationContext _context;
-    HomeService _homeService;
+    private final ReactApplicationContext _context;
+    private static IHomeService _homeService;
 
     public HomeModule(ReactApplicationContext _context) {
         this._context = _context;
@@ -25,4 +27,8 @@ public class HomeModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void calculateStats(Promise promise) { promise.resolve(_homeService.calculateStats()); }
+
+    public static synchronized IHomeService getHomeService() {
+        return _homeService;
+    }
 }

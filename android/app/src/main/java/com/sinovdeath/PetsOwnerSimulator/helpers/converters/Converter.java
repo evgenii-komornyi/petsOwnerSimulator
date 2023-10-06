@@ -1,6 +1,8 @@
 package com.sinovdeath.PetsOwnerSimulator.helpers.converters;
 
 import com.google.gson.Gson;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.house.CatHouse;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
@@ -15,7 +17,6 @@ import com.sinovdeath.PetsOwnerSimulator.entities.pet.Cat;
 import com.sinovdeath.PetsOwnerSimulator.enums.AnimalType;
 import com.sinovdeath.PetsOwnerSimulator.enums.ItemType;
 import com.sinovdeath.PetsOwnerSimulator.enums.ToyType;
-import com.sinovdeath.PetsOwnerSimulator.helpers.workers.Worker;
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
 
 public class Converter {
@@ -65,7 +66,7 @@ public class Converter {
         Inventory existingInventory = owner.getInventory();
 
         if (type.equals(ItemType.FOOD.getItemType().toLowerCase())) {
-            existingInventory.setFood(Worker.addItem(existingInventory.getFood(), itemToBuy));
+            existingInventory.addFood(itemToBuy);
         }
 
         if (type.equals(ItemType.TOYS.getItemType().toLowerCase())) {
@@ -73,24 +74,30 @@ public class Converter {
             String toyType = toy.getToyType();
 
             if (toyType.equals(ToyType.INTERACT.getToyType())) {
-                InteractToy interactToy = (InteractToy) itemToBuy;
-                existingInventory.setToys(Worker.addItem(existingInventory.getToys(), interactToy));
+                existingInventory.addToy((InteractToy) itemToBuy);
             } else if (toyType.equals(ToyType.NON_INTERACT.getToyType())) {
-                NonInteractToy nonInteractToy = (NonInteractToy) itemToBuy;
-                existingInventory.setToys(Worker.addItem(existingInventory.getToys(), nonInteractToy));
-            } else {
-                existingInventory.setToys(Worker.addItem(existingInventory.getToys(), itemToBuy));
+                existingInventory.addToy((NonInteractToy) itemToBuy);
             }
         }
 
-        if (type.equals(ItemType.LITTER_BOX.getItemType())) {
-            existingInventory.setLitterBox(itemToBuy);
-        }
-
-        if (type.equals(ItemType.CAT_HOUSE.getItemType())) {
-            existingInventory.setCatHouse(itemToBuy);
-        }
-
         return existingInventory;
+    }
+
+    public static Home createHomeWithCorrectItems(Item item) {
+        Owner owner = OwnerManager.getCurrentOwner();
+        Home home = owner.getHome();
+        LivingRoom livingRoom = home.getLivingRoom();
+
+        if (item.getType().equals(ItemType.LITTER_BOX.getItemType())) {
+            livingRoom.setLitterBox(item);
+        }
+
+        if (item.getType().equals(ItemType.CAT_HOUSE.getItemType())) {
+            livingRoom.setCatHouse(item);
+        }
+
+        home.setLivingRoom(livingRoom);
+
+        return home;
     }
 }

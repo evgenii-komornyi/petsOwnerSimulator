@@ -1,28 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 
-import { EmptyList } from '../../../components/empy-list/empty-list.component';
+import { EmptyList } from '../../../components/empty-list/empty-list.component';
 
 import useOwnerStore from '../../../app/useOwnerStore';
 
-import { styles } from './play-list.styles';
-import { NonInteractToyButton } from '../../../components/pressable-button/non-interact-toy-button.component';
+import { useRenderToys } from '../../../hooks/logic/renders/useRenderToys.hook';
 
-export const PlayList = ({ id }) => {
+import { styles } from './play-list.styles';
+
+export const PlayList = ({ petId }) => {
     const { toys } = useOwnerStore(state => state.inventory);
+    const { renderToysComponent } = useRenderToys(toys);
 
     return (
         <View style={styles.container}>
-            {!toys.every(item => item.count === 0) ? (
-                toys.map((item, index) => (
-                    <Fragment key={item.id}>
-                        <NonInteractToyButton
-                            catId={id}
-                            item={item}
-                            index={index}
-                        />
-                    </Fragment>
-                ))
+            {toys.length > 0 ? (
+                renderToysComponent(petId)
             ) : (
                 <EmptyList text="You do not have any toys. Buy some toys!" />
             )}

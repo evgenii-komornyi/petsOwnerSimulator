@@ -1,15 +1,24 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.owner;
 
-import androidx.annotation.NonNull;
+import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.alert.Alert;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.ICountable;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.NonInteractToy;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.Toy;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
 import com.sinovdeath.PetsOwnerSimulator.enums.WindowState;
 import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.Calculator;
+import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.ItemsCalculator;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -32,7 +41,6 @@ public class Owner implements IOwner, Serializable {
         this.name = name;
         this.happyPetCoins = new BigDecimal(Constants.HPC);
         this.pets = new ArrayList<>();
-        this.home = new Home();
         this.inventory = new Inventory();
     }
 
@@ -46,12 +54,18 @@ public class Owner implements IOwner, Serializable {
 
     @Override
     public void interactWithWindow() {
-        home.setIsWindowOpen(home.checkIsWindowOpened() ? WindowState.CLOSED.getWindowState() : WindowState.OPENED.getWindowState());
+        home
+                .getLivingRoom()
+                .setIsWindowOpen(home.
+                        getLivingRoom()
+                        .checkIsWindowOpened() ?
+                            WindowState.CLOSED.getWindowState() :
+                            WindowState.OPENED.getWindowState());
     }
 
     @Override
     public void cleanRoom() {
-        home.setPoopOnCarpetCount(0);
+        home.getLivingRoom().setPoopOnCarpetCount(0);
     }
 
     @Override
@@ -75,8 +89,39 @@ public class Owner implements IOwner, Serializable {
 
     @Override
     public void cleanLitterBox() {
-        LitterBox litterBox = (LitterBox) inventory.getLitterBox();
+        LitterBox litterBox = (LitterBox) home.getLivingRoom().getLitterBox();
         litterBox.setSlots(litterBox.getMaxSlots());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void putItemInRoom(Item itemToPut) {
+        Item toyInInventory = inventory.getToys()
+                .stream()
+                .filter(item -> item.getId().equals(itemToPut.getId()))
+                .findFirst()
+                .orElse(null);
+
+        Toy toyInRoom = (Toy) home.getLivingRoom().getToy();
+        Toy itemToPutAsToy = (Toy) itemToPut;
+
+        if (toyInRoom != null && toyInInventory != null && toyInInventory.getId().equals(toyInRoom.getId())) {
+            toyInRoom.setDurability(toyInRoom.getDurability() + itemToPutAsToy.getDurability());
+        } else {
+            home.getLivingRoom().setToy(itemToPut);
+        }
+
+        if (toyInInventory != null) {
+            if (toyInInventory instanceof ICountable) {
+                ICountable countableItem = (ICountable) toyInInventory;
+                countableItem.setCount(ItemsCalculator.decreaseToyCountWhenItPutInRoom(countableItem.getCount(), 1));
+
+                if (countableItem.getCount() == 0) {
+                    inventory.getToys().remove(countableItem);
+                }
+            }
+
+        }
     }
 
     public String getName() {

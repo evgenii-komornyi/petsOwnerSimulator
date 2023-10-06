@@ -7,8 +7,12 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.deserializers.AnimalMapListDeserializer;
+import com.sinovdeath.PetsOwnerSimulator.deserializers.HomeDeserializer;
 import com.sinovdeath.PetsOwnerSimulator.deserializers.InventoryDeserializer;
 import com.sinovdeath.PetsOwnerSimulator.deserializers.ItemDeserializer;
+import com.sinovdeath.PetsOwnerSimulator.deserializers.LivingRoomDeserializer;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Inventory;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
@@ -61,6 +65,8 @@ public class GameRepository implements IGameRepository {
                     .registerTypeAdapter(new TypeToken<List<HashMap<String, Animal>>>(){}.getType(), new AnimalMapListDeserializer())
                     .registerTypeAdapter(Item.class, new ItemDeserializer())
                     .registerTypeAdapter(Inventory.class, new InventoryDeserializer())
+                    .registerTypeAdapter(Home.class, new HomeDeserializer())
+                    .registerTypeAdapter(LivingRoom.class, new LivingRoomDeserializer())
                     .create();
 
             return gson.fromJson(fileContent, Owner.class);

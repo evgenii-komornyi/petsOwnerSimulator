@@ -1,6 +1,5 @@
 package com.sinovdeath.PetsOwnerSimulator.helpers.calculators;
 
-import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.MoodStats;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
 import com.sinovdeath.PetsOwnerSimulator.enums.SwipeType;
@@ -57,5 +56,13 @@ public class PetsStatsCalculator {
         }
 
         return Math.min(calculatedMoodBySwipeDirection, maxMoodLevel);
+    }
+
+    public static int calculateMoodAfterPetPlaysToy(int currentMoodLevel, int happinessValueToIncrease, int maxMoodLevel) {
+        return Math.min(currentMoodLevel + happinessValueToIncrease, maxMoodLevel);
+    }
+
+    public static int decreaseToyPlayCount(int currentToyPlayCount, int decreaseValue) {
+        return Math.max(currentToyPlayCount - decreaseValue, 0);
     }
 }

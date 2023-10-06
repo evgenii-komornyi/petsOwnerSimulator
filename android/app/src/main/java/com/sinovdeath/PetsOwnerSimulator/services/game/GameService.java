@@ -7,17 +7,24 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
+import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
+import com.sinovdeath.PetsOwnerSimulator.helpers.checkers.Checker;
 import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
+import com.sinovdeath.PetsOwnerSimulator.modules.HomeModule;
 import com.sinovdeath.PetsOwnerSimulator.repositories.game.GameRepository;
 import com.sinovdeath.PetsOwnerSimulator.repositories.game.IGameRepository;
 import com.sinovdeath.PetsOwnerSimulator.modules.PetsModule;
+import com.sinovdeath.PetsOwnerSimulator.services.home.IHomeService;
 import com.sinovdeath.PetsOwnerSimulator.services.pets.IPetsService;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class GameService implements IGameService {
@@ -40,20 +47,47 @@ public class GameService implements IGameService {
 
         if (existingOwnerInDB == null) {
             Owner newOwner = new Owner(Generator.generateID(), "Owner");
+            Home home = new Home();
+            newOwner.setHome(home);
             OwnerManager.setOwner(newOwner);
         } else {
-            IPetsService petsService = PetsModule.getPetsService();
             OwnerManager.setOwner(existingOwnerInDB);
-            Date currentDate = new Date();
-            Date saveMomentDate = parseUtcDateTimeString(saveMoment);
-            long saveMomentInSeconds = saveMomentDate.getTime() / 1000;
-            long loadMomentInSeconds = currentDate.getTime() / 1000;
-            long differenceInSeconds = loadMomentInSeconds - saveMomentInSeconds;
+            long differenceInSeconds = _calculateDifferenceBetweenSaveAndLoadMoments(saveMoment);
+            int intervalsAmountPetCanBeAliveAndWellFed = new Interval().calculateMaxAmountOfIntervals();
+            long intervalsCount = differenceInSeconds / Constants.INTERVALS_COUNT;
 
-            for(int i = 0; i <= differenceInSeconds / Constants.INTERVALS_COUNT; i++) {
-                petsService.calculateStats();
+            if (intervalsCount > intervalsAmountPetCanBeAliveAndWellFed) {
+                _killAllPets();
             }
+
+            _runCalculations(intervalsCount);
         }
+    }
+
+    private void _runCalculations(long intervalsCount) {
+        IPetsService petsService = PetsModule.getPetsService();
+        IHomeService homeService = HomeModule.getHomeService();
+
+        for(int i = 0; i <= intervalsCount; i++) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                if (Checker.IsEveryPetDead(OwnerManager.getCurrentOwner().getPets())) {
+                    break;
+                }
+            }
+
+            petsService.calculateStats();
+            homeService.calculateStats();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private long _calculateDifferenceBetweenSaveAndLoadMoments(String saveMoment) {
+        Date currentDate = new Date();
+        Date saveMomentDate = parseUtcDateTimeString(saveMoment);
+        long saveMomentInSeconds = (saveMomentDate != null ? saveMomentDate.getTime() : 0) / 1000;
+        long loadMomentInSeconds = currentDate.getTime() / 1000;
+
+        return loadMomentInSeconds - saveMomentInSeconds;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -67,5 +101,52 @@ public class GameService implements IGameService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private void _killAllPets() {
+        for (HashMap<String, Animal> petMap : OwnerManager.getCurrentOwner().getPets()) {
+            for (Animal pet : petMap.values()) {
+                pet.getStats().setHealth(0);
+                pet.getStats().setSatiety(0);
+                pet.getStats().setMood(0);
+                pet.getStats().setDigestion(0);
+                pet.getStats().setToyPlayCount(0);
+                pet.setWasTaken(true);
+            }
+        }
+    }
+
+    private static class Interval {
+        private int maxIntervalsPetCanBeAlive;
+        private int maxIntervalsPetCanBeWellFed;
+
+        public Interval() {
+            this.maxIntervalsPetCanBeAlive = 0;
+            this.maxIntervalsPetCanBeWellFed = 0;
+        }
+
+        public int calculateMaxAmountOfIntervals() {
+            calculateMaxIntervals();
+
+            return maxIntervalsPetCanBeAlive + maxIntervalsPetCanBeWellFed;
+        }
+
+        private void calculateMaxIntervals() {
+            for (HashMap<String, Animal> petMap : OwnerManager.getCurrentOwner().getPets()) {
+                for (Animal pet : petMap.values()) {
+                    if (pet.getMaxValues().getHealth() > maxIntervalsPetCanBeAlive) {
+                        maxIntervalsPetCanBeAlive = pet.getMaxValues().getHealth() / pet.getStatsReducing().getHealth();
+                    }
+
+                    if (pet.getMaxValues().getSatiety() > maxIntervalsPetCanBeWellFed) {
+                        maxIntervalsPetCanBeWellFed = pet.getMaxValues().getSatiety() / pet.getStatsReducing().getSatiety();
+                    }
+                }
+            }
+        }
+
+        public int getMaxIntervalsPetCanBeAlive() { return maxIntervalsPetCanBeAlive; }
+
+        public int getMaxIntervalsPetCanBeWellFed() { return maxIntervalsPetCanBeWellFed; }
     }
 }

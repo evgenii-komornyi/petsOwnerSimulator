@@ -16,6 +16,7 @@ import {
     getCurrentOwner,
     interactWithWindow,
     petPet,
+    putItemInRoom,
     sayGoodbye,
     setHPC,
 } from '../modules/owner.module';
@@ -107,53 +108,6 @@ const ownerStore = (set, get) => ({
         }
     },
 
-    // loadGame: async () => {
-    //     try {
-    //         const ownerFromStorage = await readFromStorage('owner');
-    //         const meta = await readFromStorage('meta');
-
-    //         let calculatedOwner = null;
-
-    //         if (meta !== null) {
-    //             set({ meta: meta });
-
-    //             calculatedOwner = calculateOwnerAfterLoading(
-    //                 meta.saveMoment,
-    //                 ownerFromStorage
-    //             );
-    //         }
-
-    //         if (calculatedOwner !== null) {
-    //             const {
-    //                 happyPetCoins,
-    //                 home,
-    //                 pets,
-    //                 food,
-    //                 toys,
-    //                 litterBox,
-    //                 catHouse,
-    //             } = calculatedOwner;
-
-    //             set({
-    //                 happyPetCoins,
-    //                 home,
-    //                 pets,
-    //                 food,
-    //                 toys,
-    //                 litterBox,
-    //                 catHouse,
-    //             });
-
-    //             set({ meta: meta });
-    //         }
-
-    //         setTimeout(() => {
-    //             set({ isLoaded: true });
-    //         }, 2000);
-    //     } catch (e) {
-    //         console.error(e);
-    //     }
-    // },
     setHappyPetCoins: async () => {
         try {
             const data = await setHPC();
@@ -167,6 +121,7 @@ const ownerStore = (set, get) => ({
             console.error(error);
         }
     },
+
     adoptPet: async (petType, pet) => {
         try {
             const data = await adoptPet(petType, JSON.stringify(pet));
@@ -181,6 +136,7 @@ const ownerStore = (set, get) => ({
             console.error(error);
         }
     },
+
     feedPet: async (petId, itemId) => {
         try {
             const data = await feedPet(petId, itemId);
@@ -195,6 +151,7 @@ const ownerStore = (set, get) => ({
             console.error(error);
         }
     },
+
     petPet: async (petId, swipeDirection) => {
         try {
             const data = await petPet(petId, swipeDirection);
@@ -209,19 +166,21 @@ const ownerStore = (set, get) => ({
             console.error(error);
         }
     },
+
     buyItem: async newItem => {
         try {
             const data = await buyItem(newItem.type, JSON.stringify(newItem));
 
             if (data) {
-                const { happyPetCoins, inventory } = JSON.parse(data);
+                const { happyPetCoins, inventory, home } = JSON.parse(data);
 
-                set({ happyPetCoins, inventory });
+                set({ happyPetCoins, inventory, home });
             }
         } catch (error) {
             console.error(error);
         }
     },
+
     interactWithWindow: async () => {
         try {
             const data = await interactWithWindow();
@@ -235,6 +194,7 @@ const ownerStore = (set, get) => ({
             console.error(error);
         }
     },
+
     cleanRoom: async () => {
         try {
             const data = await cleanRoom();
@@ -257,6 +217,23 @@ const ownerStore = (set, get) => ({
                 const { inventory } = JSON.parse(data);
 
                 set({ inventory });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    },
+
+    putItemInRoom: async itemToPut => {
+        try {
+            const data = await putItemInRoom(
+                itemToPut.type,
+                JSON.stringify(itemToPut)
+            );
+
+            if (data) {
+                const { inventory, home } = JSON.parse(data);
+
+                set({ inventory, home });
             }
         } catch (error) {
             console.error(error);

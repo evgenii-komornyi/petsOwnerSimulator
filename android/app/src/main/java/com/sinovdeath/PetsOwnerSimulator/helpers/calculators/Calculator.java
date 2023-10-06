@@ -12,6 +12,7 @@ import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class Calculator {
     public static BigDecimal calculateHappyPetCoins(Owner owner, Item item) {
@@ -59,6 +60,10 @@ public class Calculator {
                 if (item instanceof ICountable) {
                     ICountable countableItem = (ICountable) item;
                     countableItem.setCount(ItemsCalculator.decreaseFoodCountInFeedingTime(countableItem.getCount(), 1));
+
+                    if (countableItem.getCount() == 0) {
+                        food.remove(countableItem);
+                    }
                 }
             }
         }
@@ -72,7 +77,9 @@ public class Calculator {
             if (pet != null) {
                 if (pet instanceof IPettable) {
                     Stats currentPetStats = pet.getStats();
+                    Random random = new Random();
 
+                    currentPetStats.setToyPlayCount(random.nextInt(pet.getMaxValues().getToyPlayCount()) + 1);
                     currentPetStats.setMood(PetsStatsCalculator.increaseMoodBySwipeDirection(pet.getStatsIncreasing().getMood(), currentPetStats, pet.getMaxValues().getMood(), swipeDirection));
                 }
             }

@@ -6,6 +6,7 @@ import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBoxImage;
 import com.sinovdeath.PetsOwnerSimulator.enums.ItemType;
 import com.sinovdeath.PetsOwnerSimulator.enums.UriType;
+import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,10 +24,10 @@ public class LitterBoxesGenerator {
         litterBox_lb1000.setType(ItemType.LITTER_BOX.getItemType());
         LitterBoxImage litterBox_lb1000Image = new LitterBoxImage();
         String lb_1000Id = litterBox_lb1000.getId();
-        litterBox_lb1000Image.setUnused(String.format("%s/%s/%s%s", Constants.ASSETS_LITTER_BOXES_FOLDER, lb_1000Id, UriType.UNUSED.getUriValue(), Constants.IMAGE_EXT));
-        litterBox_lb1000Image.setUsed(String.format("%s/%s/%s%s", Constants.ASSETS_LITTER_BOXES_FOLDER, lb_1000Id, UriType.USED.getUriValue(), Constants.IMAGE_EXT));
-        litterBox_lb1000Image.setFull(String.format("%s/%s/%s%s", Constants.ASSETS_LITTER_BOXES_FOLDER, lb_1000Id, UriType.FULL.getUriValue(), Constants.IMAGE_EXT));
-        litterBox_lb1000Image.setEmpty(String.format("%s/%s/%s%s", Constants.ASSETS_LITTER_BOXES_FOLDER, lb_1000Id, UriType.EMPTY.getUriValue(), Constants.IMAGE_EXT));
+        litterBox_lb1000Image.setUnused(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_LITTER_BOXES_FOLDER, lb_1000Id, UriType.UNUSED.getUriValue(), Constants.IMAGE_EXT));
+        litterBox_lb1000Image.setUsed(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_LITTER_BOXES_FOLDER, lb_1000Id, UriType.USED.getUriValue(), Constants.IMAGE_EXT));
+        litterBox_lb1000Image.setFull(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_LITTER_BOXES_FOLDER, lb_1000Id, UriType.FULL.getUriValue(), Constants.IMAGE_EXT));
+        litterBox_lb1000Image.setEmpty(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_LITTER_BOXES_FOLDER, lb_1000Id, UriType.EMPTY.getUriValue(), Constants.IMAGE_EXT));
         litterBox_lb1000.setImage(litterBox_lb1000Image);
         litterBox_lb1000.setPrice(new BigDecimal("20.00"));
 

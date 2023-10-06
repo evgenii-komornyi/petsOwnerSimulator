@@ -18,4 +18,8 @@ public class HomeStatsCalculator {
 
         return Math.max(calculatedValue, 0);
     }
+
+    public static int calculateToyDurability(int currentDurability) {
+        return Math.max(currentDurability - 1, 0);
+    }
 }
