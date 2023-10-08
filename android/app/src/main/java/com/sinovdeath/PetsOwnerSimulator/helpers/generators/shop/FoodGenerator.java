@@ -24,8 +24,8 @@ public class FoodGenerator {
         FoodImage chicken_10kImage = new FoodImage();
         chicken_10kImage.setUnused(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_FOOD_FOLDER, chicken_10k.getName(), Constants.IMAGE_EXT));
         chicken_10k.setImage(chicken_10kImage);
-        chicken_10k.setSatisfaction(144);
-        chicken_10k.setPrice(new BigDecimal("5.00"));
+        chicken_10k.setSatisfaction(720);
+        chicken_10k.setPrice(new BigDecimal("25.00"));
         chicken_10k.setCount(0);
 
         food.add(chicken_10k);

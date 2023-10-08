@@ -44,4 +44,16 @@ export const styles = StyleSheet.create({
         width: '90%',
     },
     bar: { width: '90%', marginLeft: 10, height: 10, borderRadius: 10 },
+    labelContainer: {
+        position: 'absolute',
+        top: -2,
+        width: '100%',
+        flex: 1,
+        alignItems: 'center',
+    },
+    label: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        letterSpacing: 1,
+    },
 });

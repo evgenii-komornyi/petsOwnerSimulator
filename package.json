@@ -6,7 +6,9 @@
         "android": "expo run:android",
         "ios": "expo run:ios",
         "web": "expo start --web",
-        "android-script": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
+        "build-debug": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android",
+        "build-release": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android --variant=release",
+        "clean": "cd android && ./gradlew clean && cd .."
     },
     "dependencies": {
         "@mindinventory/react-native-tab-bar-interaction": "^2.2.3",

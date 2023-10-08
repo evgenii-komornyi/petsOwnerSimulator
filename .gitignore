@@ -12,6 +12,8 @@ web-build/
 eas.json
 .prettierrc
 
+*.keystore
+
 # macOS
 .DS_Store
 

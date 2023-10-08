@@ -4,7 +4,7 @@ public class Constants {
     public static final int INTERVALS_COUNT = 60;
 
     public static final String DATABASE_NAME = "PETS_OWNER_SIMULATOR_DB.pos";
-    public static final String HPC = "100.00";
+    public static final String HPC = "200.00";
     public static final String HPC_INCREMENT_VALUE = "0.15";
 
     public static final int MAX_POOP_ON_CARPET_COUNT = 100;

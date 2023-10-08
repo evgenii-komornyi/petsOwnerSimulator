@@ -214,9 +214,9 @@ const ownerStore = (set, get) => ({
             const data = await cleanLitterBox();
 
             if (data) {
-                const { inventory } = JSON.parse(data);
+                const { home } = JSON.parse(data);
 
-                set({ inventory });
+                set({ home });
             }
         } catch (error) {
             console.error(error);
