@@ -6,7 +6,7 @@ import { devtools } from 'zustand/middleware';
 
 import { convertPets } from '../helpers/petsManipulations.helper';
 
-import { loadGame, saveGame } from '../modules/game.module';
+import { loadGame, saveGame, resetGame } from '../modules/game.module';
 import {
     adoptPet,
     buyItem,
@@ -25,7 +25,7 @@ import { calculateHomeStats } from '../modules/home.module';
 
 const ownerStore = (set, get) => ({
     name: '',
-    happyPetCoins: 100.0,
+    happyPetCoins: 0,
     home: {},
     pets: [],
     inventory: {},
@@ -98,7 +98,7 @@ const ownerStore = (set, get) => ({
 
     saveGame: async () => {
         try {
-            await saveGame();
+            saveGame();
             await saveToStorage('meta', {
                 ...get().meta,
                 saveMoment: new Date().toUTCString(),
@@ -106,6 +106,22 @@ const ownerStore = (set, get) => ({
         } catch (error) {
             console.error(error);
         }
+    },
+
+    resetGame: () => {
+        set({
+            name: '',
+            happyPetCoins: 0,
+            home: {},
+            pets: [],
+            inventory: {},
+            alert: {},
+            meta: {},
+
+            isLoaded: false,
+        });
+
+        resetGame();
     },
 
     setHappyPetCoins: async () => {

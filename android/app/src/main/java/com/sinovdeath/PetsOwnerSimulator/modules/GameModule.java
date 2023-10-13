@@ -43,4 +43,9 @@ public class GameModule extends ReactContextBaseJavaModule {
 
         promise.resolve(ownerDTO);
     }
+
+    @ReactMethod
+    public void resetGame() {
+        _gameService.remove();
+    }
 }

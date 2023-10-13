@@ -55,8 +55,19 @@ public class GameRepository implements IGameRepository {
         return _readFile();
     }
 
+    @Override
+    public boolean removeDB() {
+        File file = _getDBFile();
+
+        if (!file.exists()) {
+            return false;
+        }
+
+        return file.delete();
+    }
+
     private Owner _readFile() {
-        File file = new File(_context.getFilesDir(), Constants.DATABASE_NAME);
+        File file = _getDBFile();
 
         if (file.exists()) {
             String fileContent = _buildStringFromFileContent(file);
@@ -73,6 +84,10 @@ public class GameRepository implements IGameRepository {
         }
 
         return null;
+    }
+
+    private File _getDBFile() {
+        return new File(_context.getFilesDir(), Constants.DATABASE_NAME);
     }
 
     private String _buildStringFromFileContent(File file) {

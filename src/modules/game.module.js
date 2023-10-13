@@ -14,6 +14,10 @@ export const loadGame = async saveMoment => {
     return data;
 };
 
+export const resetGame = () => {
+    Game.resetGame();
+};
+
 export const saveGame = () => {
     Game.saveGame();
 };
