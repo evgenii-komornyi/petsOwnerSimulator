@@ -64,6 +64,11 @@ public class GameService implements IGameService {
         }
     }
 
+    @Override
+    public void remove() {
+        _gameRepository.removeDB();
+    }
+
     private void _runCalculations(long intervalsCount) {
         IPetsService petsService = PetsModule.getPetsService();
         IHomeService homeService = HomeModule.getHomeService();

@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { Constants } from '../../constants/constants';
 
 const { width } = Dimensions.get('screen');
 
@@ -31,6 +32,18 @@ export const styles = StyleSheet.create({
     gameOverText: {
         fontWeight: 'bold',
         fontSize: 48,
+    },
+    button: {
+        backgroundColor: Constants.MAIN_COLOR,
+        elevation: 3,
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+    },
+    title: {
+        textAlign: 'center',
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
     },
     contentContainer: {
         marginTop: 2,
