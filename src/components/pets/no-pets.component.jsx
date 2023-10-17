@@ -7,7 +7,10 @@ import { styles } from './pets.styles';
 
 export const NoPets = () => {
     return (
-        <ScrollView contentContainerStyle={styles.textContainer}>
+        <ScrollView
+            showsVerticalScrollIndicator
+            contentContainerStyle={styles.textContainer}
+        >
             <CustomText
                 text="Welcome to the pets’ owner simulator. Here you can take care of the animals. As long as they are happy with you, you will get hpc (happy pets coins) to buy food and toys. But be careful – if you do not care of your pets well enough, shelter employees take them away to a better home. The game ends if you have no pets left."
                 style={[styles.emptyPetsText, { marginBottom: 10 }]}

@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 50,
+        padding: 10,
     },
     emptyPetsText: {
         fontSize: 20,
