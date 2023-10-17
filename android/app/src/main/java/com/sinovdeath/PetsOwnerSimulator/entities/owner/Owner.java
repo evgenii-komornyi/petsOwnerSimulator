@@ -5,7 +5,6 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.alert.Alert;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
@@ -105,8 +104,13 @@ public class Owner implements IOwner, Serializable {
         Toy toyInRoom = (Toy) home.getLivingRoom().getToy();
         Toy itemToPutAsToy = (Toy) itemToPut;
 
-        if (toyInRoom != null && toyInInventory != null && toyInInventory.getId().equals(toyInRoom.getId())) {
-            toyInRoom.setDurability(toyInRoom.getDurability() + itemToPutAsToy.getDurability());
+        if (toyInRoom != null && toyInRoom.getId() != null && itemToPutAsToy != null && toyInRoom.getId().equals(itemToPutAsToy.getId())) {
+            if (toyInRoom instanceof NonInteractToy && itemToPutAsToy instanceof NonInteractToy) {
+                NonInteractToy nonInteractToyInRoom = (NonInteractToy) toyInRoom;
+                NonInteractToy nonInteractItemToPut = (NonInteractToy) itemToPutAsToy;
+
+                nonInteractToyInRoom.setDurability(nonInteractToyInRoom.getDurability() + nonInteractItemToPut.getDurability());
+            }
         } else {
             home.getLivingRoom().setToy(itemToPut);
         }

@@ -12,7 +12,11 @@ export const ShopItem = ({ item, category }) => {
             <View style={styles.itemWrapper}>
                 <View style={styles.itemImageContainer}>
                     <Image
-                        source={{ uri: item.image.unused }}
+                        source={{
+                            uri: item.image.hasOwnProperty('unused')
+                                ? item.image.unused
+                                : item.image.currentImage,
+                        }}
                         style={styles.itemImage}
                     />
                 </View>

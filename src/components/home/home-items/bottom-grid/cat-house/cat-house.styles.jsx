@@ -23,4 +23,15 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    image: {
+        width: 60,
+        height: 60,
+        resizeMode: 'contain',
+    },
+    badge: { backgroundColor: 'black' },
+    badgeContainer: {
+        position: 'absolute',
+        bottom: 0,
+        left: 40,
+    },
 });
