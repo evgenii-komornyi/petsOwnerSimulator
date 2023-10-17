@@ -11,18 +11,24 @@ export const useFeedButton = (petId, item) => {
     const [isDisabled, setIsDisabled] = useState(false);
 
     const feed = async () => {
-        await feedPet(petId, item.id);
-        await playSound('eating');
+        if (isDisabled) {
+            return;
+        }
 
         setIsDisabled(true);
-        startAnimation('lick', petId);
 
-        setTimeout(() => {
-            setIsDisabled(false);
-            stopAnimation('lick', petId);
-        }, 2000);
+        try {
+            await feedPet(petId, item.id);
+            await playSound('eating');
+            startAnimation('lick', petId);
 
-        return petId;
+            setTimeout(() => {
+                setIsDisabled(false);
+                stopAnimation('lick', petId);
+            }, 2000);
+        } catch (error) {
+            console.err(error);
+        }
     };
 
     return [isDisabled, feed];
