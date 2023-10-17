@@ -9,15 +9,13 @@ import { isObjectExists } from '../../../../../helpers/objects.helper';
 
 import { styles } from './sofa.styles';
 
-const sofa = { uri: 'asset:/images/home-items/sofa.png' };
-
 export const Sofa = () => {
-    const { toy } = useOwnerStore(state => state.home.livingRoom);
+    const { sofa, toy } = useOwnerStore(state => state.home.livingRoom);
 
     return (
         <View style={[styles.sofaContainer]}>
             <ImageBackground
-                source={sofa}
+                source={{ uri: sofa.image.unused }}
                 resizeMode="contain"
                 style={styles.sofaImage}
             >

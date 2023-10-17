@@ -15,7 +15,7 @@ public class PetsModule extends ReactContextBaseJavaModule {
     public PetsModule(ReactApplicationContext context) {
         super(context);
         _context = context;
-        _petsService = new PetsService();
+        _petsService = new PetsService(_context);
     }
 
     @NonNull

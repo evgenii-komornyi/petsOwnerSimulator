@@ -12,7 +12,7 @@ public class ShopGenerator {
         ShopItem foodItems = new ShopItem(ItemType.FOOD.getItemType(), FoodGenerator.generateFood());
         ShopItem toysItems = new ShopItem(ItemType.TOYS.getItemType(), ToysGenerator.generateToys());
         ShopItem litterBoxesItems = new ShopItem(ItemType.LITTER_BOXES.getItemType(), LitterBoxesGenerator.generateLitterBoxes());
-        ShopItem housesItems = new ShopItem(ItemType.HOUSES.getItemType(), HousesGenerator.generateHouses());
+        ShopItem housesItems = new ShopItem(ItemType.SCRATCHERS.getItemType(), ScratchersGenerator.generateScratchers());
 
         shop.add(foodItems);
         shop.add(toysItems);

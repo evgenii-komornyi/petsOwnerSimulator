@@ -31,7 +31,8 @@ public class ToysGenerator {
         ToyImage mouse_1Image = new ToyImage();
         mouse_1Image.setUnused(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_TOYS_FOLDER, mouse_1.getName(), Constants.IMAGE_EXT));
         mouse_1.setImage(mouse_1Image);
-        mouse_1.setDurability(100);
+        mouse_1.setMaxDurability(100);
+        mouse_1.setDurability(mouse_1.getMaxDurability());
         mouse_1.setPrice(new BigDecimal("5.00"));
         mouse_1.setCount(0);
 
@@ -44,7 +45,8 @@ public class ToysGenerator {
         ToyImage wand_1Image = new ToyImage();
         wand_1Image.setUnused(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_TOYS_FOLDER, wand_1.getName(), Constants.IMAGE_EXT));
         wand_1.setImage(wand_1Image);
-        wand_1.setDurability(150);
+        wand_1.setMaxDurability(150);
+        wand_1.setDurability(wand_1.getMaxDurability());
         wand_1.setPrice(new BigDecimal("10.00"));
 
         toys.add(mouse_1);

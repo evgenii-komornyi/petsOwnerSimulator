@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         height: 50,
         resizeMode: 'contain',
     },
-    button: { position: 'relative', top: '50%', left: '40%' },
+    button: { position: 'relative', top: '50%', left: '33%' },
     badge: { backgroundColor: 'black' },
     badgeContainer: {
         position: 'absolute',

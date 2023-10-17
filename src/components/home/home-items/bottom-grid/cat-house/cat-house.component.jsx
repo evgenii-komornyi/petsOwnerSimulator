@@ -1,7 +1,12 @@
 import React from 'react';
-import { ImageBackground, View } from 'react-native';
+import { View, ImageBackground } from 'react-native';
+
+import { CustomBadge } from '../../../../custom-badge/custom-badge.component';
+import { PressableButton } from '../../../../pressable-button/pressable-button.component';
 
 import useOwnerStore from '../../../../../app/useOwnerStore';
+
+import { useToggleBadgeVisibilityButton } from '../../../../../hooks/logic/toys/mouse/useToggleBadgeVisibilityButton.hook';
 
 import { styles } from './cat-house.styles';
 
@@ -11,15 +16,28 @@ export const CatHouse = () => {
             livingRoom: { catHouse },
         },
     } = useOwnerStore(state => state);
+    const { isBadgeVisible, toggleDurabilityBadge } =
+        useToggleBadgeVisibilityButton();
 
     return (
         Object.keys(catHouse).length !== 0 && (
             <View style={styles.catHouseContainer}>
-                <ImageBackground
-                    resizeMode="contain"
-                    source={{ uri: catHouse.image.unused }}
-                    style={styles.catHouseImage}
-                ></ImageBackground>
+                <PressableButton
+                    onPress={toggleDurabilityBadge}
+                    style={styles.catHouseContainer}
+                >
+                    <ImageBackground
+                        resizeMode="contain"
+                        source={{ uri: catHouse?.image?.currentImage }}
+                        style={styles.catHouseImage}
+                    />
+                    <CustomBadge
+                        isBadgeVisible={isBadgeVisible}
+                        value={catHouse.durability}
+                        badgeStyle={styles.badge}
+                        containerStyle={styles.badgeContainer}
+                    />
+                </PressableButton>
             </View>
         )
     );

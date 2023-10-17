@@ -1,6 +1,9 @@
 package com.sinovdeath.PetsOwnerSimulator.helpers.calculators;
 
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.ScratcherImage;
+
+import java.util.List;
 
 public class HomeStatsCalculator {
     public static int calculatePoopOnCarpetCount(int currentValue) {
@@ -19,7 +22,11 @@ public class HomeStatsCalculator {
         return Math.max(calculatedValue, 0);
     }
 
-    public static int calculateToyDurability(int currentDurability) {
-        return Math.max(currentDurability - 1, 0);
+    public static int calculateToyDurability(int currentDurability, int damage) {
+        return Math.max(currentDurability - damage, 0);
+    }
+
+    public static int calculateScratcherDurability(int currentDurability, int damage) {
+        return Math.max(currentDurability - damage, 0);
     }
 }

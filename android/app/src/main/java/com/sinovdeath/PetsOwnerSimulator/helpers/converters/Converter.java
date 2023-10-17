@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
-import com.sinovdeath.PetsOwnerSimulator.entities.items.house.CatHouse;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.CatHouse;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.InteractToy;
@@ -78,6 +78,10 @@ public class Converter {
             } else if (toyType.equals(ToyType.NON_INTERACT.getToyType())) {
                 existingInventory.addToy((NonInteractToy) itemToBuy);
             }
+        }
+
+        if (type.equals(ItemType.CAT_HOUSE.getItemType()) || type.equals(ItemType.LITTER_BOX.getItemType())) {
+            existingInventory.addItem(itemToBuy);
         }
 
         return existingInventory;

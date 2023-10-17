@@ -65,4 +65,8 @@ public class PetsStatsCalculator {
     public static int decreaseToyPlayCount(int currentToyPlayCount, int decreaseValue) {
         return Math.max(currentToyPlayCount - decreaseValue, 0);
     }
+
+    public static int calculateMoodAfterPetScratchingFail(int currentMoodLevel, int decreaseValue) {
+        return Math.max(currentMoodLevel - decreaseValue, 0);
+    }
 }

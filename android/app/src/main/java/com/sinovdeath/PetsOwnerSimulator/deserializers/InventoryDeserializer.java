@@ -1,6 +1,5 @@
 package com.sinovdeath.PetsOwnerSimulator.deserializers;
 
-import com.google.android.exoplayer2.util.Log;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -35,7 +34,6 @@ public class InventoryDeserializer implements JsonDeserializer<Inventory> {
 
         List<Item> toys = new ArrayList<>();
         for (JsonElement toyElement : toysArray) {
-            Log.d("loadToys", toyElement.toString());
             JsonObject toyObject = toyElement.getAsJsonObject();
             String toyType = toyObject.get("toyType").getAsString();
 
@@ -50,6 +48,16 @@ public class InventoryDeserializer implements JsonDeserializer<Inventory> {
             toys.add(toyItem);
         }
         inventory.setToys(toys);
+
+        JsonArray otherItemsArray = jsonObject.getAsJsonArray("otherItems");
+        if (otherItemsArray != null) {
+            List<Item> otherItems = new ArrayList<>();
+            for (JsonElement itemElement : otherItemsArray) {
+                Item otherItem = context.deserialize(itemElement, Item.class);
+                otherItems.add(otherItem);
+            }
+            inventory.setOtherItems(otherItems);
+        }
 
         return inventory;
     }

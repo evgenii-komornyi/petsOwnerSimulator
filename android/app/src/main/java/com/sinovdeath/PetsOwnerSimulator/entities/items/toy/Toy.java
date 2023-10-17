@@ -4,15 +4,8 @@ import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 import com.sinovdeath.PetsOwnerSimulator.enums.ToyType;
 
 public class Toy extends Item {
-    protected Integer durability;
     protected ToyImage image;
     protected String toyType;
-
-    public Integer getDurability() { return durability; }
-
-    public void setDurability(Integer durability) {
-        this.durability = durability;
-    }
 
     public ToyImage getImage() {
         return image;
@@ -33,7 +26,6 @@ public class Toy extends Item {
     @Override
     public String toString() {
         return "Toy{" +
-                "durability=" + durability +
                 ", image=" + image +
                 ", toyType='" + toyType + '\'' +
                 ", id='" + id + '\'' +
