@@ -1,0 +1,23 @@
+String channelId = "channel_id"; // Replace with your channel ID
+                            CharSequence channelName = "Channel Name"; // Replace with your channel name
+                            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+                            NotificationManager notificationManager = _context.getSystemService(NotificationManager.class);
+                            NotificationChannel channel = null;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                channel = new NotificationChannel(channelId, channelName, importance);
+                            }
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                notificationManager.createNotificationChannel(channel);
+                            }
+
+
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(_context, "channel_id")
+                                    .setSmallIcon(android.R.drawable.ic_dialog_info)
+                                    .setContentTitle("Scratchable Toy")
+                                    .setContentText("You have a scratchable toy.")
+                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                            // Show the notification
+                            int notificationId = 1; // Change this to a unique ID for each notification
+                            notificationManager.notify(notificationId, builder.build());

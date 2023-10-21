@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         marginBottom: 65,
+        position: 'relative',
         ...(width >= 767 && {
             alignSelf: 'center',
         }),
@@ -39,11 +40,14 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '100%',
         height: '100%',
+        position: 'relative',
+        zIndex: 0,
     },
     image: {
         flex: 1,
         width: '100%',
         height: '100%',
         justifyContent: 'center',
+        position: 'relative',
     },
 });

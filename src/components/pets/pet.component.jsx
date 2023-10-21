@@ -12,6 +12,7 @@ import { styles } from './pets.styles';
 import { styles as globalStyles } from '../../styles/global.styles';
 
 export const Pet = ({
+    petIdx,
     item: { id, name, img, animation, stats, statsIncreasing, maxValues },
     touchStart,
     touchEnd,
@@ -29,6 +30,7 @@ export const Pet = ({
                     animation={animation}
                     name={name}
                     id={id}
+                    petIdx={petIdx}
                     stats={stats}
                     moodIncreasing={statsIncreasing.mood}
                     touchStart={touchStart}

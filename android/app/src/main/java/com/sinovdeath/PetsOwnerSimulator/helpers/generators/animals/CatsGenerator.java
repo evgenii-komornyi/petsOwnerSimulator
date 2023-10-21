@@ -190,7 +190,7 @@ public class CatsGenerator {
         meesha.setImg(meeshaImage);
         meesha.setAnimation(lickAnimation);
         Stats meeshaMaxValues = new Stats();
-        meeshaMaxValues.setHealth(720);
+        meeshaMaxValues.setHealth(1500);
         meeshaMaxValues.setSatiety(720);
         meeshaMaxValues.setMood(360);
         meeshaMaxValues.setDigestion(60);
@@ -346,7 +346,7 @@ public class CatsGenerator {
         qwerty.setImg(qwertyImage);
         qwerty.setAnimation(lickAnimation);
         Stats qwertyMaxValues = new Stats();
-        qwertyMaxValues.setHealth(720);
+        qwertyMaxValues.setHealth(1500);
         qwertyMaxValues.setSatiety(720);
         qwertyMaxValues.setMood(360);
         qwertyMaxValues.setDigestion(60);
@@ -385,7 +385,7 @@ public class CatsGenerator {
         sammy.setImg(sammyImage);
         sammy.setAnimation(lickAnimation);
         Stats sammyMaxValues = new Stats();
-        sammyMaxValues.setHealth(720);
+        sammyMaxValues.setHealth(1500);
         sammyMaxValues.setSatiety(720);
         sammyMaxValues.setMood(360);
         sammyMaxValues.setDigestion(60);

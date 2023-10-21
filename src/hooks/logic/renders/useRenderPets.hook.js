@@ -27,8 +27,9 @@ export const useRenderPets = pets => {
                 <FlatList
                     ref={flatListRef}
                     data={pets.filter(pet => !pet.wasTaken)}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index }) => (
                         <Pet
+                            petIdx={index}
                             item={item}
                             touchStart={handleTouchStart}
                             touchEnd={handleTouchEnd}

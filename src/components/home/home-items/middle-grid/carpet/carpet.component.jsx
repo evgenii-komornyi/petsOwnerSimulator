@@ -8,6 +8,7 @@ import useOwnerStore from '../../../../../app/useOwnerStore';
 import { DoubleTap } from '../../../../double-tap/double-tap.component';
 
 import { styles } from './carpet.styles';
+import useHolidayStore from '../../../../../app/useHolidayStore';
 
 export const Carpet = () => {
     const {
@@ -16,6 +17,8 @@ export const Carpet = () => {
         },
         cleanRoom,
     } = useOwnerStore(state => state);
+
+    const { carpet } = useHolidayStore(state => state);
 
     const [playSound] = useAudio();
 
@@ -26,7 +29,11 @@ export const Carpet = () => {
 
     return (
         <ImageBackground
-            source={{ uri: 'asset:/images/home-items/carpets/seal.png' }}
+            source={{
+                uri:
+                    carpet[0]?.uri ||
+                    'asset:/images/home-items/carpets/seal.png',
+            }}
             resizeMode="contain"
             style={styles.carpetImage}
         >

@@ -5,12 +5,15 @@ import useOwnerStore from '../../app/useOwnerStore';
 import { Constants } from '../../constants/constants';
 import { useAudio } from './useAudio.hook';
 import { useVibrate } from './useVibrate.hook';
+import useHolidaysStore from '../../app/useHolidayStore';
 
 let interval = 0;
 
 export const useMainInterval = () => {
     const { getCurrentOwner, calculatePetsStats, calculateHomeStats, alert } =
         useOwnerStore(state => state);
+
+    const { checkHoliday } = useHolidaysStore(state => state);
 
     const [playSound] = useAudio();
     const [vibrate] = useVibrate();
@@ -27,6 +30,10 @@ export const useMainInterval = () => {
         }, Constants.MAIN_INTERVAL * 1000);
 
         return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        checkHoliday();
     }, []);
 
     useEffect(() => {

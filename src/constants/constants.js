@@ -52,4 +52,7 @@ export const Constants = {
     MAIN_INTERVAL: 60,
     HEALTH_UP_THRESHOLD: 50,
     HPC_INCREASE: 0.15,
+    DECOR: 'decorations',
+    CARPET: 'carpet',
+    FRAMES: 'frames',
 };
