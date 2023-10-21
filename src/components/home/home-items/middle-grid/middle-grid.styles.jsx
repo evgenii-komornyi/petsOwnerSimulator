@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
         flex: 6,
         justifyContent: 'flex-end',
         alignItems: 'center',
+        position: 'relative',
     },
     doorContainer: {
         flex: 2,

@@ -24,6 +24,7 @@ public class Packager implements ReactPackage {
         modules.add(new ShopModule(reactApplicationContext));
         modules.add(new PetsModule(reactApplicationContext));
         modules.add(new HomeModule(reactApplicationContext));
+        modules.add(new HolidayModule(reactApplicationContext));
 
         return modules;
     }

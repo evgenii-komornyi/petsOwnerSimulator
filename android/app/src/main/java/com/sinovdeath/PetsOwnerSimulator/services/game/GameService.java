@@ -69,15 +69,14 @@ public class GameService implements IGameService {
         _gameRepository.removeDB();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void _runCalculations(long intervalsCount) {
         IPetsService petsService = PetsModule.getPetsService();
         IHomeService homeService = HomeModule.getHomeService();
 
         for(int i = 0; i <= intervalsCount; i++) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                if (Checker.IsEveryPetDead(OwnerManager.getCurrentOwner().getPets())) {
-                    break;
-                }
+            if (Checker.IsEveryPetDead(OwnerManager.getCurrentOwner().getPets())) {
+                break;
             }
 
             petsService.calculateStats();
@@ -116,7 +115,6 @@ public class GameService implements IGameService {
                 pet.getStats().setMood(0);
                 pet.getStats().setDigestion(0);
                 pet.getStats().setToyPlayCount(0);
-                pet.setWasTaken(true);
             }
         }
     }

@@ -46,6 +46,9 @@ public class Generator {
         return String.format(pathFormat, assetsFolder, nameFolder, fileName, imageExt);
     }
 
+    public static String generatePathToFile(String pathFormat, String assetsFolder, String nameFolder, String categoryName, String fileName, String imageExt) {
+        return String.format(pathFormat, assetsFolder, nameFolder, categoryName, fileName, imageExt);
+    }
     public static String generatePathToFile(String pathFormat, String assetsFolder, String fileName, String imageExt) {
         return String.format(pathFormat, assetsFolder, fileName, imageExt);
     }

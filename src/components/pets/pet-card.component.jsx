@@ -5,10 +5,15 @@ import { View, Image } from 'react-native';
 
 import { CustomText } from '../custom-text/custom-text.component';
 import { Animation } from '../animation/animation.component';
+import { Holiday } from '../holiday/holiday.component';
+
+import useHolidayStore from '../../app/useHolidayStore.js';
 
 import { usePetCard } from '../../hooks/logic/pets/usePetCard.hook';
 
 import { styles } from './pets.styles';
+import { styles as holidayStyles } from '../holiday/holiday.styles';
+import { Text } from 'react-native';
 
 const config = {
     velocityThreshold: 0.1,
@@ -20,12 +25,14 @@ export const PetCard = ({
     img,
     animation,
     name,
+    petIdx,
     stats,
     moodIncreasing,
     touchStart,
     touchEnd,
 }) => {
     const [onSwipe] = usePetCard(id, stats, moodIncreasing, config);
+    const { frames } = useHolidayStore(state => state);
 
     return (
         <GestureRecognizer
@@ -51,6 +58,13 @@ export const PetCard = ({
                     ]}
                 />
                 <Animation petId={id} animation={animation} />
+                {frames.length && petIdx <= frames.length - 1 ? (
+                    <Holiday
+                        imageUri={frames[petIdx].uri}
+                        containerStyles={[holidayStyles.petFrameContainer]}
+                        imageStyles={[holidayStyles.petFrame]}
+                    />
+                ) : null}
                 <CustomText
                     text={name}
                     style={[

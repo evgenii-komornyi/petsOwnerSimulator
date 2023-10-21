@@ -28,6 +28,9 @@ export const styles = StyleSheet.create({
     },
     emptyPetsText: {
         fontSize: 20,
+        ...(width >= 768 && {
+            fontSize: 30,
+        }),
     },
     gameOverText: {
         fontWeight: 'bold',
