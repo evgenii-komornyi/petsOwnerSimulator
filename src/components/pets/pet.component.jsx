@@ -20,13 +20,14 @@ export const Pet = ({
     const [isVisible, toggleVisibility, animatedHeight] = useToggleActions(
         stats.health
     );
-    const { currentImg } = usePet(stats, img);
+    const { currentImg, blinkImage } = usePet(stats, img);
 
     return (
         <View style={styles.mainContainer}>
             <View style={styles.petContainer}>
                 <PetCard
                     img={currentImg}
+                    blinkAnimation={blinkImage}
                     animation={animation}
                     name={name}
                     id={id}

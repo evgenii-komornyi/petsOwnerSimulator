@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     },
     petFrameContainer: {
         position: 'absolute',
+        zIndex: 10,
     },
     petFrame: {
         width: 170,

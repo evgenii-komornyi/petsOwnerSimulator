@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 export const usePet = (stats, img) => {
     const [isBlinking, setIsBlinking] = useState(false);
+    const [blinkImage, setBlinkImage] = useState(null);
     const [currentImg, setCurrentImg] = useState(img.regular);
     const [randomInterval, setRandomInterval] = useState(
         (Math.random() * 0.9 + 0.1).toFixed(1)
@@ -25,10 +26,11 @@ export const usePet = (stats, img) => {
 
     useEffect(() => {
         if (isBlinking) {
-            setCurrentImg(img.sleeping);
+            setBlinkImage(img.blinking);
         } else {
-            setCurrentImg(checkStatsToReturnCorrectImage());
+            setBlinkImage(null);
         }
+        setCurrentImg(checkStatsToReturnCorrectImage());
     }, [isBlinking, img]);
 
     const checkStatsToReturnCorrectImage = () => {
@@ -43,5 +45,5 @@ export const usePet = (stats, img) => {
         return img.regular;
     };
 
-    return { currentImg };
+    return { currentImg, blinkImage };
 };

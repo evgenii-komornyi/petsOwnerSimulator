@@ -100,6 +100,7 @@ export const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         fontSize: 20,
+        zIndex: 9,
     },
     imageSize: {
         width: 170,

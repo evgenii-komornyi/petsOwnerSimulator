@@ -1,5 +1,9 @@
 package com.sinovdeath.PetsOwnerSimulator.helpers.generators.holidays;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.holidays.Holiday;
 import com.sinovdeath.PetsOwnerSimulator.entities.holidays.HolidayImage;
@@ -15,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class HolidaysGenerator {
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<Holiday> generateHolidays() {
         List<Holiday> holidays = new ArrayList<>();
         Holiday halloween = _generateHoliday(HolidayName.HALLOWEEN.getHoliday(), Constants.HALLOWEEN_DATES);
@@ -24,6 +29,7 @@ public class HolidaysGenerator {
         return holidays;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private static Holiday _generateHoliday(String holidayName, String dates) {
         Holiday holiday = new Holiday();
         holiday.setHoliday(holidayName);
@@ -42,7 +48,7 @@ public class HolidaysGenerator {
 
         if (holidayName.equals(HolidayName.HALLOWEEN.getHoliday())) {
             images = Arrays.asList(
-                    _createImage(holidayName, "carpet", "carpet"),
+                    _createImage(holidayName, "carpets", "ghost_carpet"),
                     _createImage(holidayName, "decorations", "pumpkin", "candle-inside"),
                     _createImage(holidayName, "frames", "frame_halloween1"),
                     _createImage(holidayName, "frames", "frame_halloween2")
@@ -52,6 +58,7 @@ public class HolidaysGenerator {
         return images;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private static List<Date> _convertDatesToList(String dates) {
         return Arrays.asList(dates.split(", ")).stream().map(date -> _convertDateFromString(date)).collect(Collectors.toList());
     }
