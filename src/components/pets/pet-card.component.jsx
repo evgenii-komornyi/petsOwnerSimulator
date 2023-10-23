@@ -13,7 +13,6 @@ import { usePetCard } from '../../hooks/logic/pets/usePetCard.hook';
 
 import { styles } from './pets.styles';
 import { styles as holidayStyles } from '../holiday/holiday.styles';
-import { Text } from 'react-native';
 
 const config = {
     velocityThreshold: 0.1,
@@ -23,6 +22,7 @@ const config = {
 export const PetCard = ({
     id,
     img,
+    blinkAnimation,
     animation,
     name,
     petIdx,
@@ -57,6 +57,16 @@ export const PetCard = ({
                         },
                     ]}
                 />
+                {blinkAnimation !== null ? (
+                    <Image
+                        source={{ uri: blinkAnimation }}
+                        style={[
+                            { position: 'absolute', zIndex: 12 },
+                            styles.petImage,
+                            styles.imageSize,
+                        ]}
+                    />
+                ) : null}
                 <Animation petId={id} animation={animation} />
                 {frames.length && petIdx <= frames.length - 1 ? (
                     <Holiday

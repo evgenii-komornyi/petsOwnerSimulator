@@ -53,6 +53,6 @@ export const Constants = {
     HEALTH_UP_THRESHOLD: 50,
     HPC_INCREASE: 0.15,
     DECOR: 'decorations',
-    CARPET: 'carpet',
+    CARPET: 'carpets',
     FRAMES: 'frames',
 };
