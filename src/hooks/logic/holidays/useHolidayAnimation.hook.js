@@ -1,13 +1,12 @@
 import { useState } from 'react';
 
-export const useHolidayAnimation = () => {
+export const useHolidayAnimation = animation => {
     const [isAnimationPlay, setIsAnimationPlay] = useState(false);
 
-    const playAnimation = animation => {
+    const playAnimation = () => {
         if (!animation || isAnimationPlay) {
             return;
         }
-
         setIsAnimationPlay(true);
 
         setTimeout(() => {
