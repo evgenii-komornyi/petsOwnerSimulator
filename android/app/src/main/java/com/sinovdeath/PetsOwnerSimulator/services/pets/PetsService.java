@@ -55,14 +55,15 @@ public class PetsService implements IPetsService {
                     int currentToyPlayCount = currentPetStats.getToyPlayCount();
                     Stats maxValues = pet.getMaxValues();
                     int maxHealthLevel = maxValues.getHealth();
-                    double healthThreshold = maxHealthLevel * 0.5;
+                    int maxSatietyLevel = maxValues.getSatiety();
+                    double satietyThreshold = maxSatietyLevel * 0.5;
                     int maxMoodLevel = maxValues.getMood();
                     Alert tmpAlert = new Alert();
                     currentOwner.setAlert(tmpAlert);
 
                     if (PetsStatsCalculator.isPetNotDead(currentHealthLevel)) {
                         if (currentSatietyLevel > 0) {
-                            if (currentSatietyLevel > healthThreshold && currentHealthLevel < maxHealthLevel) {
+                            if (currentSatietyLevel > satietyThreshold && currentHealthLevel < maxHealthLevel) {
                                 pet.getStats().setHealth(PetsStatsCalculator.increaseHealthLevel(currentHealthLevel, pet.getStatsIncreasing().getHealth(), maxHealthLevel));
                             }
 

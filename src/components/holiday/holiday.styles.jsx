@@ -4,12 +4,9 @@ const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     holidayDecor: {
-        flex: 1,
-        justifyContent: 'center',
-        alignContent: 'flex-end',
         position: 'absolute',
-        height: 90,
         width: 90,
+        height: 90,
         ...(width >= 360 &&
             width < 768 && {
                 width: 70,
@@ -22,9 +19,16 @@ export const styles = StyleSheet.create({
         zIndex: 2,
     },
     decorImage: {
-        height: '100%',
         width: '80%',
+        height: '100%',
         resizeMode: 'contain',
+    },
+    animationContainer: {
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        top: 0,
+        left: 0,
     },
     petFrameContainer: {
         position: 'absolute',
