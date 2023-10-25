@@ -7,7 +7,6 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
@@ -46,7 +45,7 @@ public class GameService implements IGameService {
         Owner existingOwnerInDB = _gameRepository.loadFromDB();
 
         if (existingOwnerInDB == null) {
-            Owner newOwner = new Owner(Generator.generateID(), "Owner");
+            Owner newOwner = new Owner(Generator.generateID(), "Owner", Constants.VERSION);
             Home home = new Home();
             newOwner.setHome(home);
             OwnerManager.setOwner(newOwner);

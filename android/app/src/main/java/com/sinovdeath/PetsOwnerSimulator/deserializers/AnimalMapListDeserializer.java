@@ -1,5 +1,6 @@
 package com.sinovdeath.PetsOwnerSimulator.deserializers;
 
+import com.google.android.exoplayer2.util.Log;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

@@ -34,10 +34,12 @@ public class Owner implements IOwner, Serializable {
     private final List<HashMap<String, Animal>> pets;
     private Inventory inventory;
     private Alert alert;
+    private String version;
 
-    public Owner(String id, String name) {
+    public Owner(String id, String name, String version) {
         this.id = id;
         this.name = name;
+        this.version = version;
         this.happyPetCoins = new BigDecimal(Constants.HPC);
         this.pets = new ArrayList<>();
         this.inventory = new Inventory();
@@ -124,7 +126,6 @@ public class Owner implements IOwner, Serializable {
                     inventory.getToys().remove(countableItem);
                 }
             }
-
         }
     }
 
@@ -143,14 +144,13 @@ public class Owner implements IOwner, Serializable {
     public List<HashMap<String, Animal>> getPets() {
         return pets;
     }
-
     public Inventory getInventory() {
         return inventory;
     }
-
     public Alert getAlert() {
         return alert;
     }
+    public String getVersion() { return version; }
 
     public void setName(String name) {
         this.name = name;
@@ -172,6 +172,8 @@ public class Owner implements IOwner, Serializable {
         this.alert = alert;
     }
 
+    public void setVersion(String version) { this.version = version; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -182,7 +184,7 @@ public class Owner implements IOwner, Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, happyPetCoins, home, pets, inventory);
+        return Objects.hash(id, name, happyPetCoins, home, pets, inventory, version);
     }
 
     @NonNull
@@ -195,6 +197,7 @@ public class Owner implements IOwner, Serializable {
                 ", home=" + home +
                 ", pets=" + pets +
                 ", inventory=" + inventory +
+                ", version=" + version +
                 '}';
     }
 }
