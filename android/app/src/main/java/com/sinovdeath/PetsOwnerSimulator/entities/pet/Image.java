@@ -14,4 +14,24 @@ public class Image {
         this.blinking = blinking;
         this.dead = dead;
     }
+
+    public void setRegular(String regular) {
+        this.regular = regular;
+    }
+
+    public void setSad(String sad) {
+        this.sad = sad;
+    }
+
+    public void setSleeping(String sleeping) {
+        this.sleeping = sleeping;
+    }
+
+    public void setBlinking(String blinking) {
+        this.blinking = blinking;
+    }
+
+    public void setDead(String dead) {
+        this.dead = dead;
+    }
 }

@@ -19,6 +19,8 @@ import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
+import com.sinovdeath.PetsOwnerSimulator.services.migrator.IMigrator;
+import com.sinovdeath.PetsOwnerSimulator.services.migrator.Migrator;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,9 +32,12 @@ import java.util.List;
 
 public class GameRepository implements IGameRepository {
     private final Context _context;
+    private final IMigrator _migrator;
 
     public GameRepository(Context context) {
+
         this._context = context;
+        _migrator = new Migrator();
     }
 
     @Override
@@ -80,7 +85,7 @@ public class GameRepository implements IGameRepository {
                     .registerTypeAdapter(LivingRoom.class, new LivingRoomDeserializer())
                     .create();
 
-            return gson.fromJson(fileContent, Owner.class);
+            return _migrator.migrateOwnerByVersion(gson.fromJson(fileContent, Owner.class));
         }
 
         return null;
