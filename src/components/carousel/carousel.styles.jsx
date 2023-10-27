@@ -34,4 +34,9 @@ export const styles = StyleSheet.create({
         overflow: 'hidden',
         height: 300,
     },
+    flipIconContainer: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+    },
 });

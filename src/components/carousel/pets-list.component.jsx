@@ -1,10 +1,8 @@
 import React from 'react';
-import { View, Dimensions, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 
 import { CustomText } from '../custom-text/custom-text.component';
 import { Pets } from './pets.component';
-
-import { pets } from '../../data/pets';
 
 import { styles } from './carousel.styles';
 import useOwnerStore from '../../app/useOwnerStore';
@@ -28,5 +26,11 @@ export const PetsList = () => {
         </View>
     );
 
-    return <FlatList data={animals} renderItem={renderItem} />;
+    return (
+        <FlatList
+            data={animals}
+            renderItem={renderItem}
+            nestedScrollEnabled={true}
+        />
+    );
 };

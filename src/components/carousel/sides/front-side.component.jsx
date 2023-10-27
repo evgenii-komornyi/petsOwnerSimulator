@@ -6,6 +6,8 @@ import { Button } from '@rneui/themed';
 import useOwnerStore from '../../../app/useOwnerStore';
 
 import { styles } from './sides.styles';
+import { Icon } from '../../icon/icon.component';
+import { Constants } from '../../../constants/constants';
 
 export const FrontSide = ({ type, item: pet }) => {
     const navigate = useNavigate();
@@ -18,6 +20,11 @@ export const FrontSide = ({ type, item: pet }) => {
 
     return (
         <View style={styles.cardFront}>
+            {/* <Icon
+                type={Constants.SIMPLELINESICONS_ICON}
+                icon="info"
+                size={30}
+            /> */}
             <Image
                 source={{
                     uri: pet.img.regular,
