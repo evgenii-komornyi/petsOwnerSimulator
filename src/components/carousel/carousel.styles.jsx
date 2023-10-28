@@ -2,6 +2,25 @@ import { StyleSheet } from 'react-native';
 import { Constants } from '../../constants/constants';
 
 export const styles = StyleSheet.create({
+    mainContainer: {
+        alignItems: 'center',
+        flexDirection: 'column',
+    },
+    buttonContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button: {
+        borderWidth: 1,
+        borderColor: Constants.MAIN_COLOR,
+        backgroundColor: 'transparent',
+    },
+    title: {
+        textAlign: 'center',
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        color: Constants.MAIN_COLOR,
+    },
     slide: {
         paddingBottom: 20,
         backgroundColor: '#fff',

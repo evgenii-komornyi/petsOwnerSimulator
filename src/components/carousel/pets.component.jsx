@@ -1,9 +1,11 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 
 import { Pet } from './pet.component';
-import { View } from 'react-native';
+import { BackButton } from './back-button.component';
+
+import { styles } from './carousel.styles';
 
 const { width: viewportWidth, height: viewportHeight } =
     Dimensions.get('window');
@@ -16,7 +18,7 @@ export const Pets = ({ animals, type }) => {
     };
 
     return (
-        <View style={{ alignItems: 'center' }}>
+        <View style={styles.mainContainer}>
             <Carousel
                 {...baseOptions}
                 loop
@@ -32,6 +34,9 @@ export const Pets = ({ animals, type }) => {
                 panGestureHandlerProps={{ activeOffsetX: [-50, 50] }}
                 renderItem={item => <Pet item={item} type={type} />}
             />
+            <View style={styles.buttonContainer}>
+                <BackButton />
+            </View>
         </View>
     );
 };
