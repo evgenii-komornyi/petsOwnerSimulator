@@ -1,15 +1,22 @@
 import React from 'react';
+
+import TabNavigation from './tab-navigation/tab-navigation.component';
+
 import { useNavigate } from 'react-router-native';
-import Tabbar from '@mindinventory/react-native-tab-bar-interaction';
 
-import { useTabs } from '../../hooks/common/useTabs.hook';
+import useUserStore from '../../app/useUserStore';
+import { usePetTabs } from '../../hooks/common/usePetTabs.hook';
+import { useUserTabs } from '../../hooks/common/useUserTabs.hook';
 
-import { styles } from './navigation.styles';
 import { Constants } from '../../constants/constants';
 
+import { styles } from './navigation.styles';
+
 export const Navigation = () => {
+    const { isUserSettings } = useUserStore(state => state);
     const navigate = useNavigate();
-    const tabs = useTabs();
+    const petTabs = usePetTabs();
+    const userTabs = useUserTabs();
 
     const handleTabChange = e => {
         setTimeout(() => {
@@ -18,11 +25,13 @@ export const Navigation = () => {
     };
 
     return (
-        <Tabbar
-            tabs={tabs}
-            tabBarContainerBackground={Constants.MAIN_COLOR}
+        <TabNavigation
+            tabs={isUserSettings ? userTabs : petTabs}
+            tabBarContainerBackground={
+                isUserSettings ? '#000' : Constants.MAIN_COLOR
+            }
             tabBarBackground="#FFE4E1"
-            activeTabBackground={Constants.MAIN_COLOR}
+            activeTabBackground={isUserSettings ? '#000' : Constants.MAIN_COLOR}
             labelStyle={styles.label}
             onTabChange={handleTabChange}
             transitionSpeed={100}

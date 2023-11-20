@@ -1,10 +1,18 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.sinovdeath.PetsOwnerSimulator">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+  <uses-permission android:name="android.permission.WRITE_SETTINGS"
+      tools:ignore="ProtectedPermissions" />
+
   <queries>
     <intent>
       <action android:name="android.intent.action.VIEW"/>
@@ -27,9 +35,26 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="com.sinovdeath.PetsOwnerSimulator"/>
+        <data android:scheme="com.sinovdeath.PetsOwnerSimulator"
+            tools:ignore="AppLinkUrlError" />
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>
+    <receiver android:name="com.sinovdeath.PetsOwnerSimulator.receivers.AlarmReceiver"
+        android:exported="false">
+      <intent-filter>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+        <action android:name="android.intent.action.REBOOT"/>
+      </intent-filter>
+    </receiver>
+    <receiver android:name="com.sinovdeath.PetsOwnerSimulator.receivers.BootReceiver"
+        android:enabled="true" android:exported="false">
+      <intent-filter android:priority="100">
+        <category android:name="android.intent.category.DEFAULT"/>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+        <action android:name="android.intent.action.REBOOT"/>
+      </intent-filter>
+    </receiver>
   </application>
 </manifest>

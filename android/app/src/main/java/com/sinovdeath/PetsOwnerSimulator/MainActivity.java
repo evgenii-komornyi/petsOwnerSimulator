@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
@@ -19,6 +20,7 @@ public class MainActivity extends ReactActivity {
     setTheme(R.style.AppTheme);
 
     super.onCreate(savedInstanceState);
+    // ReminderManager.startAlarm(this);
   }
 
   @Override
@@ -29,7 +31,9 @@ public class MainActivity extends ReactActivity {
     int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE
             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
             | View.SYSTEM_UI_FLAG_FULLSCREEN;
-    decorView.setSystemUiVisibility(uiOptions);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      decorView.setSystemUiVisibility(uiOptions);
+    }
   }
   @Override
   protected void onPause() {

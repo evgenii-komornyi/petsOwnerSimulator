@@ -24,6 +24,7 @@ public class ScratchersGenerator {
         catHouse_ch500.setDurability(catHouse_ch500.getMaxDurability());
         catHouse_ch500.setType(ItemType.CAT_HOUSE.getItemType());
         ScratcherImage catHouse_ch500Image = new ScratcherImage();
+        catHouse_ch500Image.setShopImage(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_SCRATCHERS_FOLDER, catHouse_ch500.getId(), "shop", Constants.IMAGE_EXT));
         catHouse_ch500Image.setFullyDamagedImage(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_SCRATCHERS_FOLDER, catHouse_ch500.getId(), "scratched_000", Constants.IMAGE_EXT));
         List<String> damagedImagesPaths = new ArrayList<>();
         damagedImagesPaths.add(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_SCRATCHERS_FOLDER, catHouse_ch500.getId(), "scratched_100", Constants.IMAGE_EXT));

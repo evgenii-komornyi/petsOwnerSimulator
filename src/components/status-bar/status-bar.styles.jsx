@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     statusBarContainer: {
-        backgroundColor: '#6A5ACD',
         height: 50,
     },
     happyPetCoinsContainer: {

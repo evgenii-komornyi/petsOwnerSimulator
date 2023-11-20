@@ -17,9 +17,11 @@ const holidayStore = set => ({
         if (data) {
             const holiday = JSON.parse(data);
 
-            set({ holiday: holiday.holiday });
+            if (holiday !== null) {
+                set({ holiday: holiday.holiday });
+            }
 
-            if (holiday.images && holiday.images.length) {
+            if (holiday !== null && holiday.images && holiday.images.length) {
                 set({
                     decorations: holiday.images.filter(
                         image => image.category === Constants.DECOR

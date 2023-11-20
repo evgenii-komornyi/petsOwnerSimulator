@@ -1,7 +1,7 @@
 import { Icon } from '../../components/icon/icon.component';
 import { Constants } from '../../constants/constants';
 
-export const useTabs = () => {
+export const usePetTabs = () => {
     return [
         {
             path: '/',

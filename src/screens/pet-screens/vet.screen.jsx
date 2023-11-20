@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useOnBackPress } from '../hooks/common/useOnBackPress.hook';
+import { useOnBackPress } from '../../hooks/common/useOnBackPress.hook';
 
 export const VetScreen = () => {
     useOnBackPress();

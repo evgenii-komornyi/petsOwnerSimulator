@@ -15,7 +15,7 @@ export const ShopItem = ({ item, category }) => {
                         source={{
                             uri: item.image.hasOwnProperty('unused')
                                 ? item.image.unused
-                                : item.image.currentImage,
+                                : item.image.shopImage,
                         }}
                         style={styles.itemImage}
                     />

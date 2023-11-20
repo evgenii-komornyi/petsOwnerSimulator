@@ -11,4 +11,7 @@ public interface IOwnerService {
     String cleanRoom();
     String cleanLitterBox();
     String putItemInRoom(String itemType, String itemToPut);
+    String changeAlarmTime(int alarmId, int alarmHours, int alarmMinutes);
+    String changeAlarmActivity(int alarmId, boolean alarmActivityFlag);
+    String saveNotification(String title, String body);
 }

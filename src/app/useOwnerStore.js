@@ -10,6 +10,9 @@ import { loadGame, saveGame, resetGame } from '../modules/game.module';
 import {
     adoptPet,
     buyItem,
+    changeAlarmActivity,
+    changeAlarmTime,
+    saveNotification,
     cleanLitterBox,
     cleanRoom,
     feedPet,
@@ -30,6 +33,8 @@ const ownerStore = (set, get) => ({
     pets: [],
     inventory: {},
     alert: {},
+    settings: {},
+    version: {},
     meta: {},
 
     isLoaded: false,
@@ -39,8 +44,15 @@ const ownerStore = (set, get) => ({
             const owner = await getCurrentOwner();
 
             if (owner) {
-                const { happyPetCoins, pets, name, inventory, home } =
-                    JSON.parse(owner);
+                const {
+                    happyPetCoins,
+                    pets,
+                    name,
+                    inventory,
+                    home,
+                    settings,
+                    version,
+                } = JSON.parse(owner);
 
                 const convertedPets = convertPets(pets);
 
@@ -51,11 +63,11 @@ const ownerStore = (set, get) => ({
                     inventory,
                     home,
                     alert,
+                    settings,
+                    version,
                 });
 
-                setTimeout(() => {
-                    set({ isLoaded: true });
-                }, 2000);
+                set({ isLoaded: true });
             }
         } catch (error) {
             console.log(error.message);
@@ -74,8 +86,15 @@ const ownerStore = (set, get) => ({
             }
 
             if (owner) {
-                const { happyPetCoins, pets, name, inventory, home } =
-                    JSON.parse(owner);
+                const {
+                    happyPetCoins,
+                    pets,
+                    name,
+                    inventory,
+                    home,
+                    settings,
+                    version,
+                } = JSON.parse(owner);
 
                 const convertedPets = convertPets(pets);
 
@@ -85,11 +104,11 @@ const ownerStore = (set, get) => ({
                     name,
                     inventory,
                     home,
+                    settings,
+                    version,
                 });
 
-                setTimeout(() => {
-                    set({ isLoaded: true });
-                }, 2000);
+                set({ isLoaded: true });
             }
         } catch (error) {
             console.error(error);
@@ -116,6 +135,7 @@ const ownerStore = (set, get) => ({
             pets: [],
             inventory: {},
             alert: {},
+            settings: {},
             meta: {},
 
             isLoaded: false,
@@ -286,6 +306,48 @@ const ownerStore = (set, get) => ({
             }
         } catch (error) {
             console.error(error);
+        }
+    },
+
+    saveNotification: async notificationToSave => {
+        try {
+            const data = await saveNotification(notificationToSave);
+
+            if (data) {
+                const { settings } = JSON.parse(data);
+
+                set({ settings });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    changeAlarmTime: async (id, hours, minutes) => {
+        try {
+            const data = await changeAlarmTime(id, hours, minutes);
+
+            if (data) {
+                const { settings } = JSON.parse(data);
+
+                set({ settings });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    changeAlarmActivity: async (id, flag) => {
+        try {
+            const data = await changeAlarmActivity(id, flag);
+
+            if (data) {
+                const { settings } = JSON.parse(data);
+
+                set({ settings });
+            }
+        } catch (error) {
+            console.log(error);
         }
     },
 });
