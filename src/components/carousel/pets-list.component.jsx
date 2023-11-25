@@ -9,7 +9,7 @@ import useOwnerStore from '../../app/useOwnerStore';
 import useShelterStore from '../../app/useShelterStore';
 
 export const PetsList = () => {
-    const ownerPets = useOwnerStore(state => state.pets);
+    // const ownerPets = useOwnerStore(state => state.pets);
     const { animals } = useShelterStore(state => state.shelter);
 
     const renderItem = ({ item: { type, pets } }) => (
@@ -18,9 +18,7 @@ export const PetsList = () => {
                 <CustomText style={styles.type} text={type} />
             </View>
             <Pets
-                animals={pets.filter(
-                    pet => !ownerPets.some(ownerPet => ownerPet.id === pet.id)
-                )}
+                animals={pets} //.filter(                    pet => !ownerPets.some(ownerPet => ownerPet.id === pet.id)                )}
                 type={type}
             />
         </View>
