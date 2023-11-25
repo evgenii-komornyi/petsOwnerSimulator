@@ -1,25 +1,22 @@
 import React from 'react';
 import { Linking, BackHandler, View } from 'react-native';
+import { useSystemInfo } from '../../../../hooks/logic/settings/useSystemInfo.hook';
+
 import { CustomText } from '../../../custom-text/custom-text.component';
 import { Button } from '@rneui/themed';
 
+import { warnings } from '../../../../data/warnings';
+import { Dictionary } from '../../../../constants/dictionary';
+
 import { styles } from './warning.styles';
 
-const warnings = {
-    permissions: {
-        text: 'If you want receive notifications, you need to allow it in settings. And then restart application.',
-        hasButton: true,
-    },
-    osReboot: {
-        text: 'For the correct alarm work after rebooting system, some devices like Huawei or Xiaomi require to disable automatic management. The way to get to this settings: ',
-        huaweiPath:
-            'Huawei: Power usage details -> Launch settings -> Disable Manage automatically option and be sure that Auto-launch option is enabled.',
-        xiaomiPath: 'Xiaomi: Battery saver -> Enable No restrict option.',
-        hasButton: true,
-    },
-};
-
 export const Warning = ({ warningType }) => {
+    const {
+        isCorrectDevice,
+        isWithoutWarningDevice,
+        systemInfo: { manufacturer },
+    } = useSystemInfo();
+
     const toSettings = async () => {
         await Linking.openSettings();
         BackHandler.exitApp();
@@ -27,24 +24,34 @@ export const Warning = ({ warningType }) => {
 
     return (
         <View style={styles.warningContainer}>
-            <CustomText
-                text={warnings[warningType].text}
-                style={styles.warningText}
-            />
-            {warnings[warningType].huaweiPath && (
-                <CustomText text={warnings[warningType].huaweiPath} />
+            {warningType === 'osReboot' && isWithoutWarningDevice ? (
+                <CustomText text={Dictionary['en'].NO_WARNINGS} />
+            ) : (
+                <>
+                    <CustomText
+                        text={warnings[warningType].text}
+                        style={styles.warningText}
+                    />
+                    {warningType === 'osReboot' &&
+                        (isCorrectDevice ? (
+                            <CustomText
+                                text={warnings['osReboot'].device[manufacturer]}
+                            />
+                        ) : (
+                            <CustomText
+                                text={warnings['osReboot']?.device?.otherwise}
+                            />
+                        ))}
+                    {warnings[warningType].hasButton ? (
+                        <Button
+                            title="Settings"
+                            color="#000"
+                            containerStyle={styles.warningButton}
+                            onPress={toSettings}
+                        />
+                    ) : null}
+                </>
             )}
-            {warnings[warningType].xiaomiPath && (
-                <CustomText text={warnings[warningType].xiaomiPath} />
-            )}
-            {warnings[warningType].hasButton ? (
-                <Button
-                    title="Settings"
-                    color="#000"
-                    containerStyle={styles.warningButton}
-                    onPress={toSettings}
-                />
-            ) : null}
         </View>
     );
 };

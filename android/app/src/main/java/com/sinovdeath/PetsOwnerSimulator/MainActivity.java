@@ -9,6 +9,7 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 
+import com.sinovdeath.PetsOwnerSimulator.managers.ContextManager;
 import expo.modules.ReactActivityDelegateWrapper;
 
 public class MainActivity extends ReactActivity {
@@ -20,7 +21,7 @@ public class MainActivity extends ReactActivity {
     setTheme(R.style.AppTheme);
 
     super.onCreate(savedInstanceState);
-    // ReminderManager.startAlarm(this);
+    ContextManager.setContext(this);
   }
 
   @Override

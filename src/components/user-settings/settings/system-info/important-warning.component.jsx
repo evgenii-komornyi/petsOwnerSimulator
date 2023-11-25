@@ -4,12 +4,12 @@ import { ListItem } from '@rneui/themed';
 
 import useSettingsStore from '../../../../app/useSettingsStore';
 
+import { Warning } from '../warning/warning.component';
 import { Icon } from '../../../icon/icon.component';
 
 import { Constants } from '../../../../constants/constants';
 
 import { styles } from './system-info.styles';
-import { Warning } from '../warning/warning.component';
 
 export const ImportantWarning = () => {
     const { toggleAccordion, isAccordionExpanded } = useSettingsStore(

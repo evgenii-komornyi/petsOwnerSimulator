@@ -7,6 +7,8 @@ import {
     getSystemVersion,
 } from 'react-native-device-info';
 
+import { knownDevices, withoutWarningDevices } from '../../../data/warnings';
+
 export const useSystemInfo = () => {
     const [systemInfo, setSystemInfo] = useState({
         manufacturer: null,
@@ -15,6 +17,8 @@ export const useSystemInfo = () => {
         version: null,
         api: null,
     });
+    const [isCorrectDevice, setIsCorrectDevice] = useState(false);
+    const [isWithoutWarningDevice, setIsWithoutWarningDevice] = useState(false);
 
     useEffect(() => {
         const getApi = async () => {
@@ -23,16 +27,26 @@ export const useSystemInfo = () => {
 
             if (api && manufacturer) {
                 setSystemInfo({
-                    manufacturer,
-                    brand: getBrand(),
+                    manufacturer: manufacturer.toLowerCase(),
+                    brand: getBrand().toLowerCase(),
                     os: getSystemName(),
                     version: getSystemVersion(),
                     api,
                 });
+                setIsCorrectDevice(
+                    knownDevices.some(
+                        device => device === manufacturer.toLowerCase()
+                    )
+                );
+                setIsWithoutWarningDevice(
+                    withoutWarningDevices.some(
+                        device => device === manufacturer.toLowerCase()
+                    )
+                );
             }
         };
         getApi();
     }, []);
 
-    return systemInfo;
+    return { systemInfo, isCorrectDevice, isWithoutWarningDevice };
 };

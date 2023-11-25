@@ -1,7 +1,9 @@
 package com.sinovdeath.PetsOwnerSimulator.modules;
 
+import android.os.Build;
 import androidx.annotation.NonNull;
 
+import androidx.annotation.RequiresApi;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -13,6 +15,7 @@ public class HolidayModule extends ReactContextBaseJavaModule {
     private final ReactApplicationContext _context;
     private static IHolidayService _holidayService;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public HolidayModule(ReactApplicationContext _context) {
         this._context = _context;
         this._holidayService = new HolidayService();

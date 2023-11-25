@@ -1,5 +1,6 @@
 package com.sinovdeath.PetsOwnerSimulator.modules;
 
+import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -7,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.facebook.react.bridge.Promise;
-import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
@@ -15,12 +15,11 @@ import com.sinovdeath.PetsOwnerSimulator.services.alarm.AlarmService;
 import com.sinovdeath.PetsOwnerSimulator.services.alarm.IAlarmService;
 
 public class SettingsModule extends ReactContextBaseJavaModule {
-    private final ReactApplicationContext _reactContext;
+    private final Context _context;
     IAlarmService _alarmService;
-    public SettingsModule(@Nullable ReactApplicationContext reactContext) {
-        super(reactContext);
-        _reactContext = reactContext;
-        _alarmService = new AlarmService(reactContext);
+    public SettingsModule(@Nullable Context context) {
+        _context = context;
+        _alarmService = new AlarmService(context);
     }
 
     @NonNull
