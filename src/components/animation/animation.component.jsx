@@ -8,18 +8,14 @@ import { styles } from './animation.styles';
 export const Animation = ({ petId, animation }) => {
     const { animations, generalType } = useAnimationStore(state => state);
 
-    return (
+    return Object.keys(animations).length &&
+        generalType &&
+        animations[generalType][petId] ? (
         <Image
-            source={
-                Object.keys(animations).length &&
-                generalType &&
-                animations[generalType][petId]
-                    ? {
-                          uri: animation[generalType],
-                      }
-                    : null
-            }
+            source={{
+                uri: animation[generalType],
+            }}
             style={[styles.animationSize, styles.lickAnimation]}
         />
-    );
+    ) : null;
 };
