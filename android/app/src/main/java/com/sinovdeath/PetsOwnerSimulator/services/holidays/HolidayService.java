@@ -20,6 +20,7 @@ import java.util.Map;
 public class HolidayService implements IHolidayService {
     private List<Holiday> holidays;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public HolidayService() {
         this.holidays = HolidaysGenerator.generateHolidays();
     }

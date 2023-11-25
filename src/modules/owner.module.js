@@ -29,6 +29,15 @@ export const setHPC = () => callOwnerAPI('updateHPC');
 export const putItemInRoom = (itemType, itemToPut) =>
     callOwnerAPI('putItemInRoom', { itemType, itemToPut });
 
+export const changeAlarmActivity = (id, activityFlag) =>
+    callOwnerAPI('changeAlarmActivity', { id, activityFlag });
+
+export const changeAlarmTime = (id, hours, minutes) =>
+    callOwnerAPI('changeAlarmTime', { id, hours, minutes });
+
+export const saveNotification = ({ title, body }) =>
+    callOwnerAPI('saveNotification', { title, body });
+
 const callOwnerAPI = async (method, params = null) => {
     try {
         let data;

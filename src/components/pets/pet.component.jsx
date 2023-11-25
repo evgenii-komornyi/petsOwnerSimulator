@@ -18,6 +18,7 @@ export const Pet = ({
     touchEnd,
 }) => {
     const [isVisible, toggleVisibility, animatedHeight] = useToggleActions(
+        { height: 130 },
         stats.health
     );
     const { currentImg, blinkImage } = usePet(stats, img);

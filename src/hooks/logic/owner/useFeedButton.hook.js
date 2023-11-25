@@ -4,7 +4,7 @@ import useAnimationStore from '../../../app/useAnimationStore';
 import { useAudio } from '../../common/useAudio.hook';
 
 export const useFeedButton = (petId, item) => {
-    const { feedPet } = useOwnerStore(state => state);
+    const { feedPet, saveGame } = useOwnerStore(state => state);
     const { startAnimation, stopAnimation } = useAnimationStore(state => state);
     const [playSound] = useAudio();
 
@@ -26,6 +26,7 @@ export const useFeedButton = (petId, item) => {
                 setIsDisabled(false);
                 stopAnimation('lick', petId);
             }, 2000);
+            await saveGame();
         } catch (error) {
             console.err(error);
         }

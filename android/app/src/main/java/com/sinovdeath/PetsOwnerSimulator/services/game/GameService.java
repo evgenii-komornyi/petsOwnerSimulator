@@ -11,6 +11,9 @@ import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
+import com.sinovdeath.PetsOwnerSimulator.entities.settings.Alarm;
+import com.sinovdeath.PetsOwnerSimulator.entities.settings.Notification;
+import com.sinovdeath.PetsOwnerSimulator.entities.settings.Settings;
 import com.sinovdeath.PetsOwnerSimulator.helpers.checkers.Checker;
 import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
@@ -22,8 +25,10 @@ import com.sinovdeath.PetsOwnerSimulator.services.home.IHomeService;
 import com.sinovdeath.PetsOwnerSimulator.services.pets.IPetsService;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class GameService implements IGameService {
@@ -46,6 +51,31 @@ public class GameService implements IGameService {
 
         if (existingOwnerInDB == null) {
             Owner newOwner = new Owner(Generator.generateID(), "Owner", Constants.VERSION);
+            Settings settings = new Settings();
+            List<Alarm> alarms = new ArrayList<>();
+
+            Notification feedNotification = new Notification();
+            feedNotification.setTitle(Constants.NOTIFICATION_TITLE);
+            feedNotification.setBody(Constants.NOTIFICATION_BODY);
+            settings.setFeedingNotification(feedNotification);
+
+            Alarm firstFeedAlarm = new Alarm();
+            firstFeedAlarm.setId(0);
+            firstFeedAlarm.setHour(10);
+            firstFeedAlarm.setMinutes(0);
+            firstFeedAlarm.setAlarmActive(false);
+
+            Alarm secondFeedAlarm = new Alarm();
+            secondFeedAlarm.setId(1);
+            secondFeedAlarm.setHour(20);
+            secondFeedAlarm.setMinutes(0);
+            secondFeedAlarm.setAlarmActive(false);
+
+            alarms.add(firstFeedAlarm);
+            alarms.add(secondFeedAlarm);
+            settings.setAlarms(alarms);
+            newOwner.setSettings(settings);
+
             Home home = new Home();
             newOwner.setHome(home);
             OwnerManager.setOwner(newOwner);

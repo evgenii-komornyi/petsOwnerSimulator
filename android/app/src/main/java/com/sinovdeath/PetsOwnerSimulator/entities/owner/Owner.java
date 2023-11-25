@@ -15,6 +15,7 @@ import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.NonInteractToy;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.Toy;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
+import com.sinovdeath.PetsOwnerSimulator.entities.settings.Settings;
 import com.sinovdeath.PetsOwnerSimulator.enums.WindowState;
 import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.Calculator;
 import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.ItemsCalculator;
@@ -34,6 +35,7 @@ public class Owner implements IOwner, Serializable {
     private final List<HashMap<String, Animal>> pets;
     private Inventory inventory;
     private Alert alert;
+    private Settings settings;
     private String version;
 
     public Owner(String id, String name, String version) {
@@ -132,7 +134,6 @@ public class Owner implements IOwner, Serializable {
     public String getName() {
         return name;
     }
-
     public BigDecimal getHappyPetCoins() {
         return happyPetCoins;
     }
@@ -174,20 +175,9 @@ public class Owner implements IOwner, Serializable {
 
     public void setVersion(String version) { this.version = version; }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Owner owner = (Owner) o;
-        return Objects.equals(id, owner.id) && Objects.equals(name, owner.name) && Objects.equals(happyPetCoins, owner.happyPetCoins) && Objects.equals(home, owner.home) && Objects.equals(pets, owner.pets) && Objects.equals(inventory, owner.inventory);
-    }
+    public Settings getSettings() { return settings; }
+    public void setSettings(Settings settings) { this.settings = settings; }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, happyPetCoins, home, pets, inventory, version);
-    }
-
-    @NonNull
     @Override
     public String toString() {
         return "Owner{" +
@@ -197,7 +187,9 @@ public class Owner implements IOwner, Serializable {
                 ", home=" + home +
                 ", pets=" + pets +
                 ", inventory=" + inventory +
-                ", version=" + version +
+                ", alert=" + alert +
+                ", settings=" + settings +
+                ", version='" + version + '\'' +
                 '}';
     }
 }

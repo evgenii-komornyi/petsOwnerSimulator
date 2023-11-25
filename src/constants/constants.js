@@ -50,6 +50,7 @@ export const Constants = {
     ASSETS_ILLNESS_FOLDER: 'asset:/images/illness',
     MAIN_COLOR: '#6A5ACD',
     MAIN_INTERVAL: 60,
+    SAVE_GAME_INTERVAL: 5,
     HEALTH_UP_THRESHOLD: 50,
     HPC_INCREASE: 0.15,
     DECOR: 'decorations',

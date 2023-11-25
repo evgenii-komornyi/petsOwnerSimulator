@@ -10,7 +10,7 @@ import { icons } from '../../data/icons';
 
 import { styles } from './status-bar.styles';
 
-const HappyPetCoins = () => {
+export const HappyPetCoins = () => {
     const { happyPetCoins } = useOwnerStore(state => state);
 
     return (
@@ -27,5 +27,3 @@ const HappyPetCoins = () => {
         </>
     );
 };
-
-export default HappyPetCoins;

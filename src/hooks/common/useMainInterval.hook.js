@@ -1,18 +1,22 @@
 import { useEffect } from 'react';
 
 import useOwnerStore from '../../app/useOwnerStore';
+import useHolidaysStore from '../../app/useHolidayStore';
 
 import { Constants } from '../../constants/constants';
 import { useAudio } from './useAudio.hook';
 import { useVibrate } from './useVibrate.hook';
-import useHolidaysStore from '../../app/useHolidayStore';
 
 let interval = 0;
 
 export const useMainInterval = () => {
-    const { getCurrentOwner, calculatePetsStats, calculateHomeStats, alert } =
-        useOwnerStore(state => state);
-
+    const {
+        getCurrentOwner,
+        calculatePetsStats,
+        calculateHomeStats,
+        alert,
+        saveGame,
+    } = useOwnerStore(state => state);
     const { checkHoliday } = useHolidaysStore(state => state);
 
     const [playSound] = useAudio();
@@ -24,9 +28,21 @@ export const useMainInterval = () => {
             await calculateHomeStats();
         };
 
+        const saveCurrentGame = async () => {
+            await saveGame();
+        };
+
+        let timeSaveGame = -1;
+
         interval = setInterval(() => {
+            timeSaveGame++;
             calculatePetsStats();
             fetchData();
+
+            if (timeSaveGame === Constants.SAVE_GAME_INTERVAL) {
+                saveCurrentGame();
+                timeSaveGame = -1;
+            }
         }, Constants.MAIN_INTERVAL * 1000);
 
         return () => clearInterval(interval);

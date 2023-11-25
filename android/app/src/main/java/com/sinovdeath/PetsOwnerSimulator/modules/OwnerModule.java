@@ -19,7 +19,7 @@ public class OwnerModule extends ReactContextBaseJavaModule {
     public OwnerModule(ReactApplicationContext context) {
         super(context);
         _context = context;
-        _ownerService = new OwnerService();
+        _ownerService = new OwnerService(context);
     }
 
     @NonNull
@@ -77,6 +77,21 @@ public class OwnerModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void putItemInRoom(ReadableMap params, Promise promise) {
         promise.resolve(_ownerService.putItemInRoom(params.getString("itemType"), params.getString("itemToPut")));
+    }
+
+    @ReactMethod
+    public void saveNotification(ReadableMap params, Promise promise) {
+        promise.resolve(_ownerService.saveNotification(params.getString("title"), params.getString("body")));
+    }
+
+    @ReactMethod
+    public void changeAlarmActivity(ReadableMap params, Promise promise) {
+        promise.resolve(_ownerService.changeAlarmActivity(params.getInt("id"), params.getBoolean("activityFlag")));
+    }
+
+    @ReactMethod
+    public void changeAlarmTime(ReadableMap params, Promise promise) {
+        promise.resolve(_ownerService.changeAlarmTime(params.getInt("id"), params.getInt("hours"), params.getInt("minutes")));
     }
 
     private String getCurrentOwnerInJSON() {

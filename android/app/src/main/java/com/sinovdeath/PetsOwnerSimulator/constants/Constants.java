@@ -41,5 +41,8 @@ public class Constants {
 
     public static final String HALLOWEEN_DATES = "22.10, 23.10, 24.10, 25.10, 26.10, 27.10, 28.10, 29.10, 30.10, 31.10, 01.11, 02.11";
 
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.1";
+
+    public static final String NOTIFICATION_TITLE = "I am hungry!";
+    public static final String NOTIFICATION_BODY = "You have to feed your pets!";
 }
