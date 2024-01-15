@@ -13,7 +13,7 @@ export const Loader = ({ sourceFile }) => {
         <AnimatedLoader
             visible={true}
             source={holiday ? loaders[holiday] : sourceFile}
-            overlayColor="rgba(255,255,255,0.75)"
+            overlayColor="rgba(255,255,255,.7)"
             animationStyle={styles.lottie}
             speed={1}
         />

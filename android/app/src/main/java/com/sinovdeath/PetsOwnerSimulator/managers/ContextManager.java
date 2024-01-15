@@ -10,12 +10,7 @@ public class ContextManager {
     public static Context getContext() {
         return context;
     }
-
     public static void setContext(Context newContext) {
         context = newContext;
     }
-
-
-
-
 }

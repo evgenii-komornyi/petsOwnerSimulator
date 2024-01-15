@@ -24,13 +24,11 @@ public class InteractToy extends Toy implements IScratchable {
 
     @Override
     public Integer getDurability() { return this.durability; }
-
     @Override
     public void setDurability(int durability) { this.durability = durability; }
 
     @Override
     public Integer getMaxDurability() { return maxDurability; }
-
     @Override
     public void setMaxDurability(int maxDurability) { this.maxDurability = maxDurability; }
 }

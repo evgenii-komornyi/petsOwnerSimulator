@@ -6,7 +6,6 @@ public abstract class Image {
     public String getUnused() {
         return unused;
     }
-
     public void setUnused(String unused) {
         this.unused = unused;
     }

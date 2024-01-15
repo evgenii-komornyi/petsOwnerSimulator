@@ -1,6 +1,9 @@
 package com.sinovdeath.PetsOwnerSimulator.modules;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -13,6 +16,7 @@ import java.util.List;
 
 public class Packager implements ReactPackage {
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @NonNull
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactApplicationContext) {

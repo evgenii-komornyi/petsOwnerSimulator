@@ -19,16 +19,13 @@ public class Inventory implements Serializable {
         this.otherItems = new ArrayList<>();
     }
 
-    public List<Item> getFood() {
-        return food;
-    }
-    public List<Item> getToys() {
-        return toys;
-    }
-    public List<Item> getOtherItems() { return otherItems; }
-
+    public List<Item> getFood() { return food; }
     public void setFood(List<Item> food) { this.food = food; }
+
+    public List<Item> getToys() { return toys; }
     public void setToys(List<Item> toys) { this.toys = toys; }
+
+    public List<Item> getOtherItems() { return otherItems; }
     public void setOtherItems(List<Item> otherItems) { this.otherItems = otherItems; }
 
     public void addFood(Item newFood) {

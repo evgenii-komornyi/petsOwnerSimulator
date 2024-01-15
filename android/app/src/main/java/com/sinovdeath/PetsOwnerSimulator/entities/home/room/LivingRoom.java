@@ -3,37 +3,37 @@ package com.sinovdeath.PetsOwnerSimulator.entities.home.room;
 import java.io.Serializable;
 
 public class LivingRoom extends Room implements Serializable {
-    private int poopOnCarpetCount;
-    private int smell;
-    private boolean isWindowOpen;
+    private Poop poop;
+    private Smell smell;
+    private Window window;
+    private Carpet carpet;
 
-    public int getPoopOnCarpetCount() { return poopOnCarpetCount; }
+    public Poop getPoop() { return poop; }
+    public void setPoop(Poop poop) { this.poop = poop; }
 
-    public void setPoopOnCarpetCount(int poopOnCarpetCount) { this.poopOnCarpetCount = poopOnCarpetCount; }
+    public Smell getSmell() { return smell; }
+    public void setSmell(Smell smell) { this.smell = smell; }
 
-    public int getSmell() { return smell; }
+    public void setWindow(Window window) { this.window = window; }
+    public Window getWindow() { return window; }
 
-    public void setSmell(int smell) { this.smell = smell; }
+    public void setCarpet(Carpet carpet) { this.carpet = carpet; }
 
-    public boolean getIsWindowOpen() { return isWindowOpen; }
-
-    public boolean checkIsWindowOpened() {
-        return isWindowOpen;
-    }
-
-    public void setIsWindowOpen(boolean windowOpen) { isWindowOpen = windowOpen; }
+    public Carpet getCarpet() { return carpet; }
 
     @Override
     public String toString() {
         return "LivingRoom{" +
-                "poopOnCarpetCount=" + poopOnCarpetCount +
+                "poop=" + poop +
                 ", smell=" + smell +
-                ", isWindowOpen=" + isWindowOpen +
+                ", window=" + window +
+                ", carpet=" + carpet +
                 ", roomType='" + roomType + '\'' +
                 ", image=" + image +
                 ", toy=" + toy +
                 ", litterBox=" + litterBox +
                 ", catHouse=" + catHouse +
+                ", sofa=" + sofa +
                 '}';
     }
 }

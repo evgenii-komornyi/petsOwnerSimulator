@@ -17,7 +17,6 @@ public class Shelter implements Serializable {
     public String getShelterName() {
         return shelterName;
     }
-
     public List<ShelterAnimal> getAnimals() {
         return animals;
     }

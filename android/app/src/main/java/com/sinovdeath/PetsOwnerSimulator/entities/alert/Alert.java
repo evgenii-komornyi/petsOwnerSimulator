@@ -9,7 +9,6 @@ public class Alert {
     public Sound getSound() {
         return sound;
     }
-
     public void setSound(Sound sound) {
         this.sound = sound;
     }
@@ -17,7 +16,6 @@ public class Alert {
     public Vibration getVibration() {
         return vibration;
     }
-
     public void setVibration(Vibration vibration) {
         this.vibration = vibration;
     }

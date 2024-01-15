@@ -7,10 +7,12 @@ public class HolidayImage {
 
     public String getAnimation() { return animation; }
     public void setAnimation(String animation) { this.animation = animation; }
+
     public String getCategory() { return category; }
     public void setCategory(String category) {
         this.category = category;
     }
+
     public String getUri() {
         return uri;
     }

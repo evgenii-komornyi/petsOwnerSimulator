@@ -1,6 +1,7 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.pet;
 
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Poop;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
@@ -28,16 +29,16 @@ public abstract class Animal implements IAnimal {
         Owner owner = OwnerManager.getCurrentOwner();
         LivingRoom livingRoom = owner.getHome().getLivingRoom();
         LitterBox litterBox = (LitterBox) livingRoom.getLitterBox();
+        Poop poop = livingRoom.getPoop();
 
         if (litterBox == null || !litterBox.getPetPoop()) {
-            livingRoom.setPoopOnCarpetCount(HomeStatsCalculator.calculatePoopOnCarpetCount(livingRoom.getPoopOnCarpetCount()));
+            poop.setPoopOnCarpetCount(HomeStatsCalculator.calculatePoopOnCarpetCount(poop.getPoopOnCarpetCount()));
         }
     }
 
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -45,7 +46,6 @@ public abstract class Animal implements IAnimal {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -53,31 +53,26 @@ public abstract class Animal implements IAnimal {
     public Image getImg() {
         return img;
     }
-
     public void setImg(Image img) {
         this.img = img;
     }
 
     public Animation getAnimation() { return animation; }
-
     public void setAnimation(Animation animation) { this.animation = animation; }
 
     public String getBio() {
         return bio;
     }
-
     public void setBio(String bio) {
         this.bio = bio;
     }
 
     public Stats getMaxValues() { return maxValues; }
-
     public void setMaxValues(Stats maxValues) { this.maxValues = maxValues; }
 
     public Stats getStats() {
         return stats;
     }
-
     public void setStats(Stats stats) {
         this.stats = stats;
     }
@@ -85,7 +80,6 @@ public abstract class Animal implements IAnimal {
     public Stats getStatsReducing() {
         return statsReducing;
     }
-
     public void setStatsReducing(Stats statsReducing) {
         this.statsReducing = statsReducing;
     }
@@ -93,15 +87,11 @@ public abstract class Animal implements IAnimal {
     public StatsIncreasing getStatsIncreasing() {
         return statsIncreasing;
     }
-
-    public void setStatsIncreasing(StatsIncreasing statsIncreasing) {
-        this.statsIncreasing = statsIncreasing;
-    }
+    public void setStatsIncreasing(StatsIncreasing statsIncreasing) { this.statsIncreasing = statsIncreasing; }
 
     public boolean getWasTaken() {
         return wasTaken;
     }
-
     public void setWasTaken(boolean wasTaken) {
         this.wasTaken = wasTaken;
     }
@@ -109,7 +99,6 @@ public abstract class Animal implements IAnimal {
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }

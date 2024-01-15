@@ -1,5 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { preventAutoHideAsync } from 'expo-splash-screen';
 import { NativeRouter } from 'react-router-native';
 
 import { View } from 'react-native';
@@ -19,15 +20,16 @@ import { Loader } from './src/components/loader/loader.component';
 import { loaders } from './src/data/loaders';
 import { styles } from './src/styles/global.styles';
 
-export default () => {
-    useMainInterval();
+preventAutoHideAsync();
 
+export default () => {
+    const { isHolidaysLoaded } = useMainInterval();
     const isLoaded = useSaveLoadGame();
 
     return (
         <SafeAreaProvider>
             <NativeRouter>
-                {isLoaded ? (
+                {isLoaded && isHolidaysLoaded ? (
                     <View style={styles.container}>
                         <Header />
                         <RoutesMap />

@@ -6,10 +6,12 @@ export const styles = StyleSheet.create({
     topGridContainer: {
         flex: 3,
         flexDirection: 'row',
+        position: 'relative',
+        borderColor: 'black',
+        borderWidth: 2,
     },
     sofaContainer: {
         flex: 1,
-        justifyContent: 'flex-end',
     },
     tableContainer: {
         flex: 0.4,

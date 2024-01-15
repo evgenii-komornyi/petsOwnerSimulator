@@ -1,6 +1,7 @@
 package com.sinovdeath.PetsOwnerSimulator.services.home;
 
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Smell;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.HomeStatsCalculator;
 import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
@@ -12,16 +13,17 @@ public class HomeService implements IHomeService {
         Owner currentOwner = OwnerManager.getCurrentOwner();
 
         LivingRoom livingRoom = currentOwner.getHome().getLivingRoom();
+        Smell smell = livingRoom.getSmell();
 
-        int currentSmell = livingRoom.getSmell();
-        int poopOnCarpetCount = livingRoom.getPoopOnCarpetCount();
+        int currentSmell = smell.getSmell();
+        int poopOnCarpetCount = livingRoom.getPoop().getPoopOnCarpetCount();
 
         if (poopOnCarpetCount != 0) {
-            livingRoom.setSmell(HomeStatsCalculator.calculateSmell(currentSmell, poopOnCarpetCount));
+            smell.setSmell(HomeStatsCalculator.calculateSmell(currentSmell, poopOnCarpetCount));
         }
 
-        if (livingRoom.checkIsWindowOpened()) {
-            livingRoom.setSmell(HomeStatsCalculator.calculateSmellWithOpenedWindow(currentSmell));
+        if (livingRoom.getWindow().checkIsWindowOpened()) {
+            smell.setSmell(HomeStatsCalculator.calculateSmellWithOpenedWindow(currentSmell));
         }
 
         OwnerManager.setOwner(currentOwner);

@@ -4,7 +4,6 @@ import { Pressable, Image } from 'react-native';
 import { styles } from './pressable-button.styles';
 
 export const InteractToyButton = ({ item, index, petId }) => {
-    console.log(item);
     return (
         <Pressable style={styles.button}>
             <Image

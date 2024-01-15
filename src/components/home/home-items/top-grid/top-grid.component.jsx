@@ -9,34 +9,16 @@ import { styles } from './top-grid.styles.jsx';
 import { Constants } from '../../../../constants/constants';
 
 export const TopGrid = () => {
-    const {
-        home: {
-            livingRoom: { smell },
-        },
-    } = useOwnerStore(state => state);
-
     return (
-        <View style={styles.topGridContainer}>
-            {smell > 0 && (
-                <ImageBackground
-                    source={{
-                        uri: 'asset:/images/home-items/smell.png',
-                    }}
-                    style={[
-                        styles.smellContainer,
-
-                        { opacity: 0.4 + smell / Constants.MAX_HOME_SMELL },
-                    ]}
-                    imageStyle={styles.smellImage}
-                    resizeMode="contain"
-                />
-            )}
-            <View style={styles.sofaContainer}>
-                <Sofa />
-            </View>
-            <View style={styles.tableContainer}>
-                <Table />
-            </View>
-        </View>
+        <>
+            {/* <View style={styles.topGridContainer}> */}
+            {/* <View style={styles.sofaContainer}> */}
+            <Sofa />
+            {/* </View> */}
+            {/* <View style={styles.tableContainer}> */}
+            {/* <Table /> */}
+            {/* </View> */}
+            {/* </View> */}
+        </>
     );
 };

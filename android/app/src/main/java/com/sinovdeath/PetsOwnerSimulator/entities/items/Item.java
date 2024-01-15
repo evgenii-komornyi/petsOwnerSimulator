@@ -16,7 +16,6 @@ public abstract class Item {
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -24,7 +23,6 @@ public abstract class Item {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -32,7 +30,6 @@ public abstract class Item {
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
@@ -40,7 +37,6 @@ public abstract class Item {
     public BigDecimal getPrice() {
         return price;
     }
-
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
@@ -48,12 +44,10 @@ public abstract class Item {
     public String getForAnimal() {
         return forAnimal;
     }
-
     public void setForAnimal(ItemFor forAnimal) {
         this.forAnimal = forAnimal.getItemFor();
     }
 
     public Stats getStats() { return stats; }
-
     public void setStats(Stats stats) { this.stats = stats; }
 }

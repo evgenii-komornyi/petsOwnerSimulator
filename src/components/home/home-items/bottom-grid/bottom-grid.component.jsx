@@ -16,13 +16,15 @@ export const BottomGrid = () => {
     );
 
     return (
-        <View style={styles.bottomGridContainer}>
-            <View style={styles.catHouseContainer}>
-                {isObjectExists(catHouse) && <CatHouse />}
-            </View>
-            <View style={styles.litterBoxContainer}>
-                {isObjectExists(litterBox) && <LitterBox />}
-            </View>
-        </View>
+        <>
+            {/* <View style={styles.bottomGridContainer}> */}
+            {/* <View style={styles.catHouseContainer}> */}
+            <>{isObjectExists(catHouse) && <CatHouse />}</>
+            {/* </View> */}
+            {/* <View style={styles.litterBoxContainer}> */}
+            <>{isObjectExists(litterBox) && <LitterBox />}</>
+            {/* </View> */}
+            {/* </View> */}
+        </>
     );
 };

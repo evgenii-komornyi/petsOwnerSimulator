@@ -7,6 +7,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
@@ -105,6 +106,7 @@ public class GameService implements IGameService {
 
         for(int i = 0; i <= intervalsCount; i++) {
             if (Checker.IsEveryPetDead(OwnerManager.getCurrentOwner().getPets())) {
+                Log.d("every dead", String.valueOf(Checker.IsEveryPetDead(OwnerManager.getCurrentOwner().getPets())));
                 break;
             }
 
@@ -144,6 +146,7 @@ public class GameService implements IGameService {
                 pet.getStats().setMood(0);
                 pet.getStats().setDigestion(0);
                 pet.getStats().setToyPlayCount(0);
+                Log.d("health", pet.getName() + " - " + String.valueOf(pet.getStats().getHealth()));
             }
         }
     }

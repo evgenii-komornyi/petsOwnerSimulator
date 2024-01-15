@@ -4,20 +4,7 @@ const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     catHouseContainer: {
-        position: 'relative',
-        ...(width >= 360 &&
-            width < 768 && {
-                width: '100%',
-                height: '54%',
-                left: '11%',
-                bottom: '36%',
-            }),
-        ...(width >= 768 && {
-            width: '100%',
-            height: '60%',
-            left: '15%',
-            bottom: '33%',
-        }),
+        position: 'absolute',
     },
     catHouseImage: {
         width: '100%',
@@ -32,6 +19,6 @@ export const styles = StyleSheet.create({
     badgeContainer: {
         position: 'absolute',
         bottom: 0,
-        left: 40,
+        left: 60,
     },
 });

@@ -11,26 +11,20 @@ public class Stats {
     public Stats() {}
 
     public int getHealth() { return health; }
-
-    public int getSatiety() { return satiety; }
-
-    public int getMood() { return mood; }
-
-    public int getDigestion() { return digestion; }
-
-    public int getHappiness() { return happiness; }
-
     public void setHealth(int health) { this.health = health; }
 
+    public int getSatiety() { return satiety; }
     public void setSatiety(int satiety) { this.satiety = satiety; }
 
+    public int getMood() { return mood; }
     public void setMood(int mood) { this.mood = mood; }
 
+    public int getDigestion() { return digestion; }
     public void setDigestion(int digestion) { this.digestion = digestion; }
 
-    public int getToyPlayCount() { return toyPlayCount; }
-
-    public void setToyPlayCount(int toyPlayCount) { this.toyPlayCount = toyPlayCount; }
-
+    public int getHappiness() { return happiness; }
     public void setHappiness(int happiness) { this.happiness = happiness; }
+
+    public int getToyPlayCount() { return toyPlayCount; }
+    public void setToyPlayCount(int toyPlayCount) { this.toyPlayCount = toyPlayCount; }
 }

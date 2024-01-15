@@ -12,7 +12,6 @@ public class NonInteractToy extends Toy implements ICountable, IScratchable {
     public int getCount() {
         return this.count;
     }
-
     @Override
     public void setCount(int count) {
         this.count = count;
@@ -20,13 +19,11 @@ public class NonInteractToy extends Toy implements ICountable, IScratchable {
 
     @Override
     public Integer getDurability() { return this.durability; }
-
     @Override
     public void setDurability(int durability) { this.durability = durability; }
 
     @Override
     public Integer getMaxDurability() { return maxDurability; }
-
     @Override
     public void setMaxDurability(int maxDurability) { this.maxDurability = maxDurability; }
 
