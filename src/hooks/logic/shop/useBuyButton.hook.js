@@ -3,7 +3,6 @@ import useOwnerStore from '../../../app/useOwnerStore';
 import { isObjectExists } from '../../../helpers/objects.helper';
 
 export const useBuyButton = () => {
-    const [isPressed, setIsPressed] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
     const { litterBox, catHouse } = useOwnerStore(
@@ -50,8 +49,6 @@ export const useBuyButton = () => {
     };
 
     return {
-        isPressed,
-        setIsPressed,
         quantity,
         decreaseQuantity,
         increaseQuantity,

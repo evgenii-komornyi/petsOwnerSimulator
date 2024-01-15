@@ -1,22 +1,17 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { Chip } from '@rneui/themed';
-
 import { CustomButton } from './custom-button.component';
-import { BuyRenewButton } from './buy-renew-button.component';
 
 import { styles } from '../shop-list.styles';
+import { CustomText } from '../../../custom-text/custom-text.component';
 
 export const QuantityButtons = ({
-    item,
-    setIsPressed,
     quantity,
     decreaseQuantity,
     increaseQuantity,
-    resetQuantity,
     checkedItem,
-    buttonTitle,
+    isNotEnoughMoney,
 }) => {
     return (
         <View
@@ -30,21 +25,17 @@ export const QuantityButtons = ({
             {checkedItem && (
                 <>
                     <CustomButton content="-" onPress={decreaseQuantity} />
-                    <Chip
-                        title={`${quantity}`}
-                        type="outline"
-                        buttonStyle={styles.quantityTitle}
+                    <CustomText
+                        text={`${quantity}`}
+                        style={styles.quantityTitle}
                     />
-                    <CustomButton content="+" onPress={increaseQuantity} />
+                    <CustomButton
+                        content="+"
+                        onPress={increaseQuantity}
+                        disabled={isNotEnoughMoney}
+                    />
                 </>
             )}
-            <BuyRenewButton
-                item={item}
-                quantity={quantity}
-                resetQuantity={resetQuantity}
-                setIsPressed={setIsPressed}
-                buttonTitle={buttonTitle}
-            />
         </View>
     );
 };

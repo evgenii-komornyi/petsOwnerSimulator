@@ -17,22 +17,22 @@ export const ItemDescription = ({ item }) => {
                 type={Constants.MATERIALCOMMUNITYICONS_ICON}
                 icon={itemType}
                 size={20}
-                color="white"
+                color="black"
             />
         );
     };
 
     return (
         <>
-            <View style={styles.forAnimalContainer}>
+            {/* <View style={styles.forAnimalContainer}>
                 {item.hasOwnProperty('forAnimal') && (
                     <Chip
                         icon={() => checkItemType(item.forAnimal)}
                         containerStyle={{ marginVertical: 5 }}
-                        color="#999999"
+                        color="silver"
                     />
                 )}
-            </View>
+            </View> */}
             <View style={styles.itemDescription}>
                 {item.hasOwnProperty('satisfaction') && (
                     <Chip

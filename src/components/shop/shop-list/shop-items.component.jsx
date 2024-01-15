@@ -20,9 +20,7 @@ export const ShopItems = ({ item }) => {
             </View>
             <FlatList
                 data={item.items}
-                renderItem={({ item }) => (
-                    <ShopItem item={item} category={parentItemCategory} />
-                )}
+                renderItem={({ item }) => <ShopItem item={item} />}
                 horizontal
                 keyExtractor={item => item.id}
             />

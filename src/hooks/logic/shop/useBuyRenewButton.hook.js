@@ -1,17 +1,14 @@
 import useOwnerStore from '../../../app/useOwnerStore';
 import { useToast } from '../../common/useToast.hook';
 
-export const useBuyRenewButton = (
-    item,
-    quantity,
-    setIsPressed,
-    resetQuantity
-) => {
+export const useBuyRenewButton = (item, quantity, resetQuantity) => {
     const { happyPetCoins, buyItem } = useOwnerStore(state => state);
     const toastCaller = useToast();
+    const notEnoughMoney =
+        item.price * quantity > happyPetCoins || item.price > happyPetCoins;
 
     const buy = async () => {
-        if (item.price * quantity > happyPetCoins) {
+        if (notEnoughMoney) {
             toastCaller(`You do not have enough money!`);
 
             return;
@@ -29,9 +26,8 @@ export const useBuyRenewButton = (
             toastCaller(`You bought ${item.name}!`);
         }
 
-        setIsPressed(prev => !prev);
         resetQuantity();
     };
 
-    return { buy };
+    return { buy, notEnoughMoney };
 };

@@ -7,16 +7,14 @@ import { CustomText } from '../../../custom-text/custom-text.component';
 import { QuantityButtons } from './quantity-buttons.component';
 
 import { useBuyButton } from '../../../../hooks/logic/shop/useBuyButton.hook';
+import { useBuyRenewButton } from '../../../../hooks/logic/shop/useBuyRenewButton.hook';
 
 import { Constants } from '../../../../constants/constants';
 
 import { styles } from '../shop-list.styles';
 
-export const BuyButton = ({ item, category }) => {
+export const BuyButton = ({ item }) => {
     const {
-        isPressed,
-        setIsPressed,
-        isDisabled,
         quantity,
         decreaseQuantity,
         increaseQuantity,
@@ -24,42 +22,59 @@ export const BuyButton = ({ item, category }) => {
         checkIsItemCountable,
         returnButtonTitle,
     } = useBuyButton();
+    const { buy, notEnoughMoney } = useBuyRenewButton(
+        item,
+        quantity,
+        resetQuantity
+    );
+    const isItemCountable = checkIsItemCountable(item);
 
     return (
         <View style={styles.buttonContainer}>
+            {isItemCountable && (
+                <QuantityButtons
+                    quantity={quantity}
+                    decreaseQuantity={decreaseQuantity}
+                    increaseQuantity={increaseQuantity}
+                    checkedItem={isItemCountable}
+                    isNotEnoughMoney={notEnoughMoney}
+                />
+            )}
             <Button
                 type="outline"
-                disabled={isDisabled}
-                onPress={() => setIsPressed(prev => !prev)}
-                buttonStyle={[
-                    styles.buyButtonContainer,
-                    isDisabled && { backgroundColor: '#fff' },
-                ]}
+                onPress={buy}
+                disabled={notEnoughMoney}
+                disabledStyle={{ backgroundColor: 'silver' }}
+                buttonStyle={[styles.buyButtonContainer]}
             >
                 <View style={styles.buttonContentWrapper}>
-                    {!isPressed ? (
-                        <>
-                            <Icon
-                                type={Constants.MATERIALICONS_ICON}
-                                icon="add-shopping-cart"
-                                color="black"
-                                size={20}
-                            />
-                            <CustomText text={`${item.price} HPC`} />
-                        </>
-                    ) : (
-                        <QuantityButtons
-                            category={category}
-                            item={item}
-                            setIsPressed={setIsPressed}
-                            quantity={quantity}
-                            decreaseQuantity={decreaseQuantity}
-                            increaseQuantity={increaseQuantity}
-                            resetQuantity={resetQuantity}
-                            checkedItem={checkIsItemCountable(item)}
-                            buttonTitle={returnButtonTitle(item)}
-                        />
-                    )}
+                    <CustomText
+                        text={returnButtonTitle(item)}
+                        style={{
+                            color: 'white',
+                            fontWeight: 'bold',
+                            padding: 3,
+                        }}
+                    />
+                    <Icon
+                        type={Constants.MATERIALICONS_ICON}
+                        icon="add-shopping-cart"
+                        color="white"
+                        size={20}
+                    />
+                    <CustomText
+                        text={`${
+                            isItemCountable ? item.price * quantity : item.price
+                        } HPC`}
+                        style={{
+                            backgroundColor: `${
+                                notEnoughMoney ? 'darkred' : 'transparent'
+                            }`,
+                            color: 'white',
+                            fontWeight: 'bold',
+                            padding: 3,
+                        }}
+                    />
                 </View>
             </Button>
         </View>
