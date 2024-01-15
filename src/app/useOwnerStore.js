@@ -36,6 +36,7 @@ const ownerStore = (set, get) => ({
     settings: {},
     version: {},
     meta: {},
+    // petsInRoom: new Map(),
 
     isLoaded: false,
 

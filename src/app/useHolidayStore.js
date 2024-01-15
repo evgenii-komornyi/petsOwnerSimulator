@@ -11,6 +11,8 @@ const holidayStore = set => ({
     carpet: [],
     frames: [],
 
+    isLoaded: false,
+
     checkHoliday: async () => {
         const data = await checkHoliday();
 
@@ -34,6 +36,7 @@ const holidayStore = set => ({
                     ),
                 });
             }
+            set({ isLoaded: true });
         }
     },
 });

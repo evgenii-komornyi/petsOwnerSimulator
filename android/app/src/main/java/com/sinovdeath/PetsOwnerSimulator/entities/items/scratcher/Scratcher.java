@@ -22,7 +22,6 @@ public abstract class Scratcher extends Item implements IScratchable {
     public ScratcherImage getImage() {
         return image;
     }
-
     public void setImage(ScratcherImage image) {
         this.image = image;
     }

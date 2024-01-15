@@ -1,6 +1,5 @@
 package com.sinovdeath.PetsOwnerSimulator.deserializers;
 
-import com.google.android.exoplayer2.util.Log;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -9,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Cat;
+import com.sinovdeath.PetsOwnerSimulator.entities.pet.RoomPet;
 import com.sinovdeath.PetsOwnerSimulator.enums.AnimalType;
 
 import java.lang.reflect.Type;

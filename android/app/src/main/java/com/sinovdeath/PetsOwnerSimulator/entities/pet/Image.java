@@ -6,6 +6,8 @@ public class Image {
     private String  sleeping;
     private String blinking;
     private String dead;
+    private RoomPet curledUp;
+    private RoomPet sausage;
 
     public Image(String regular, String sad, String sleeping, String dead, String blinking) {
         this.regular = regular;
@@ -34,4 +36,8 @@ public class Image {
     public void setDead(String dead) {
         this.dead = dead;
     }
+
+    public void setCurledUp(RoomPet curledUp) { this.curledUp = curledUp; }
+
+    public void setSausage(RoomPet sausage) { this.sausage = sausage; }
 }

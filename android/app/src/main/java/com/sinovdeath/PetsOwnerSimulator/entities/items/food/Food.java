@@ -18,7 +18,6 @@ public class Food extends Item implements ICountable {
     public FoodImage getImage() {
         return image;
     }
-
     public void setImage(FoodImage image) {
         this.image = image;
     }
@@ -27,7 +26,6 @@ public class Food extends Item implements ICountable {
     public int getCount() {
         return count;
     }
-
     @Override
     public void setCount(int count) {
         this.count = count;

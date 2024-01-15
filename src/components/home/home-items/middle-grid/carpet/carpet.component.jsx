@@ -1,24 +1,35 @@
 import React from 'react';
-import { ImageBackground } from 'react-native';
-import { Image } from 'react-native';
+import { ImageBackground, View, Image, Pressable } from 'react-native';
 
 import { useAudio } from '../../../../../hooks/common/useAudio.hook';
-import useOwnerStore from '../../../../../app/useOwnerStore';
+import { useRelation } from '../../../../../hooks/common/useRelation.hook';
 
-import { DoubleTap } from '../../../../double-tap/double-tap.component';
+import useOwnerStore from '../../../../../app/useOwnerStore';
+import useHolidayStore from '../../../../../app/useHolidayStore';
 
 import { styles } from './carpet.styles';
-import useHolidayStore from '../../../../../app/useHolidayStore';
 
 export const Carpet = () => {
     const {
         home: {
-            livingRoom: { poopOnCarpetCount },
+            livingRoom: { poop, carpet },
         },
         cleanRoom,
     } = useOwnerStore(state => state);
 
-    const { carpet } = useHolidayStore(state => state);
+    const { carpet: holidayCarpet } = useHolidayStore(state => state);
+
+    const { calculateContainerSizeAndOffsets } = useRelation();
+
+    const { width, height, top, left } =
+        calculateContainerSizeAndOffsets('carpet');
+
+    const {
+        width: poopWidth,
+        height: poopHeight,
+        top: poopTop,
+        left: poopLeft,
+    } = calculateContainerSizeAndOffsets('poop');
 
     const [playSound] = useAudio();
 
@@ -28,29 +39,39 @@ export const Carpet = () => {
     };
 
     return (
-        <ImageBackground
-            source={{
-                uri:
-                    carpet[0]?.uri ||
-                    'asset:/images/home-items/carpets/seal.png',
-            }}
-            resizeMode="contain"
-            style={styles.carpetImage}
-        >
-            {poopOnCarpetCount > 0 && (
-                <DoubleTap singleTap={roomCleanup}>
-                    <Image
-                        source={{ uri: 'asset:/images/home-items/poop.png' }}
+        <View style={[styles.carpetContainer, { width, height, top, left }]}>
+            <ImageBackground
+                source={{
+                    uri: holidayCarpet[0]?.uri || carpet.uri,
+                }}
+                resizeMode="center"
+                style={styles.carpetImage}
+            >
+                {poop.poopOnCarpetCount > 0 && (
+                    <View
                         style={{
-                            width: 30,
-                            height: 30,
-                            position: 'relative',
-                            top: '30%',
-                            left: '25%',
+                            width: poopWidth,
+                            height: poopHeight,
+                            position: 'absolute',
+                            top: poopTop,
+                            left: poopLeft,
                         }}
-                    />
-                </DoubleTap>
-            )}
-        </ImageBackground>
+                    >
+                        <Pressable onPress={roomCleanup}>
+                            <Image
+                                source={{
+                                    uri: poop.uri,
+                                }}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    resizeMode: 'contain',
+                                }}
+                            />
+                        </Pressable>
+                    </View>
+                )}
+            </ImageBackground>
+        </View>
     );
 };

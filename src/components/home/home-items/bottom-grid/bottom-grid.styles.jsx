@@ -4,15 +4,13 @@ export const styles = StyleSheet.create({
     bottomGridContainer: {
         flex: 3,
         flexDirection: 'row',
+        borderColor: 'red',
+        borderWidth: 2,
     },
     catHouseContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     litterBoxContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
 });

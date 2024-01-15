@@ -4,21 +4,18 @@ export const styles = StyleSheet.create({
     middleGridContainer: {
         flex: 4,
         flexDirection: 'row',
+        position: 'relative',
+        borderColor: 'green',
+        borderWidth: 2,
     },
     windowContainer: {
         flex: 2,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
     },
     carpetContainer: {
         flex: 6,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
         position: 'relative',
     },
     doorContainer: {
         flex: 2,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
 });

@@ -8,7 +8,6 @@ public class ToyImage extends Image {
     public String getUsed() {
         return used;
     }
-
     public void setUsed(String used) {
         this.used = used;
     }

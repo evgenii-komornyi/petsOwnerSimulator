@@ -21,7 +21,11 @@ public class Constants {
     public static final String ASSETS_FOOD_FOLDER = "asset:/images/food";
     public static final String ASSETS_TOYS_FOLDER = "asset:/images/toys";
     public static final String ASSETS_LITTER_BOXES_FOLDER = "asset:/images/home-items/litter-boxes";
+    public static final String ASSETS_CARPETS_FOLDER = "asset:/images/home-items/carpets";
     public static final String ASSETS_SCRATCHERS_FOLDER = "asset:/images/home-items/scratchers";
+    public static final String ASSETS_WINDOWS_FOLDER = "asset:/images/backgrounds/home/windows";
+    public static final String ASSETS_POOPS_FOLDER = "asset:/images/home-items/poops";
+    public static final String ASSETS_SMELLS_FOLDER = "asset:/images/home-items/smells";
     public static final String ASSETS_HOLIDAYS_FOLDER = "asset:/images/holidays";
 
     public static final String ASSETS_TONGUE_FOLDER = "asset:/animation/pets/lick";
@@ -41,7 +45,7 @@ public class Constants {
 
     public static final String HALLOWEEN_DATES = "22.10, 23.10, 24.10, 25.10, 26.10, 27.10, 28.10, 29.10, 30.10, 31.10, 01.11, 02.11";
 
-    public static final String VERSION = "1.1";
+    public static final String VERSION = "1.3";
 
     public static final String NOTIFICATION_TITLE = "I am hungry!";
     public static final String NOTIFICATION_BODY = "You have to feed your pets!";

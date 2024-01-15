@@ -5,17 +5,6 @@ const { width } = Dimensions.get('window');
 export const styles = StyleSheet.create({
     holidayDecor: {
         position: 'absolute',
-        width: 90,
-        height: 90,
-        ...(width >= 360 &&
-            width < 768 && {
-                width: 70,
-                height: 70,
-            }),
-        ...(width > 768 && {
-            width: 120,
-            height: 120,
-        }),
         zIndex: 2,
     },
     decorImage: {

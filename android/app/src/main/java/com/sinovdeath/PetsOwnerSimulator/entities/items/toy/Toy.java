@@ -10,7 +10,6 @@ public class Toy extends Item {
     public ToyImage getImage() {
         return image;
     }
-
     public void setImage(ToyImage image) {
         this.image = image;
     }
@@ -18,7 +17,6 @@ public class Toy extends Item {
     public String getToyType() {
         return toyType;
     }
-
     public void setToyType(ToyType toyType) {
         this.toyType = toyType.getToyType();
     }

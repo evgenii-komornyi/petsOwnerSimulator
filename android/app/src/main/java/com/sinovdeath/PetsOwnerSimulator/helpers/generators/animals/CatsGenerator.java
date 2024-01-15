@@ -1,10 +1,12 @@
 package com.sinovdeath.PetsOwnerSimulator.helpers.generators.animals;
 
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Room;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animation;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Cat;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Image;
+import com.sinovdeath.PetsOwnerSimulator.entities.pet.RoomPet;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.MoodStats;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.StatsIncreasing;
@@ -190,8 +192,12 @@ public class CatsGenerator {
         String meeshaSad = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, meeshaName, UriType.SAD.getUriValue(), Constants.IMAGE_EXT);
         String meeshaSleeping = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, meeshaName, UriType.SLEEPING.getUriValue(), Constants.IMAGE_EXT);
         String meeshaBlinking = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, meeshaName, UriType.BLINKING.getUriValue(), Constants.IMAGE_EXT);
+        String meeshaCurledUp = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, meeshaName, UriType.CURLED_UP.getUriValue(), Constants.IMAGE_EXT);
+        String meeshaSausage = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, meeshaName, UriType.SAUSAGE.getUriValue(), Constants.IMAGE_EXT);
         String meeshaDead = Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image meeshaImage = new Image(meeshaRegularUri, meeshaSad, meeshaSleeping, meeshaDead, meeshaBlinking);
+        meeshaImage.setCurledUp(new RoomPet(meeshaCurledUp));
+        meeshaImage.setSausage(new RoomPet(meeshaSausage));
         meesha.setImg(meeshaImage);
         meesha.setAnimation(lickAnimation);
         Stats meeshaMaxValues = new Stats();
@@ -350,8 +356,12 @@ public class CatsGenerator {
         String qwertySad = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, qwertyName, UriType.SAD.getUriValue(), Constants.IMAGE_EXT);
         String qwertySleeping = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, qwertyName, UriType.SLEEPING.getUriValue(), Constants.IMAGE_EXT);
         String qwertyBlinking = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, qwertyName, UriType.BLINKING.getUriValue(), Constants.IMAGE_EXT);
+        String qwertyCurledUp = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, qwertyName, UriType.CURLED_UP.getUriValue(), Constants.IMAGE_EXT);
+        String qwertySausage = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, qwertyName, UriType.SAUSAGE.getUriValue(), Constants.IMAGE_EXT);
         String qwertyDead = Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_DEAD_FOLDER, UriType.SHORT_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image qwertyImage = new Image(qwertyRegularUri, qwertySad, qwertySleeping, qwertyDead, qwertyBlinking);
+        qwertyImage.setCurledUp(new RoomPet(qwertyCurledUp));
+        qwertyImage.setSausage(new RoomPet(qwertySausage));
         qwerty.setImg(qwertyImage);
         qwerty.setAnimation(lickAnimation);
         Stats qwertyMaxValues = new Stats();
@@ -390,8 +400,12 @@ public class CatsGenerator {
         String sammySad = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, sammyName, UriType.SAD.getUriValue(), Constants.IMAGE_EXT);
         String sammySleeping = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, sammyName, UriType.SLEEPING.getUriValue(), Constants.IMAGE_EXT);
         String sammyBlinking = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, sammyName, UriType.BLINKING.getUriValue(), Constants.IMAGE_EXT);
+        String sammyCurledUp = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, sammyName, UriType.CURLED_UP.getUriValue(), Constants.IMAGE_EXT);
+        String sammySausage = Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, sammyName, UriType.SAUSAGE.getUriValue(), Constants.IMAGE_EXT);
         String sammyDead = Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_DEAD_FOLDER, UriType.LONG_HAIR.getUriValue(), Constants.IMAGE_EXT);
         Image sammyImage = new Image(sammyRegularUri, sammySad, sammySleeping, sammyDead, sammyBlinking);
+        sammyImage.setCurledUp(new RoomPet(sammyCurledUp));
+        sammyImage.setSausage(new RoomPet(sammySausage));
         sammy.setImg(sammyImage);
         sammy.setAnimation(lickAnimation);
         Stats sammyMaxValues = new Stats();

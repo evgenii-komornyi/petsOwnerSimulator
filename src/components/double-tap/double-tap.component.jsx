@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 
 export const DoubleTap = ({ delay = 150, singleTap, doubleTap, children }) => {
     const [firstPress, setFirstPress] = useState(true);
@@ -32,5 +32,9 @@ export const DoubleTap = ({ delay = 150, singleTap, doubleTap, children }) => {
         };
     }, []);
 
-    return <TouchableOpacity onPress={onTap}>{children}</TouchableOpacity>;
+    return (
+        <TouchableWithoutFeedback onPress={onTap}>
+            {children}
+        </TouchableWithoutFeedback>
+    );
 };

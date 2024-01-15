@@ -4,6 +4,8 @@ public enum UriType {
     SAD("sad"),
     SLEEPING("sleeping"),
     BLINKING("blinking"),
+    CURLED_UP("curled_up"),
+    SAUSAGE("kolbasen"),
     SHORT_HAIR("short_hair"),
     LONG_HAIR("long_hair"),
     FOLDED_EARS("folded_ears"),

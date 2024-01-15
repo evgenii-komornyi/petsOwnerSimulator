@@ -10,7 +10,6 @@ public class LitterBox extends Item {
     public Integer getSlots() {
         return slots;
     }
-
     public void setSlots(Integer slots) {
         this.slots = slots;
     }
@@ -18,7 +17,6 @@ public class LitterBox extends Item {
     public Integer getMaxSlots() {
         return maxSlots;
     }
-
     public void setMaxSlots(Integer maxSlots) {
         this.maxSlots = maxSlots;
     }
@@ -36,7 +34,6 @@ public class LitterBox extends Item {
     public LitterBoxImage getImage() {
         return image;
     }
-
     public void setImage(LitterBoxImage image) {
         this.image = image;
     }

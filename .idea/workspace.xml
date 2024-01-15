@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6c9acb23-f21c-4aea-9937-765a8f5b16de" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/windows/window_closed-day.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/windows/window_closed-night.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/windows/window_open-day.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/windows/window_open-night.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/cats/meesha/berserk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/cats/meesha/curled_up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/cats/qwerty/berserk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/cats/qwerty/curled_up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/cats/sammy/berserk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/cats/sammy/curled_up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/scratchers/sofa-400/scratched_000.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/scratchers/sofa-400/scratched_100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/scratchers/sofa-400/scratched_200.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/scratchers/sofa-400/scratched_300.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/enums/WindowImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PetsOwnerSimulator1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/carpet_happy1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/room.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/room.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/window_closed_day.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/backgrounds/home/window_open_day.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/carpets/seal.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/carpets/seal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/litter-boxes/lb-1000/empty.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/litter-boxes/lb-1000/empty.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/litter-boxes/lb-1000/full.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/litter-boxes/lb-1000/full.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/litter-boxes/lb-1000/unused.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/litter-boxes/lb-1000/unused.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/litter-boxes/lb-1000/used.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/litter-boxes/lb-1000/used.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/scratchers/ch-500/unused.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/scratchers/ch-500/unused.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/scratchers/sofa-400/unused.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/scratchers/sofa-400/unused.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/sofa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/window_closed_day.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/images/home-items/window_open_day.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/assets/index.android.bundle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/assets/index.android.bundle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/deserializers/LivingRoomDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/deserializers/LivingRoomDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/entities/home/room/LivingRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/entities/home/room/LivingRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/entities/owner/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/entities/owner/Owner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/entities/pet/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/entities/pet/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/enums/UriType.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/enums/UriType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/helpers/generators/animals/CatsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/helpers/generators/animals/CatsGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/helpers/generators/home/LivingRoomGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/helpers/generators/home/LivingRoomGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/services/migrator/Migrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/sinovdeath/PetsOwnerSimulator/services/migrator/Migrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/backgrounds/home/carpet_happy1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/backgrounds/home/room.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/backgrounds/home/room.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/backgrounds/home/window_closed_day.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/backgrounds/home/window_open_day.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/carpets/seal.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/home-items/carpets/seal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/litter-boxes/lb-1000/empty.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/home-items/litter-boxes/lb-1000/empty.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/litter-boxes/lb-1000/full.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/home-items/litter-boxes/lb-1000/full.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/litter-boxes/lb-1000/unused.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/home-items/litter-boxes/lb-1000/unused.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/litter-boxes/lb-1000/used.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/home-items/litter-boxes/lb-1000/used.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/scratchers/ch-500/unused.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/home-items/scratchers/ch-500/unused.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/scratchers/sofa-400/unused.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/home-items/scratchers/sofa-400/unused.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/sofa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/window_closed_day.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/home-items/window_open_day.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/useHolidayStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/useHolidayStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/useOwnerStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/useOwnerStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/carousel/sides/front-side.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/carousel/sides/front-side.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/double-tap/double-tap.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/double-tap/double-tap.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-grid/home-grid.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-grid/home-grid.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-grid/home-grid.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-grid/home-grid.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/bottom-grid.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/bottom-grid.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/bottom-grid.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/bottom-grid.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/cat-house/cat-house.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/cat-house/cat-house.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/cat-house/cat-house.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/cat-house/cat-house.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/litter-box/litter-box.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/litter-box/litter-box.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/litter-box/litter-box.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/bottom-grid/litter-box/litter-box.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/carpet/carpet.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/carpet/carpet.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/carpet/carpet.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/carpet/carpet.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/middle-grid.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/middle-grid.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/middle-grid.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/middle-grid.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/window/window.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/window/window.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/window/window.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/middle-grid/window/window.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/top-grid/sofa/sofa.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/top-grid/sofa/sofa.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/top-grid/sofa/sofa.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/top-grid/sofa/sofa.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/top-grid/sofa/toy/toy.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/top-grid/sofa/toy/toy.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/top-grid/top-grid.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/top-grid/top-grid.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/home-items/top-grid/top-grid.styles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/home-items/top-grid/top-grid.styles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pressable-button/interact-toy-button.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pressable-button/interact-toy-button.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/common/useMainInterval.hook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/common/useMainInterval.hook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/@react-native-async-storage/async-storage/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/@react-native-community/cli-platform-android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/@react-native-community/datetimepicker/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-application/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-asset/node_modules/expo-constants/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-asset/node_modules/expo-constants/scripts">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-asset/node_modules/expo-file-system/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-av/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-constants/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-constants/scripts">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-eas-client/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-file-system/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-font/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-json-utils/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-keep-awake/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-manifests/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-modules-autolinking/scripts/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-modules-core/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-navigation-bar/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-splash-screen/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-structured-headers/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-updates">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo-updates-interface/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/expo/scripts">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/lottie-react-native">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-device-info/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-gesture-handler/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-gradle-plugin">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-pager-view/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-permissions/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-reanimated/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-safe-area-context/android">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/node_modules/react-native-svg/android">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2ZOUsePpBQ49DSUTg2BvIQBCtJp" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/projects/ReactNativeProjects/PetsOwnerSimulator/android",
+    "settings.editor.selected.configurable": "preferences.general"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6c9acb23-f21c-4aea-9937-765a8f5b16de" name="Changes" comment="" />
+      <created>1702292826414</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702292826414</updated>
+    </task>
+    <servers />
+  </component>
+</project>

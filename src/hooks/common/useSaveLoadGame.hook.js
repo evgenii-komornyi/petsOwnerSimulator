@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { AppState } from 'react-native';
 import useOwnerStore from '../../app/useOwnerStore';
 import useSettingsStore from '../../app/useSettingsStore';
+import { hideAsync } from 'expo-splash-screen';
 
 export const useSaveLoadGame = () => {
     const { saveGame, loadGame, isLoaded } = useOwnerStore(state => state);
@@ -18,7 +19,7 @@ export const useSaveLoadGame = () => {
 
         AppState.addEventListener('change', handleAppStateChange);
 
-        loadGame();
+        loadGame().then(_ => hideAsync());
         loadSettingsFromLocalStorage();
 
         return () => {

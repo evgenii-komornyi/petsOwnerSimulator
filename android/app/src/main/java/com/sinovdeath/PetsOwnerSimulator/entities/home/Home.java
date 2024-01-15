@@ -13,7 +13,6 @@ public class Home implements Serializable {
     }
 
     public LivingRoom getLivingRoom() { return livingRoom; }
-
     public void setLivingRoom(LivingRoom livingRoom) { this.livingRoom = livingRoom; }
 
     @Override

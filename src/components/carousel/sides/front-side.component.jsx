@@ -1,28 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-native';
+import React from 'react';
 import { Image, View } from 'react-native';
 import { Button } from '@rneui/themed';
 
-import useOwnerStore from '../../../app/useOwnerStore';
+import { useFrontCard } from '../../../hooks/logic/shelter/useFrontCard.hook';
 
 import { styles } from './sides.styles';
 
 export const FrontSide = ({ type, item: pet }) => {
-    const navigate = useNavigate();
-    const { adoptPet, pets } = useOwnerStore(state => state);
-
-    const [ownerPet, setOwnerPet] = useState(null);
-
-    useEffect(() => {
-        setOwnerPet(pets.find(op => op.id === pet.id));
-    }, []);
-
-    const adopt = async () => {
-        await adoptPet(type, pet);
-        navigate('/');
-    };
-
-    const isPetAdopted = ownerPet && ownerPet.id === pet.id;
+    const { adopt, isPetAdopted } = useFrontCard(type, pet);
 
     return (
         <View style={styles.cardFront}>

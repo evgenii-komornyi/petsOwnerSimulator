@@ -2,12 +2,14 @@ package com.sinovdeath.PetsOwnerSimulator.entities.owner;
 
 import android.os.Build;
 
-import androidx.annotation.NonNull;
+import android.util.Log;
 import androidx.annotation.RequiresApi;
 
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.alert.Alert;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Window;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.ICountable;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
@@ -16,9 +18,11 @@ import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.NonInteractToy;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.Toy;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
 import com.sinovdeath.PetsOwnerSimulator.entities.settings.Settings;
+import com.sinovdeath.PetsOwnerSimulator.enums.WindowImage;
 import com.sinovdeath.PetsOwnerSimulator.enums.WindowState;
 import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.Calculator;
 import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.ItemsCalculator;
+import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -57,18 +61,25 @@ public class Owner implements IOwner, Serializable {
 
     @Override
     public void interactWithWindow() {
-        home
-                .getLivingRoom()
-                .setIsWindowOpen(home.
-                        getLivingRoom()
-                        .checkIsWindowOpened() ?
-                            WindowState.CLOSED.getWindowState() :
-                            WindowState.OPENED.getWindowState());
+        LivingRoom livingRoom = home.getLivingRoom();
+        Window window = livingRoom.getWindow();
+
+        if (window.checkIsWindowOpened()) {
+            window.setIsWindowOpen(WindowState.CLOSED.getWindowState());
+            window.setCurrentWindowImage(_generateWindowImagePath(WindowImage.CLOSED_DAY.getWindowImage()));
+        } else {
+            window.setIsWindowOpen(WindowState.OPENED.getWindowState());
+            window.setCurrentWindowImage(_generateWindowImagePath(WindowImage.OPENED_DAY.getWindowImage()));
+        };
+    }
+
+    private static String _generateWindowImagePath(String fileName) {
+        return Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_WINDOWS_FOLDER, fileName, Constants.IMAGE_EXT);
     }
 
     @Override
     public void cleanRoom() {
-        home.getLivingRoom().setPoopOnCarpetCount(0);
+        home.getLivingRoom().getPoop().setPoopOnCarpetCount(0);
     }
 
     @Override
@@ -134,46 +145,33 @@ public class Owner implements IOwner, Serializable {
     public String getName() {
         return name;
     }
-    public BigDecimal getHappyPetCoins() {
-        return happyPetCoins;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Home getHome() {
         return home;
     }
+    public void setHome(Home home) { this.home = home; }
 
-    public List<HashMap<String, Animal>> getPets() {
-        return pets;
-    }
-    public Inventory getInventory() {
-        return inventory;
-    }
-    public Alert getAlert() {
-        return alert;
-    }
-    public String getVersion() { return version; }
+    public List<HashMap<String, Animal>> getPets() { return pets; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setHappyPetCoins(BigDecimal happyPetCoins) {
-        this.happyPetCoins = happyPetCoins;
-    }
-
-    public void setHome(Home home) {
-        this.home = home;
-    }
-
+    public Inventory getInventory() { return inventory; }
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 
+    public Alert getAlert() { return alert; }
     public void setAlert(Alert alert) {
         this.alert = alert;
     }
 
+    public String getVersion() { return version; }
     public void setVersion(String version) { this.version = version; }
+
+
+    public BigDecimal getHappyPetCoins() { return happyPetCoins; }
+    public void setHappyPetCoins(BigDecimal happyPetCoins) { this.happyPetCoins = happyPetCoins; }
 
     public Settings getSettings() { return settings; }
     public void setSettings(Settings settings) { this.settings = settings; }
