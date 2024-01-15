@@ -6,7 +6,7 @@ import { BuyButton } from './buttons/buy-button.component';
 
 import { styles } from './shop-list.styles';
 
-export const ShopItem = ({ item, category }) => {
+export const ShopItem = ({ item }) => {
     return (
         <View style={styles.itemContainerStyle}>
             <View style={styles.itemWrapper}>
@@ -22,7 +22,7 @@ export const ShopItem = ({ item, category }) => {
                 </View>
                 <ItemDescription item={item} />
             </View>
-            <BuyButton item={item} category={category} />
+            <BuyButton item={item} />
         </View>
     );
 };
