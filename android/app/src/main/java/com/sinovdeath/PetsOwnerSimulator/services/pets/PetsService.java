@@ -5,7 +5,9 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.alert.Alert;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.IScratchable;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.feeder.Feeder;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.CatHouse;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.ScratcherImage;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.NonInteractToy;
@@ -18,6 +20,7 @@ import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.HomeStatsCalculator
 import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.PetsStatsCalculator;
 import com.sinovdeath.PetsOwnerSimulator.helpers.checkers.Checker;
 import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
+import com.sinovdeath.PetsOwnerSimulator.managers.ImageManager;
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
 
 import java.util.HashMap;
@@ -40,9 +43,13 @@ public class PetsService implements IPetsService {
             return;
         }
 
-        Toy toy = (Toy) currentOwner.getHome().getLivingRoom().getToy();
-        CatHouse catHouse = (CatHouse) currentOwner.getHome().getLivingRoom().getCatHouse();
+        LivingRoom livingRoom = currentOwner.getHome().getLivingRoom();
+
+        Toy toy = (Toy) livingRoom.getToy();
+        CatHouse catHouse = (CatHouse) livingRoom.getCatHouse();
+        Feeder waterBowl = (Feeder) livingRoom.getFeeder();
         List<HashMap<String, Animal>> pets = currentOwner.getPets();
+        int smell = livingRoom.getSmell().getSmell();
 
         if (!pets.isEmpty()) {
             for (HashMap<String, Animal> petMap : pets) {
@@ -53,6 +60,7 @@ public class PetsService implements IPetsService {
                     int currentMoodLevel = currentPetStats.getMood();
                     int currentDigestionLevel = currentPetStats.getDigestion();
                     int currentToyPlayCount = currentPetStats.getToyPlayCount();
+                    int currentHydrationLevel = currentPetStats.getHydration();
                     Stats maxValues = pet.getMaxValues();
                     int maxHealthLevel = maxValues.getHealth();
                     int maxSatietyLevel = maxValues.getSatiety();
@@ -63,7 +71,7 @@ public class PetsService implements IPetsService {
 
                     if (PetsStatsCalculator.isPetNotDead(currentHealthLevel)) {
                         if (currentSatietyLevel > 0) {
-                            if (currentSatietyLevel > satietyThreshold && currentHealthLevel < maxHealthLevel) {
+                            if (currentSatietyLevel > satietyThreshold && currentHealthLevel < maxHealthLevel && currentHydrationLevel > 0) {
                                 pet.getStats().setHealth(PetsStatsCalculator.increaseHealthLevel(currentHealthLevel, pet.getStatsIncreasing().getHealth(), maxHealthLevel));
                             }
 
@@ -75,7 +83,12 @@ public class PetsService implements IPetsService {
 
                             pet.getStats().setSatiety(newSatiety);
                         } else {
-                            int newHealth = PetsStatsCalculator.decreaseHealthLevel(currentHealthLevel, pet.getStatsReducing().getHealth());
+                            int newHealth = currentHealthLevel;
+
+                            if (currentHydrationLevel != -10) {
+                                newHealth = _lostHealth(pet, pet.getStatsReducing().getHealth());
+                            }
+
                             if (currentHealthLevel > 0) {
                                 if (newHealth == 0) {
                                     tmpAlert = Generator.generateAlertByType("zeroHealth");
@@ -99,7 +112,12 @@ public class PetsService implements IPetsService {
                         }
 
                         int newMood = PetsStatsCalculator.decreaseMoodLevel(currentMoodLevel, pet.getStatsReducing().getMood());
+
                         if (currentMoodLevel > 0) {
+                            if (smell > 0) {
+                                newMood = PetsStatsCalculator.decreaseMoodLevel(currentMoodLevel, 20);
+                            }
+
                             if (newMood == 0) {
                                 tmpAlert = Generator.generateAlertByType("zeroMood");
                                 currentOwner.setAlert(_checkAndCreateAlert(tmpAlert));
@@ -131,16 +149,38 @@ public class PetsService implements IPetsService {
                             }
                         }
 
+                        if (waterBowl != null && !waterBowl.isBowlEmpty() && pet.getStats().getHydration() == 0) {
+                            pet.drink();
+                            tmpAlert = Generator.generateAlertByType("drinkingPet");
+                            currentOwner.setAlert(_checkAndCreateAlert(tmpAlert));
+
+                            pet.pee();
+                            tmpAlert = Generator.generateAlertByType("poopingPet");
+                            currentOwner.setAlert(_checkAndCreateAlert(tmpAlert));
+                        }
+
                         if (PetsStatsCalculator.isPetStillHappy(currentHealthLevel, currentSatietyLevel, currentMoodLevel)) {
                             currentOwner.setHappyPetCoins(Calculator.increaseHappyPetCoins(currentOwner.getHappyPetCoins()));
                         }
                     }
 
+                    if (currentHydrationLevel == 0) {
+                        pet.getStats().setHealth(_lostHealth(pet, 1));
+                    } else {
+                        if (currentHydrationLevel != -10) {
+                            pet.getStats().setHydration(PetsStatsCalculator.decreaseHydration(currentHydrationLevel, pet.getStatsReducing().getHydration()));
+                        }
+                    }
+                    ImageManager.changePetImageByStats(pet);
                 }
             }
         }
 
         OwnerManager.setOwner(currentOwner);
+    }
+
+    private int _lostHealth(Animal pet, int decreaser) {
+        return PetsStatsCalculator.decreaseHealthLevel(pet.getStats().getHealth(), decreaser);
     }
 
     private ScratcherImage _calculateCorrectImage(CatHouse catHouse) {

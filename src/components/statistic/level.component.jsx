@@ -13,6 +13,8 @@ export const Level = ({
     iconStyle,
     additionalStyle = {},
 }) => {
+    const currentLevel = statLevel / maxLevel;
+
     return (
         <View style={[styles.statContainer, additionalStyle]}>
             <View style={iconStyle.container}>
@@ -20,10 +22,10 @@ export const Level = ({
             </View>
             <View style={styles.barContainer}>
                 <LinearProgress
-                    value={statLevel / maxLevel}
+                    value={currentLevel}
                     style={styles.bar}
                     color={`${
-                        statLevel > maxLevel * 0.3
+                        currentLevel * 0.3
                             ? 'rgba(0, 200, 0, 1)'
                             : 'rgb(255, 0, 0)'
                     }`}

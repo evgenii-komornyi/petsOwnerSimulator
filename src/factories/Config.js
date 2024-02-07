@@ -20,6 +20,7 @@ class Config {
             new Offset(3193, 2922)
         );
         const poop = new Picture(new Size(207, 306), new Offset(2200, 400));
+        const pee = new Picture(new Size(244, 196), new Offset(2600, 600));
         const smell = new Picture(new Size(2417, 2526), new Offset(2176, 837));
         const catHouse = new Picture(
             new Size(1031, 1129),
@@ -42,6 +43,10 @@ class Config {
             sausageCatSize,
             new Offset(2698, 451)
         );
+        const waterBowl = new Picture(
+            new Size(343, 343),
+            new Offset(1444, 2853)
+        );
 
         this.#images = {
             sofa,
@@ -49,6 +54,7 @@ class Config {
             carpet,
             decoration: halloweenDecoration,
             poop,
+            pee,
             smell,
             catHouse,
             litterBox,
@@ -56,6 +62,7 @@ class Config {
             curledCatOnSofa,
             curledCatOnCatHouse,
             sausageCatOnWindowSill,
+            waterBowl,
         };
     }
 

@@ -1,6 +1,7 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box;
 
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
+import com.sinovdeath.PetsOwnerSimulator.managers.ImageManager;
 
 public class LitterBox extends Item {
     private Integer slots;
@@ -21,11 +22,13 @@ public class LitterBox extends Item {
         this.maxSlots = maxSlots;
     }
 
-    public Boolean getPetPoop() {
+    public Boolean getPetExcrete() {
         if (slots <= 0) {
             return false;
         } else {
             slots--;
+
+            ImageManager.changeLitterBoxImageBySlotsCount(this);
 
             return true;
         }

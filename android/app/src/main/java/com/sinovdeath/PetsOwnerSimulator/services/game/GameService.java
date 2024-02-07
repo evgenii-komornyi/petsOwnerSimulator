@@ -91,6 +91,12 @@ public class GameService implements IGameService {
             }
 
             _runCalculations(intervalsCount);
+
+            for (HashMap<String, Animal> petMap : existingOwnerInDB.getPets()) {
+                for (Animal pet : petMap.values()) {
+                    pet.getStats().setHydration(150);
+                }
+            }
         }
     }
 

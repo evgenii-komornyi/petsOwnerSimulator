@@ -41,6 +41,10 @@ public class Generator {
                 alert.setSound(SoundManager.getPooSound());
                 alert.setVibration(VibrationManager.getPoopingPet());
                 break;
+            case "drinkingPet":
+                alert = new Alert();
+                alert.setSound(SoundManager.getDrinkSound());
+                break;
         }
 
         return alert;

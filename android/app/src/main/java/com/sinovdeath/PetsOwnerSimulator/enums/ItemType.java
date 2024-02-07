@@ -1,7 +1,7 @@
 package com.sinovdeath.PetsOwnerSimulator.enums;
 
 public enum ItemType {
-    FOOD("Food"), TOYS("Toys"), LITTER_BOXES("Litter Boxes"), HOUSES("Houses"), LITTER_BOX("litterBox"), CAT_HOUSE("catHouse"), FURNITURE("furniture"), DOG_HOUSE("dogHouse"), SCRATCHERS("Scratchers");
+    FOOD("Food"), TOYS("Toys"), LITTER_BOXES("Litter Boxes"), LITTER_BOX("litterBox"), CAT_HOUSE("catHouse"), FURNITURE("furniture"), SCRATCHERS("Scratchers"), FEEDERS("Feeders"), WATER_BOWL("waterBowl");
 
     private String itemType;
 

@@ -1,20 +1,29 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.pet;
 
+import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
-import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Poop;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Pee;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Poop;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.feeder.Bowl;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
 import com.sinovdeath.PetsOwnerSimulator.entities.owner.Owner;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.StatsIncreasing;
 import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.HomeStatsCalculator;
+import com.sinovdeath.PetsOwnerSimulator.helpers.calculators.PetsStatsCalculator;
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
+
+import java.util.Random;
 
 public abstract class Animal implements IAnimal {
     protected String id;
     protected String name;
     protected Image img;
+    protected String currentImage;
     protected Animation animation;
     protected String bio;
+    protected Stats minValues;
     protected Stats maxValues;
     protected Stats stats;
     protected Stats statsReducing;
@@ -29,10 +38,53 @@ public abstract class Animal implements IAnimal {
         Owner owner = OwnerManager.getCurrentOwner();
         LivingRoom livingRoom = owner.getHome().getLivingRoom();
         LitterBox litterBox = (LitterBox) livingRoom.getLitterBox();
-        Poop poop = livingRoom.getPoop();
+        Poop poop = livingRoom.getExcrete().getPoop();
 
-        if (litterBox == null || !litterBox.getPetPoop()) {
-            poop.setPoopOnCarpetCount(HomeStatsCalculator.calculatePoopOnCarpetCount(poop.getPoopOnCarpetCount()));
+        if (litterBox == null || !litterBox.getPetExcrete()) {
+            poop.setPoopOnFloorCount(HomeStatsCalculator.calculatePoopOnFloorCount(poop.getPoopOnFloorCount()));
+        }
+    }
+
+    @Override
+    public void pee() {
+        Owner owner = OwnerManager.getCurrentOwner();
+        LivingRoom livingRoom = owner.getHome().getLivingRoom();
+        LitterBox litterBox = (LitterBox) livingRoom.getLitterBox();
+        Pee pee = livingRoom.getExcrete().getPee();
+
+        if (litterBox == null || !litterBox.getPetExcrete()) {
+            pee.setPeeOnFloorCount(HomeStatsCalculator.calculatePeeOnFloorCount(pee.getPeeOnFloorCount()));
+        }
+    }
+
+    @Override
+    public void eat(Food foodToFeedPet) {
+        int currentPetSatiety = stats.getSatiety();
+
+        if (foodToFeedPet != null) {
+            int currentDigestion = stats.getDigestion();
+
+            stats.setSatiety(PetsStatsCalculator.increaseSatietyAfterFeeding(currentPetSatiety, foodToFeedPet.getSatisfaction(), maxValues.getSatiety()));
+
+            if (currentDigestion == 0) {
+                stats.setDigestion(statsIncreasing.getDigestion());
+            }
+        }
+    }
+
+    @Override
+    public void drink() {
+        Owner currentOwner = OwnerManager.getCurrentOwner();
+        Bowl waterBowl = (Bowl) currentOwner.getHome().getLivingRoom().getFeeder();
+        waterBowl.setCurrentSlots(HomeStatsCalculator.calculateBowlSlotAfterPetDrinking(waterBowl.getCurrentSlots(), 1));
+
+        int minValue = minValues.getHydration();
+        Random random = new Random();
+        int randomValue = random.nextInt(maxValues.getHydration() - minValue) + minValue;
+        stats.setHydration(randomValue);
+
+        if (waterBowl.getDirtinessCalmDown() == 0) {
+            stats.setHealth(PetsStatsCalculator.decreaseHealthLevel(stats.getHealth(), 60));
         }
     }
 
@@ -57,6 +109,9 @@ public abstract class Animal implements IAnimal {
         this.img = img;
     }
 
+    public String getCurrentImage() { return currentImage; }
+    public void setCurrentImage(String currentImage) { this.currentImage = currentImage; }
+
     public Animation getAnimation() { return animation; }
     public void setAnimation(Animation animation) { this.animation = animation; }
 
@@ -66,6 +121,9 @@ public abstract class Animal implements IAnimal {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+    public Stats getMinValues() { return minValues; }
+    public void setMinValues(Stats minValues) { this.minValues = minValues; }
 
     public Stats getMaxValues() { return maxValues; }
     public void setMaxValues(Stats maxValues) { this.maxValues = maxValues; }

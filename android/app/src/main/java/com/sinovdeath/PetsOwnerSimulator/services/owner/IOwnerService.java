@@ -8,6 +8,7 @@ public interface IOwnerService {
     String sayGoodbye(String petId);
     String buyItem(String itemType, String itemToBuy);
     String interactWithWindow();
+    String refillAndCleanBowl();
     String cleanRoom();
     String cleanLitterBox();
     String putItemInRoom(String itemType, String itemToPut);

@@ -18,16 +18,6 @@ export const LitterBox = () => {
     } = useOwnerStore(state => state);
     const [playSound] = useAudio();
 
-    const checkSlotsNumber = slots => {
-        if (Object.keys(litterBox).length === 0) return;
-
-        if (slots <= 3 && slots >= 1) return litterBox.image.used;
-
-        if (slots === 0) return litterBox.image.full;
-
-        return litterBox.image.empty;
-    };
-
     const cleanupLitterBox = async () => {
         await cleanLitterBox();
         await playSound('litterBoxCleanup');
@@ -49,7 +39,7 @@ export const LitterBox = () => {
                 <DoubleTap singleTap={cleanupLitterBox}>
                     <ImageBackground
                         resizeMode="center"
-                        source={{ uri: checkSlotsNumber(litterBox.slots) }}
+                        source={{ uri: litterBox.image.currentImage }}
                         style={styles.litterBoxImage}
                     ></ImageBackground>
                 </DoubleTap>

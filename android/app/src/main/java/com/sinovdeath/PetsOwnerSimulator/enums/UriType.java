@@ -9,6 +9,7 @@ public enum UriType {
     SHORT_HAIR("short_hair"),
     LONG_HAIR("long_hair"),
     FOLDED_EARS("folded_ears"),
+    SHOP("shop"),
     UNUSED("unused"),
     USED("used"),
     EMPTY("empty"),

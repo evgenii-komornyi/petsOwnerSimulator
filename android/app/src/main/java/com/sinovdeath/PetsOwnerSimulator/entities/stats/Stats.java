@@ -7,6 +7,7 @@ public class Stats {
     private int digestion;
     private int toyPlayCount;
     private int happiness;
+    private int hydration;
 
     public Stats() {}
 
@@ -27,4 +28,7 @@ public class Stats {
 
     public int getToyPlayCount() { return toyPlayCount; }
     public void setToyPlayCount(int toyPlayCount) { this.toyPlayCount = toyPlayCount; }
+
+    public int getHydration() { return hydration; }
+    public void setHydration(int hydration) { this.hydration = hydration; }
 }

@@ -11,12 +11,4 @@ public class ToyImage extends Image {
     public void setUsed(String used) {
         this.used = used;
     }
-
-    @Override
-    public String toString() {
-        return "ToyImage{" +
-                "used='" + used + '\'' +
-                ", unused='" + unused + '\'' +
-                '}';
-    }
 }

@@ -7,7 +7,7 @@ export const InteractToyButton = ({ item, index, petId }) => {
     return (
         <Pressable style={styles.button}>
             <Image
-                source={{ uri: item.image.unused }}
+                source={{ uri: item.image.currentImage }}
                 style={[
                     styles.image,
                     {

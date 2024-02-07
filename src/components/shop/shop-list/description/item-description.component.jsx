@@ -7,6 +7,8 @@ import { Icon } from '../../../icon/icon.component';
 import { Constants } from '../../../../constants/constants';
 
 import { styles } from '../shop-list.styles';
+import { CustomText } from '../../../custom-text/custom-text.component';
+import { Stat } from './stat.component';
 
 export const ItemDescription = ({ item }) => {
     const { stats } = item;
@@ -35,78 +37,19 @@ export const ItemDescription = ({ item }) => {
             </View> */}
             <View style={styles.itemDescription}>
                 {item.hasOwnProperty('satisfaction') && (
-                    <Chip
-                        color="success"
-                        title={`${item.satisfaction}`}
-                        icon={() => (
-                            <Icon
-                                type={Constants.ENTYPO_ICON}
-                                icon="triangle-up"
-                                size={20}
-                                color="white"
-                            />
-                        )}
-                        containerStyle={{ marginVertical: 5 }}
-                    />
+                    <Stat stat={item.satisfaction} statType="satisfaction" />
                 )}
                 {item.hasOwnProperty('damage') && (
-                    <Chip
-                        color="error"
-                        title={`${item.damage}`}
-                        icon={() => (
-                            <Icon
-                                type={Constants.ENTYPO_ICON}
-                                icon="triangle-down"
-                                size={20}
-                                color="white"
-                            />
-                        )}
-                    />
+                    <Stat stat={item.damage} statType="damage" />
                 )}
                 {item.hasOwnProperty('maxSlots') && (
-                    <Chip
-                        color="warning"
-                        title={`${item.maxSlots}`}
-                        icon={() => (
-                            <Icon
-                                type={Constants.ENTYPO_ICON}
-                                icon="time-slot"
-                                size={20}
-                                color="white"
-                            />
-                        )}
-                        containerStyle={{ marginVertical: 5 }}
-                    />
+                    <Stat stat={item.maxSlots} statType="maxSlots" />
                 )}
                 {item.hasOwnProperty('durability') && (
-                    <Chip
-                        color="warning"
-                        title={`${item.durability}`}
-                        icon={() => (
-                            <Icon
-                                type={Constants.MATERIALICONS_ICON}
-                                icon="shield"
-                                size={20}
-                                color="white"
-                            />
-                        )}
-                        containerStyle={{ marginVertical: 5 }}
-                    />
+                    <Stat stat={item.durability} statType="durability" />
                 )}
                 {stats && stats.hasOwnProperty('happiness') && (
-                    <Chip
-                        color="success"
-                        title={`${stats.happiness}`}
-                        icon={() => (
-                            <Icon
-                                type={Constants.ENTYPO_ICON}
-                                icon="triangle-up"
-                                size={20}
-                                color="white"
-                            />
-                        )}
-                        containerStyle={{ marginVertical: 5 }}
-                    />
+                    <Stat stat={stats.happiness} statType="happiness" />
                 )}
             </View>
         </>

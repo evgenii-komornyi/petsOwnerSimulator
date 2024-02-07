@@ -56,4 +56,32 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 1,
     },
+    effectBarContainer: {
+        flex: 1,
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        paddingHorizontal: 10,
+    },
+    iconEffectContainer: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    iconEffectItem: {
+        width: 30,
+        height: 30,
+        padding: 5,
+        backgroundColor: 'rgba(255, 0, 0, .1)',
+        borderRadius: 50,
+    },
+    icon: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'contain',
+    },
+    offset: {
+        marginLeft: 10,
+    },
 });

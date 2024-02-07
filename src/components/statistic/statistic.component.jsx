@@ -7,6 +7,7 @@ import { Level } from './level.component';
 import { icons } from '../../data/icons';
 
 import { styles } from './statistic.styles';
+import { EffectBar } from './effect-bar.component';
 
 export const Statistic = ({ id, name, stats, maxValues }) => {
     const checkIconByLevel = levelName =>
@@ -43,6 +44,8 @@ export const Statistic = ({ id, name, stats, maxValues }) => {
                     additionalStyle={{ borderBottomRightRadius: 10 }}
                 />
             )}
+
+            <EffectBar stats={stats} />
         </View>
     );
 };

@@ -3,6 +3,7 @@ package com.sinovdeath.PetsOwnerSimulator.helpers.converters;
 import com.google.gson.Gson;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Home;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.feeder.Bowl;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.CatHouse;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
@@ -58,6 +59,10 @@ public class Converter {
             item = new Gson().fromJson(itemToBuy, CatHouse.class);
         }
 
+        if (type.equals(ItemType.WATER_BOWL.getItemType())) {
+            item = new Gson().fromJson(itemToBuy, Bowl.class);
+        }
+
         return item;
     }
 
@@ -80,7 +85,7 @@ public class Converter {
             }
         }
 
-        if (type.equals(ItemType.CAT_HOUSE.getItemType()) || type.equals(ItemType.LITTER_BOX.getItemType())) {
+        if (type.equals(ItemType.CAT_HOUSE.getItemType()) || type.equals(ItemType.LITTER_BOX.getItemType()) || type.equals(ItemType.WATER_BOWL.getItemType())) {
             existingInventory.addItem(itemToBuy);
         }
 
@@ -98,6 +103,10 @@ public class Converter {
 
         if (item.getType().equals(ItemType.CAT_HOUSE.getItemType())) {
             livingRoom.setCatHouse(item);
+        }
+
+        if (item.getType().equals(ItemType.WATER_BOWL.getItemType())) {
+            livingRoom.setFeeder(item);
         }
 
         home.setLivingRoom(livingRoom);

@@ -21,7 +21,7 @@ const config = {
 
 export const PetCard = ({
     id,
-    img,
+    currentImage,
     blinkAnimation,
     animation,
     name,
@@ -45,7 +45,7 @@ export const PetCard = ({
                 onTouchEnd={touchEnd}
             >
                 <Image
-                    source={{ uri: img }}
+                    source={{ uri: currentImage }}
                     style={[
                         styles.petImage,
                         styles.imageSize,

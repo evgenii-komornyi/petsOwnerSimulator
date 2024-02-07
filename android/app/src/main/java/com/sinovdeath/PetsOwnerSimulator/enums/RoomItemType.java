@@ -1,7 +1,7 @@
 package com.sinovdeath.PetsOwnerSimulator.enums;
 
 public enum RoomItemType {
-    DEFAULT_CARPET("seal"), POOP("normal_poop"), POOP_SMELL("poop_smell");
+    DEFAULT_CARPET("seal"), POOP("normal_poop"), PEE("pee"), POOP_SMELL("poop_smell");
 
     private String roomItemType;
 

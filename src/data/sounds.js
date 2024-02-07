@@ -7,4 +7,5 @@ export const sounds = {
     poo: { uri: 'asset:/audio/poo.mp3' },
     purring: { uri: 'asset:/audio/purring.mp3' },
     sad: { uri: 'asset:/audio/sad.mp3' },
+    cleanRenewBowl: { uri: 'asset:/audio/clean_renew_bowl.mp3' },
 };

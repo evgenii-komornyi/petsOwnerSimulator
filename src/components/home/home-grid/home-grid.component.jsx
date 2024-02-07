@@ -30,7 +30,6 @@ export const HomeGrid = () => {
         },
     } = useOwnerStore(state => state);
     const { randomPlaces } = useFreeSlotPropsStore(state => state);
-
     const {
         checkRelation,
         padding,
@@ -61,7 +60,10 @@ export const HomeGrid = () => {
     } = calculateContainerSizeAndOffsets('smell');
 
     const renderFreeSlots = () => {
-        if (pets.length === 1) {
+        if (
+            pets.length === 1 &&
+            pets.every(({ stats }) => stats.health !== 0)
+        ) {
             return (
                 <FreeCatsSlot
                     petPlace={randomPlaces[0].petPlace}
@@ -71,7 +73,7 @@ export const HomeGrid = () => {
         }
 
         return pets
-            .filter(pet => !pet.wasTaken)
+            .filter(pet => !pet.wasTaken || pet.stats.health !== 0)
             .map((pet, index) => (
                 <FreeCatsSlot
                     key={pet.id}
@@ -126,6 +128,7 @@ export const HomeGrid = () => {
                                     height: smellHeight,
                                     top: smellTop,
                                     left: smellLeft,
+                                    zIndex: 998,
                                     opacity:
                                         0.4 + smell / Constants.MAX_HOME_SMELL,
                                 },
