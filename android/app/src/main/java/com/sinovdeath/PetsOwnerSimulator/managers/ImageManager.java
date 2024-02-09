@@ -1,5 +1,6 @@
 package com.sinovdeath.PetsOwnerSimulator.managers;
 
+import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBoxImage;
 import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
@@ -30,12 +31,11 @@ public class ImageManager {
 
         if (stats.getHealth() == 0) {
             pathToImage = images.getDead();
-        }
-
-        if (stats.getMood() == 0) {
+        } else if (stats.getMood() == 0) {
             pathToImage = images.getSad();
         }
 
         pet.setCurrentImage(pathToImage);
+        Log.d("image", pathToImage);
     }
 }
