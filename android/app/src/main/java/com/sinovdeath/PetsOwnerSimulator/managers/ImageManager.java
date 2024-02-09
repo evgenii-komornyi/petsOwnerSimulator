@@ -36,6 +36,5 @@ public class ImageManager {
         }
 
         pet.setCurrentImage(pathToImage);
-        Log.d("image", pathToImage);
     }
 }
