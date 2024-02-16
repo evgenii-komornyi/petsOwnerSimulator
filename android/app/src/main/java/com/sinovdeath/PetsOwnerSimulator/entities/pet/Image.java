@@ -6,13 +6,15 @@ public class Image {
     private String  sleeping;
     private String blinking;
     private String dead;
+    private String dehydrated;
     private RoomPet curledUp;
     private RoomPet sausage;
 
-    public Image(String regular, String sad, String sleeping, String dead, String blinking) {
+    public Image(String regular, String sad, String sleeping, String dehydrated, String dead, String blinking) {
         this.regular = regular;
         this.sad = sad;
         this.sleeping = sleeping;
+        this.dehydrated = dehydrated;
         this.blinking = blinking;
         this.dead = dead;
     }
@@ -48,6 +50,9 @@ public class Image {
     public void setDead(String dead) {
         this.dead = dead;
     }
+
+    public String getDehydrated() { return dehydrated; }
+    public void setDehydrated(String dehydrated) { this.dehydrated = dehydrated; }
 
     public RoomPet getCurledUp() {
         return curledUp;

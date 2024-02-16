@@ -61,6 +61,7 @@ public class Calculator {
 
                     currentPetStats.setToyPlayCount(random.nextInt(pet.getMaxValues().getToyPlayCount()) + 1);
                     currentPetStats.setMood(PetsStatsCalculator.increaseMoodBySwipeDirection(pet.getStatsIncreasing().getMood(), currentPetStats, pet.getMaxValues().getMood(), swipeDirection));
+                    pet.setCurrentImage(pet.getImg().getRegular());
                 }
             }
         }

@@ -272,6 +272,20 @@ public class Migrator implements IMigrator {
             }
         }
 
+        version = currentOwner.getVersion();
+
+        if (version.equals("1.6")) {
+            currentOwner.setVersion("1.7");
+            List<HashMap<String, Animal>> pets = currentOwner.getPets();
+            if (!pets.isEmpty()) {
+                for (HashMap<String, Animal> petMap : pets) {
+                    for (Animal pet : petMap.values()) {
+                        pet.getImg().setDehydrated(Generator.generatePathToFile(Constants.LONG_PATH_FORMAT, Constants.ASSETS_CATS_FOLDER, pet.getName().toLowerCase(), UriType.DEHYDRATED.getUriValue(), Constants.IMAGE_EXT));
+                    }
+                }
+            }
+        }
+
         return currentOwner;
     }
 }

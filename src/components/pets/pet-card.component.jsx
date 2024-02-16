@@ -13,6 +13,7 @@ import { usePetCard } from '../../hooks/logic/pets/usePetCard.hook';
 
 import { styles } from './pets.styles';
 import { styles as holidayStyles } from '../holiday/holiday.styles';
+import { Effect } from './effect/effect.component.jsx';
 
 const config = {
     velocityThreshold: 0.1,
@@ -25,6 +26,7 @@ export const PetCard = ({
     blinkAnimation,
     animation,
     name,
+    img,
     petIdx,
     stats,
     moodIncreasing,
@@ -66,6 +68,9 @@ export const PetCard = ({
                             styles.imageSize,
                         ]}
                     />
+                ) : null}
+                {stats.hydration === 0 ? (
+                    <Effect path={img.dehydrated} />
                 ) : null}
                 <Animation petId={id} animation={animation} />
                 {frames.length && petIdx <= frames.length - 1 ? (

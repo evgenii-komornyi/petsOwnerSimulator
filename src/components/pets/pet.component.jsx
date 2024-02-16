@@ -30,7 +30,6 @@ export const Pet = ({
         { height: 130 },
         stats.health
     );
-
     const { blinkImage } = usePet(stats, img);
 
     return (
@@ -42,6 +41,7 @@ export const Pet = ({
                     animation={animation}
                     name={name}
                     id={id}
+                    img={img}
                     petIdx={petIdx}
                     stats={stats}
                     moodIncreasing={statsIncreasing.mood}

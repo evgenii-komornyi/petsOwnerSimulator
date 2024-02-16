@@ -48,6 +48,7 @@ public class AnimalMapListDeserializer implements JsonDeserializer<List<HashMap<
 
             animalMapList.add(animalMap);
         }
+
         return animalMapList;
     }
 }
