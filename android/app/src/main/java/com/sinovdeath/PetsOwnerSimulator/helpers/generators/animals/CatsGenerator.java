@@ -553,7 +553,7 @@ public class CatsGenerator {
         sammyTestMinValues.setHydration(150);
         sammyTest.setMinValues(sammyTestMinValues);
         Stats sammyTestMaxValues = new Stats();
-        sammyTestMaxValues.setHealth(1500);
+        sammyTestMaxValues.setHealth(1);
         sammyTestMaxValues.setSatiety(720);
         sammyTestMaxValues.setMood(360);
         sammyTestMaxValues.setDigestion(60);
@@ -584,7 +584,7 @@ public class CatsGenerator {
         sammyTest.setType(AnimalType.CATS.getAnimalType());
 
         // Test cats
-//        cats.add(sammyTest);
+        cats.add(sammyTest);
 
         // Original cats
 //        cats.add(coffee);

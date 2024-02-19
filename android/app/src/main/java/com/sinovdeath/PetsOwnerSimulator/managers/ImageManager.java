@@ -33,6 +33,8 @@ public class ImageManager {
             pathToImage = images.getDead();
         } else if (stats.getMood() == 0) {
             pathToImage = images.getSad();
+        } else {
+            pathToImage = images.getRegular();
         }
 
         pet.setCurrentImage(pathToImage);
