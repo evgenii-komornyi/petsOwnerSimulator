@@ -18,6 +18,7 @@ import com.sinovdeath.PetsOwnerSimulator.entities.settings.Settings;
 import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
 import com.sinovdeath.PetsOwnerSimulator.helpers.checkers.Checker;
 import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
+import com.sinovdeath.PetsOwnerSimulator.managers.ImageManager;
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
 import com.sinovdeath.PetsOwnerSimulator.modules.HomeModule;
 import com.sinovdeath.PetsOwnerSimulator.repositories.game.GameRepository;
@@ -158,7 +159,8 @@ public class GameService implements IGameService {
                 pet.getStats().setHydration(0);
                 pet.getStats().setDigestion(0);
                 pet.getStats().setToyPlayCount(0);
-                Log.d("health", pet.getName() + " - " + String.valueOf(pet.getStats().getHealth()));
+                ImageManager.changePetImageByStats(pet);
+//                Log.d("health", pet.getName() + " - " + String.valueOf(pet.getStats().getHealth()));
             }
         }
     }

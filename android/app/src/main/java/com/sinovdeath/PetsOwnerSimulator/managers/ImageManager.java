@@ -27,7 +27,7 @@ public class ImageManager {
     public static void changePetImageByStats(Animal pet) {
         Image images = pet.getImg();
         Stats stats = pet.getStats();
-        String pathToImage = images.getRegular();
+        String pathToImage;
 
         if (stats.getHealth() == 0) {
             pathToImage = images.getDead();

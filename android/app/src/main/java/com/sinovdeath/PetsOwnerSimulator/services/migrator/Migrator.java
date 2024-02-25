@@ -266,7 +266,7 @@ public class Migrator implements IMigrator {
             if (!pets.isEmpty()) {
                 for (HashMap<String, Animal> petMap : pets) {
                     for (Animal pet : petMap.values()) {
-                        pet.setCurrentImage(pet.getImg().getRegular());
+                        ImageManager.changePetImageByStats(pet);
                     }
                 }
             }

@@ -584,7 +584,7 @@ public class CatsGenerator {
         sammyTest.setType(AnimalType.CATS.getAnimalType());
 
         // Test cats
-        cats.add(sammyTest);
+//        cats.add(sammyTest);
 
         // Original cats
 //        cats.add(coffee);
