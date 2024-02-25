@@ -10,6 +10,7 @@ public abstract class Item {
     protected String name;
     protected String type;
     protected String forAnimal;
+    protected String description;
     protected BigDecimal price;
     protected Stats stats;
 
@@ -50,4 +51,7 @@ public abstract class Item {
 
     public Stats getStats() { return stats; }
     public void setStats(Stats stats) { this.stats = stats; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

@@ -10,6 +10,7 @@ public abstract class Room {
     protected Item litterBox;
     protected Item catHouse;
     protected Item sofa;
+    protected Item feeder;
 
     public String getRoomType() { return roomType; }
     public void setRoomType(String roomType) { this.roomType = roomType; }
@@ -28,4 +29,7 @@ public abstract class Room {
 
     public Item getSofa() { return sofa; }
     public void setSofa(Item sofa) { this.sofa = sofa; }
+
+    public Item getFeeder() { return feeder; }
+    public void setFeeder(Item feeder) { this.feeder = feeder; }
 }

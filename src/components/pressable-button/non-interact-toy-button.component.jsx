@@ -12,7 +12,7 @@ export const NonInteractToyButton = ({ item, index }) => {
     return (
         <Pressable style={styles.button} onPress={() => putItemInRoom(item)}>
             <Image
-                source={{ uri: item.image.unused }}
+                source={{ uri: item.image.currentImage }}
                 style={[
                     styles.image,
                     {

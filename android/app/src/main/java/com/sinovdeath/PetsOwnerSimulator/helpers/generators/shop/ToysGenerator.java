@@ -30,6 +30,8 @@ public class ToysGenerator {
         mouse_1.setStats(mouse_1Stats);
         ToyImage mouse_1Image = new ToyImage();
         mouse_1Image.setUnused(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_TOYS_FOLDER, mouse_1.getName(), Constants.IMAGE_EXT));
+        mouse_1Image.setShopImage(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_TOYS_FOLDER, mouse_1.getName(), Constants.IMAGE_EXT));
+        mouse_1Image.setCurrentImage(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_TOYS_FOLDER, mouse_1.getName(), Constants.IMAGE_EXT));
         mouse_1.setImage(mouse_1Image);
         mouse_1.setMaxDurability(100);
         mouse_1.setDurability(mouse_1.getMaxDurability());
@@ -44,6 +46,8 @@ public class ToysGenerator {
         wand_1.setForAnimal(ItemFor.CAT);
         ToyImage wand_1Image = new ToyImage();
         wand_1Image.setUnused(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_TOYS_FOLDER, wand_1.getName(), Constants.IMAGE_EXT));
+        wand_1Image.setShopImage(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_TOYS_FOLDER, wand_1.getName(), Constants.IMAGE_EXT));
+        wand_1Image.setCurrentImage(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_TOYS_FOLDER, wand_1.getName(), Constants.IMAGE_EXT));
         wand_1.setImage(wand_1Image);
         wand_1.setMaxDurability(150);
         wand_1.setDurability(wand_1.getMaxDurability());

@@ -12,6 +12,8 @@ import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Window;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.ICountable;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.feeder.Bowl;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.feeder.Feeder;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.NonInteractToy;
@@ -73,13 +75,24 @@ public class Owner implements IOwner, Serializable {
         };
     }
 
+    @Override
+    public void refillAndCleanBowl() {
+        LivingRoom livingRoom = home.getLivingRoom();
+        Bowl bowl = (Bowl) livingRoom.getFeeder();
+
+        if (bowl != null) {
+            bowl.refillAndClean();
+        }
+    }
+
     private static String _generateWindowImagePath(String fileName) {
         return Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_WINDOWS_FOLDER, fileName, Constants.IMAGE_EXT);
     }
 
     @Override
     public void cleanRoom() {
-        home.getLivingRoom().getPoop().setPoopOnCarpetCount(0);
+        home.getLivingRoom().getExcrete().getPoop().setPoopOnFloorCount(0);
+        home.getLivingRoom().getExcrete().getPee().setPeeOnFloorCount(0);
     }
 
     @Override
@@ -87,7 +100,12 @@ public class Owner implements IOwner, Serializable {
         Food foodToFeedPet = Calculator.calculateFoodCountAfterFeeding(inventory.getFood(), itemId);
 
         if (foodToFeedPet != null) {
-            Calculator.calculatePetInFeedingTime(pets, petId, foodToFeedPet);
+            for (HashMap<String, Animal> petMap : pets) {
+                Animal pet = petMap.get(petId);
+                if (pet != null) {
+                    pet.eat(foodToFeedPet);
+                }
+            }
         }
     }
 
@@ -105,6 +123,7 @@ public class Owner implements IOwner, Serializable {
     public void cleanLitterBox() {
         LitterBox litterBox = (LitterBox) home.getLivingRoom().getLitterBox();
         litterBox.setSlots(litterBox.getMaxSlots());
+        litterBox.getImage().setCurrentImage(litterBox.getImage().getEmpty());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

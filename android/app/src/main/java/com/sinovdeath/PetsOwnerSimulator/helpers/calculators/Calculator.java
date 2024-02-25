@@ -31,26 +31,6 @@ public class Calculator {
         return currentHPC.add(new BigDecimal(Constants.HPC_INCREMENT_VALUE));
     }
 
-    public static void calculatePetInFeedingTime(List<HashMap<String, Animal>> pets, String petId, Food foodToFeedPet) {
-        for (HashMap<String, Animal> petMap : pets) {
-            Animal pet = petMap.get(petId);
-            if (pet != null) {
-                Stats currentPetStats = pet.getStats();
-                int currentPetSatiety = currentPetStats.getSatiety();
-
-                if (foodToFeedPet != null) {
-                    int currentDigestion = currentPetStats.getDigestion();
-
-                    currentPetStats.setSatiety(PetsStatsCalculator.increaseSatietyAfterFeeding(currentPetSatiety, foodToFeedPet.getSatisfaction(), pet.getMaxValues().getSatiety()));
-
-                    if (currentDigestion == 0) {
-                        currentPetStats.setDigestion(pet.getStatsIncreasing().getDigestion());
-                    }
-                }
-            }
-        }
-    }
-
     public static Food calculateFoodCountAfterFeeding(List<Item> food, String itemId) {
         Food foodToFeedPet = null;
         for (Item item : food) {
@@ -81,6 +61,7 @@ public class Calculator {
 
                     currentPetStats.setToyPlayCount(random.nextInt(pet.getMaxValues().getToyPlayCount()) + 1);
                     currentPetStats.setMood(PetsStatsCalculator.increaseMoodBySwipeDirection(pet.getStatsIncreasing().getMood(), currentPetStats, pet.getMaxValues().getMood(), swipeDirection));
+                    pet.setCurrentImage(pet.getImg().getRegular());
                 }
             }
         }

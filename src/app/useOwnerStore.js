@@ -18,6 +18,7 @@ import {
     feedPet,
     getCurrentOwner,
     interactWithWindow,
+    refillAndCleanBowl,
     petPet,
     putItemInRoom,
     sayGoodbye,
@@ -36,7 +37,6 @@ const ownerStore = (set, get) => ({
     settings: {},
     version: {},
     meta: {},
-    // petsInRoom: new Map(),
 
     isLoaded: false,
 
@@ -221,6 +221,20 @@ const ownerStore = (set, get) => ({
     interactWithWindow: async () => {
         try {
             const data = await interactWithWindow();
+
+            if (data) {
+                const { home } = JSON.parse(data);
+
+                set({ home });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    },
+
+    refillAndCleanBowl: async () => {
+        try {
+            const data = await refillAndCleanBowl();
 
             if (data) {
                 const { home } = JSON.parse(data);

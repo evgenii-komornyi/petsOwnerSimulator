@@ -1,18 +1,20 @@
 package com.sinovdeath.PetsOwnerSimulator.enums;
 
 public enum UriType {
-    SAD("sad"),
-    SLEEPING("sleeping"),
     BLINKING("blinking"),
     CURLED_UP("curled_up"),
-    SAUSAGE("kolbasen"),
-    SHORT_HAIR("short_hair"),
-    LONG_HAIR("long_hair"),
-    FOLDED_EARS("folded_ears"),
-    UNUSED("unused"),
-    USED("used"),
+    DEHYDRATED("dehydrated"),
     EMPTY("empty"),
-    FULL("full");
+    FOLDED_EARS("folded_ears"),
+    FULL("full"),
+    LONG_HAIR("long_hair"),
+    SAD("sad"),
+    SAUSAGE("kolbasen"),
+    SHOP("shop"),
+    SHORT_HAIR("short_hair"),
+    SLEEPING("sleeping"),
+    UNUSED("unused"),
+    USED("used");
 
     private final String uriValue;
 

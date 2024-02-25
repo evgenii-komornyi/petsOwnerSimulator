@@ -5,6 +5,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.feeder.Bowl;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.Item;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.CatHouse;
@@ -27,6 +28,8 @@ public class ItemDeserializer implements JsonDeserializer<Item> {
                 return context.deserialize(json, LitterBox.class);
             case "catHouse":
                 return context.deserialize(json, CatHouse.class);
+            case "waterBowl":
+                return context.deserialize(json, Bowl.class);
             default:
                 throw new JsonParseException("Unknown item type: " + type);
         }

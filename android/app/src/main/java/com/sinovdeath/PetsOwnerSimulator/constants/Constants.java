@@ -7,10 +7,10 @@ public class Constants {
     public static final String HPC = "200.00";
     public static final String HPC_INCREMENT_VALUE = "0.15";
 
-    public static final int MAX_POOP_ON_CARPET_COUNT = 100;
-    public static final int POOP_ON_CARPET_COUNT_INCREASE = 1;
+    public static final int MAX_EXCRETE_ON_FLOOR_COUNT = 100;
+    public static final int EXCRETE_ON_FLOOR_COUNT_INCREASE = 1;
     public static final int MAX_SMELL_LEVEL = 100;
-    public static final int SMELL_DECREASE = 2;
+    public static final int SMELL_FROM_POOP_DECREASE = 2;
 
     public static final String ASSETS_ROOMS = "asset:/images/backgrounds/home";
     public static final String DEFAULT_ROOM = "room";
@@ -24,8 +24,9 @@ public class Constants {
     public static final String ASSETS_CARPETS_FOLDER = "asset:/images/home-items/carpets";
     public static final String ASSETS_SCRATCHERS_FOLDER = "asset:/images/home-items/scratchers";
     public static final String ASSETS_WINDOWS_FOLDER = "asset:/images/backgrounds/home/windows";
-    public static final String ASSETS_POOPS_FOLDER = "asset:/images/home-items/poops";
+    public static final String ASSETS_EXCRETE_FOLDER = "asset:/images/home-items/excrete";
     public static final String ASSETS_SMELLS_FOLDER = "asset:/images/home-items/smells";
+    public static final String ASSETS_FEEDERS_FOLDER = "asset:/images/home-items/feeders";
     public static final String ASSETS_HOLIDAYS_FOLDER = "asset:/images/holidays";
 
     public static final String ASSETS_TONGUE_FOLDER = "asset:/animation/pets/lick";
@@ -45,7 +46,7 @@ public class Constants {
 
     public static final String HALLOWEEN_DATES = "22.10, 23.10, 24.10, 25.10, 26.10, 27.10, 28.10, 29.10, 30.10, 31.10, 01.11, 02.11";
 
-    public static final String VERSION = "1.3";
+    public static final String VERSION = "1.5";
 
     public static final String NOTIFICATION_TITLE = "I am hungry!";
     public static final String NOTIFICATION_BODY = "You have to feed your pets!";

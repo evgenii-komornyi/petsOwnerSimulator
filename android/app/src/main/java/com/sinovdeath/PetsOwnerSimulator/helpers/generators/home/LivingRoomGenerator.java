@@ -3,7 +3,9 @@ package com.sinovdeath.PetsOwnerSimulator.helpers.generators.home;
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Image;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Carpet;
-import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Poop;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Excrete;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Pee;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Poop;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Smell;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Window;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
@@ -21,10 +23,15 @@ public class LivingRoomGenerator {
         LivingRoom livingRoom = new LivingRoom();
 
         livingRoom.setRoomType(RoomType.LIVING_ROOM.getRoomType());
+        Excrete excrete = new Excrete();
         Poop poop = new Poop();
-        poop.setPoopOnCarpetCount(0);
-        poop.setUri(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_POOPS_FOLDER, RoomItemType.POOP.getRoomItemType(), Constants.IMAGE_EXT));
-        livingRoom.setPoop(poop);
+        poop.setPoopOnFloorCount(0);
+        poop.setUri(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_EXCRETE_FOLDER, RoomItemType.POOP.getRoomItemType(), Constants.IMAGE_EXT));
+        excrete.setPoop(poop);
+        Pee pee = new Pee();
+        pee.setPeeOnFloorCount(0);
+        pee.setUri(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_EXCRETE_FOLDER, RoomItemType.PEE.getRoomItemType(), Constants.IMAGE_EXT));
+        excrete.setPee(pee);
         Smell smell = new Smell();
         smell.setSmell(0);
         smell.setUri(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_SMELLS_FOLDER, RoomItemType.POOP_SMELL.getRoomItemType(), Constants.IMAGE_EXT));
@@ -43,6 +50,7 @@ public class LivingRoomGenerator {
         livingRoom.setCatHouse(new CatHouse());
         livingRoom.setToy(new NonInteractToy());
         livingRoom.setSofa(_generateSofa());
+        livingRoom.setExcrete(excrete);
 
         return livingRoom;
     }

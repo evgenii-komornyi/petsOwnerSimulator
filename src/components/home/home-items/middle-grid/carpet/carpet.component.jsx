@@ -12,7 +12,10 @@ import { styles } from './carpet.styles';
 export const Carpet = () => {
     const {
         home: {
-            livingRoom: { poop, carpet },
+            livingRoom: {
+                excrete: { poop, pee },
+                carpet,
+            },
         },
         cleanRoom,
     } = useOwnerStore(state => state);
@@ -31,6 +34,13 @@ export const Carpet = () => {
         left: poopLeft,
     } = calculateContainerSizeAndOffsets('poop');
 
+    const {
+        width: peeWidth,
+        height: peeHeight,
+        top: peeTop,
+        left: peeLeft,
+    } = calculateContainerSizeAndOffsets('pee');
+
     const [playSound] = useAudio();
 
     const roomCleanup = async () => {
@@ -47,7 +57,7 @@ export const Carpet = () => {
                 resizeMode="center"
                 style={styles.carpetImage}
             >
-                {poop.poopOnCarpetCount > 0 && (
+                {poop.poopOnFloorCount > 0 && (
                     <View
                         style={{
                             width: poopWidth,
@@ -61,6 +71,31 @@ export const Carpet = () => {
                             <Image
                                 source={{
                                     uri: poop.uri,
+                                }}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    resizeMode: 'contain',
+                                }}
+                            />
+                        </Pressable>
+                    </View>
+                )}
+                {pee.peeOnFloorCount > 0 && (
+                    <View
+                        style={{
+                            width: peeWidth,
+                            height: peeHeight,
+                            position: 'absolute',
+                            zIndex: 999,
+                            top: peeTop,
+                            left: peeLeft,
+                        }}
+                    >
+                        <Pressable onPress={roomCleanup}>
+                            <Image
+                                source={{
+                                    uri: pee.uri,
                                 }}
                                 style={{
                                     width: '100%',

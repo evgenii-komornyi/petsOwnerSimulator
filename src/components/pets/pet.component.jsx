@@ -13,7 +13,16 @@ import { styles as globalStyles } from '../../styles/global.styles';
 
 export const Pet = ({
     petIdx,
-    item: { id, name, img, animation, stats, statsIncreasing, maxValues },
+    item: {
+        id,
+        name,
+        currentImage,
+        img,
+        animation,
+        stats,
+        statsIncreasing,
+        maxValues,
+    },
     touchStart,
     touchEnd,
 }) => {
@@ -21,17 +30,18 @@ export const Pet = ({
         { height: 130 },
         stats.health
     );
-    const { currentImg, blinkImage } = usePet(stats, img);
+    const { blinkImage } = usePet(stats, img);
 
     return (
         <View style={styles.mainContainer}>
             <View style={styles.petContainer}>
                 <PetCard
-                    img={currentImg}
+                    currentImage={currentImage}
                     blinkAnimation={blinkImage}
                     animation={animation}
                     name={name}
                     id={id}
+                    img={img}
                     petIdx={petIdx}
                     stats={stats}
                     moodIncreasing={statsIncreasing.mood}

@@ -10,7 +10,6 @@ public class LitterBoxImage extends Image {
     public String getUsed() {
         return used;
     }
-
     public void setUsed(String used) {
         this.used = used;
     }
@@ -18,7 +17,6 @@ public class LitterBoxImage extends Image {
     public String getEmpty() {
         return empty;
     }
-
     public void setEmpty(String empty) {
         this.empty = empty;
     }
@@ -26,7 +24,6 @@ public class LitterBoxImage extends Image {
     public String getFull() {
         return full;
     }
-
     public void setFull(String full) {
         this.full = full;
     }

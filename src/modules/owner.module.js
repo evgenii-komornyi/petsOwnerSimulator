@@ -20,6 +20,8 @@ export const buyItem = (itemType, itemToBuy) =>
 
 export const interactWithWindow = () => callOwnerAPI('interactWithWindow');
 
+export const refillAndCleanBowl = () => callOwnerAPI('refillAndCleanBowl');
+
 export const cleanRoom = () => callOwnerAPI('cleanRoom');
 
 export const cleanLitterBox = () => callOwnerAPI('cleanLitterBox');

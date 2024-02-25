@@ -79,7 +79,7 @@ public class OwnerService implements IOwnerService {
         Item item = Converter.convertItemFromString(itemType, itemToBuy);
         Owner owner = OwnerManager.getCurrentOwner();
 
-        if (itemType.equals(ItemType.LITTER_BOX.getItemType()) || itemType.equals(ItemType.CAT_HOUSE.getItemType()))
+        if (itemType.equals(ItemType.LITTER_BOX.getItemType()) || itemType.equals(ItemType.CAT_HOUSE.getItemType()) || itemType.equals(ItemType.WATER_BOWL.getItemType()))
         {
             owner.setHome(Converter.createHomeWithCorrectItems(item));
         }
@@ -95,6 +95,15 @@ public class OwnerService implements IOwnerService {
     public String interactWithWindow() {
         Owner currentOwner = OwnerManager.getCurrentOwner();
         currentOwner.interactWithWindow();
+        OwnerManager.setOwner(currentOwner);
+
+        return Generator.generateJson(OwnerManager.getCurrentOwner());
+    }
+
+    @Override
+    public String refillAndCleanBowl() {
+        Owner currentOwner = OwnerManager.getCurrentOwner();
+        currentOwner.refillAndCleanBowl();
         OwnerManager.setOwner(currentOwner);
 
         return Generator.generateJson(OwnerManager.getCurrentOwner());

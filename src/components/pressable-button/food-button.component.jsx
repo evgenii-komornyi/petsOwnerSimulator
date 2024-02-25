@@ -17,7 +17,7 @@ export const FoodButton = ({ petId, item, index }) => {
                 disabled={isDisabled}
             >
                 <Image
-                    source={{ uri: item.image.unused }}
+                    source={{ uri: item.image.currentImage }}
                     style={[
                         styles.image,
                         {

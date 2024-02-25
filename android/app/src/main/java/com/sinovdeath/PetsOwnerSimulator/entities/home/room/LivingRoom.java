@@ -1,15 +1,18 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.home.room;
 
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Excrete;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Poop;
+
 import java.io.Serializable;
 
 public class LivingRoom extends Room implements Serializable {
-    private Poop poop;
+    private Excrete excrete;
     private Smell smell;
     private Window window;
     private Carpet carpet;
 
-    public Poop getPoop() { return poop; }
-    public void setPoop(Poop poop) { this.poop = poop; }
+    public Excrete getExcrete() { return excrete; }
+    public void setExcrete(Excrete excrete) { this.excrete = excrete; }
 
     public Smell getSmell() { return smell; }
     public void setSmell(Smell smell) { this.smell = smell; }
@@ -18,13 +21,12 @@ public class LivingRoom extends Room implements Serializable {
     public Window getWindow() { return window; }
 
     public void setCarpet(Carpet carpet) { this.carpet = carpet; }
-
     public Carpet getCarpet() { return carpet; }
 
     @Override
     public String toString() {
         return "LivingRoom{" +
-                "poop=" + poop +
+                "excrete=" + excrete +
                 ", smell=" + smell +
                 ", window=" + window +
                 ", carpet=" + carpet +

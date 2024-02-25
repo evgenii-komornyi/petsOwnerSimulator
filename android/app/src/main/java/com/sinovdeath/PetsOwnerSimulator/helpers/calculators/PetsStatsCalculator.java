@@ -69,4 +69,8 @@ public class PetsStatsCalculator {
     public static int calculateMoodAfterPetScratchingFail(int currentMoodLevel, int decreaseValue) {
         return Math.max(currentMoodLevel - decreaseValue, 0);
     }
+
+    public static int decreaseHydration(int currentHydrationLevel, int decreaser) {
+        return Math.max(currentHydrationLevel - decreaser, 0);
+    }
 }

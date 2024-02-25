@@ -28,20 +28,22 @@ const freeSlotPropsStore = set => ({
 
     generateRandomPetsPosition: pets => {
         if (pets.length > 0) {
-            pets.filter(pet => !pet.wasTaken).forEach(_ => {
-                const freePlaces = availablePlaces.filter(
-                    place => place.isFree
-                );
-                const freePlace = freePlaces[getRandom(freePlaces.length)];
+            pets.filter(pet => !pet.wasTaken || pet.stats.health > 0).forEach(
+                _ => {
+                    const freePlaces = availablePlaces.filter(
+                        place => place.isFree
+                    );
+                    const freePlace = freePlaces[getRandom(freePlaces.length)];
 
-                set(state => ({
-                    randomPlaces: [...state.randomPlaces, freePlace],
-                }));
-                const placeToOccupy = availablePlaces.find(
-                    place => place.id === freePlace.id
-                );
-                placeToOccupy.isFree = false;
-            });
+                    set(state => ({
+                        randomPlaces: [...state.randomPlaces, freePlace],
+                    }));
+                    const placeToOccupy = availablePlaces.find(
+                        place => place.id === freePlace.id
+                    );
+                    placeToOccupy.isFree = false;
+                }
+            );
         }
     },
 });

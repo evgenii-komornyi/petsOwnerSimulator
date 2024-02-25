@@ -22,7 +22,8 @@ public class FoodGenerator {
         chicken_10k.setType(ItemType.FOOD.getItemType().toLowerCase());
         chicken_10k.setForAnimal(ItemFor.CAT);
         FoodImage chicken_10kImage = new FoodImage();
-        chicken_10kImage.setUnused(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_FOOD_FOLDER, chicken_10k.getName(), Constants.IMAGE_EXT));
+        chicken_10kImage.setShopImage(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_FOOD_FOLDER, chicken_10k.getName(), Constants.IMAGE_EXT));
+        chicken_10kImage.setCurrentImage(Generator.generatePathToFile(Constants.SHORT_PATH_FORMAT, Constants.ASSETS_FOOD_FOLDER, chicken_10k.getName(), Constants.IMAGE_EXT));
         chicken_10k.setImage(chicken_10kImage);
         chicken_10k.setSatisfaction(720);
         chicken_10k.setPrice(new BigDecimal("25.00"));

@@ -67,6 +67,9 @@ public class OwnerModule extends ReactContextBaseJavaModule {
     public void interactWithWindow(Promise promise) { promise.resolve(_ownerService.interactWithWindow()); }
 
     @ReactMethod
+    public void refillAndCleanBowl(Promise promise) { promise.resolve(_ownerService.refillAndCleanBowl()); }
+
+    @ReactMethod
     public void cleanRoom(Promise promise) {
         promise.resolve(_ownerService.cleanRoom());
     }
