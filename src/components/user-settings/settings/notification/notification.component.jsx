@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { View, Pressable } from 'react-native';
 
-import { SettingsTitle } from '../settings-title.component';
+import { SettingsTitle } from '../../settings-title.component';
 import { NotificationInput } from './notification-input.component';
 import { CustomText } from '../../../custom-text/custom-text.component';
 

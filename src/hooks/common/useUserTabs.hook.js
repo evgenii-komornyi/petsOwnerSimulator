@@ -3,26 +3,26 @@ import { Constants } from '../../constants/constants';
 
 export const useUserTabs = () => {
     return [
-        // {
-        //     path: '/account',
-        //     name: 'Account',
-        //     activeIcon: (
-        //         <Icon
-        //             type={Constants.MATERIALCOMMUNITYICONS_ICON}
-        //             icon="clipboard-account"
-        //             size={Constants.MENU_ICON_SIZE}
-        //             color="white"
-        //         />
-        //     ),
-        //     inactiveIcon: (
-        //         <Icon
-        //             type={Constants.MATERIALCOMMUNITYICONS_ICON}
-        //             icon="clipboard-account-outline"
-        //             size={Constants.MENU_ICON_SIZE}
-        //             color="white"
-        //         />
-        //     ),
-        // },
+        {
+            path: '/account',
+            name: 'Account',
+            activeIcon: (
+                <Icon
+                    type={Constants.MATERIALCOMMUNITYICONS_ICON}
+                    icon="clipboard-account"
+                    size={Constants.MENU_ICON_SIZE}
+                    color="white"
+                />
+            ),
+            inactiveIcon: (
+                <Icon
+                    type={Constants.MATERIALCOMMUNITYICONS_ICON}
+                    icon="clipboard-account-outline"
+                    size={Constants.MENU_ICON_SIZE}
+                    color="white"
+                />
+            ),
+        },
         {
             path: '/settings',
             name: 'Settings',

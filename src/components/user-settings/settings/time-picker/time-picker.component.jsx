@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { SettingsTitle } from '../settings-title.component';
+import { SettingsTitle } from '../../settings-title.component';
 import { Alarm } from './alarm.component';
 
 import useOwnerStore from '../../../../app/useOwnerStore';

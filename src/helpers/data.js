@@ -29,10 +29,10 @@ export const routes = [
         path: '/carousel',
         screen: <CarouselScreen />,
     },
-    // {
-    //     path: '/account',
-    //     screen: <AccountScreen />,
-    // },
+    {
+        path: '/account',
+        screen: <AccountScreen />,
+    },
     {
         path: '/settings',
         screen: <SettingsScreen />,

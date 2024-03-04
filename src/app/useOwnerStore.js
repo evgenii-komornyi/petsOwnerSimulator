@@ -35,7 +35,7 @@ const ownerStore = (set, get) => ({
     inventory: {},
     alert: {},
     settings: {},
-    version: {},
+    version: '',
     meta: {},
 
     isLoaded: false,

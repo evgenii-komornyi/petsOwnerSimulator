@@ -23,3 +23,11 @@ export const readFromStorage = async key => {
         return null;
     }
 };
+
+export const clearSettings = async () => {
+    try {
+        await AsyncStorage.removeItem('settings');
+    } catch (error) {
+        console.log(error);
+    }
+};
