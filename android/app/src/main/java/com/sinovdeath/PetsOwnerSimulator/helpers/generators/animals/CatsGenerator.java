@@ -596,7 +596,7 @@ public class CatsGenerator {
 //        cats.add(owl);
 //        cats.add(picasso);
         cats.add(qwerty);
-        cats.add(sammyTest);
+        cats.add(sammy);
 //        cats.add(houdini);
 
         return cats;

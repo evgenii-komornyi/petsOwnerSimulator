@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Pressable, Dimensions } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { Switch } from '@rneui/themed';
 
 import { CustomText } from '../../../custom-text/custom-text.component';
