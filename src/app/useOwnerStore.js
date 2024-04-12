@@ -84,6 +84,7 @@ const ownerStore = (set, get) => ({
                 owner = await loadGame(new Date().toUTCString());
             } else {
                 owner = await loadGame(meta.saveMoment);
+                set({ meta });
             }
 
             if (owner) {
@@ -118,14 +119,22 @@ const ownerStore = (set, get) => ({
 
     saveGame: async () => {
         try {
-            saveGame();
+            const metaData = get().meta;
+
             await saveToStorage('meta', {
-                ...get().meta,
+                ...metaData,
                 saveMoment: new Date().toUTCString(),
+                oldOwnerVersion: get().version,
             });
+
+            saveGame();
         } catch (error) {
             console.error(error);
         }
+    },
+
+    setMeta: metaData => {
+        set(state => ({ ...state.meta, meta: metaData }));
     },
 
     resetGame: () => {

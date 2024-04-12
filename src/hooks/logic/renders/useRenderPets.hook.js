@@ -4,13 +4,16 @@ import { GameOver } from '../../../components/pets/game-over.component';
 import { GameOverWithoutUsingAvailablePets } from '../../../components/pets/game-over-without-using-available-pets.component.jsx';
 import { Pet } from '../../../components/pets/pet.component';
 
+import useOwnerStore from '../../../app/useOwnerStore.js';
+
 import { usePets } from '../pets/usePets.hook';
 
 import { Constants } from '../../../constants/constants';
 
 import { styles } from '../../../components/pets/pets.styles';
 
-export const useRenderPets = pets => {
+export const useRenderPets = () => {
+    const { pets } = useOwnerStore(state => state);
     const { flatListRef, handleTouchStart, handleTouchEnd } = usePets(pets);
 
     const renderPetsComponent = () => {

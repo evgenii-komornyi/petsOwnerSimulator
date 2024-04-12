@@ -1,18 +1,10 @@
 import { NativeModules } from 'react-native';
+import { apiHandler } from '../helpers/api.helper';
 
 const { Game } = NativeModules;
 
-export const loadGame = async saveMoment => {
-    let data = null;
-
-    try {
-        data = await Game.loadGame({ saveMoment });
-    } catch (error) {
-        console.log(error);
-    }
-
-    return data;
-};
+export const loadGame = async saveMoment =>
+    apiHandler(Game.loadGame, { saveMoment });
 
 export const resetGame = () => {
     Game.resetGame();

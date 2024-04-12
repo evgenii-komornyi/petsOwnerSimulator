@@ -39,7 +39,10 @@ export default class Tabs extends React.PureComponent {
     }
 
     reset() {
-        this.values = this.props.tabs?.map(
+        const { defaultIndexTab, tabs } = this.props;
+        if (defaultIndexTab === -1) return;
+
+        this.values = tabs?.map(
             (_, index) =>
                 new Animated.Value(index === this.activeTabIndex ? 1 : 0)
         );
@@ -98,6 +101,7 @@ export default class Tabs extends React.PureComponent {
             labelStyle,
             onTabChange,
             containerWidth,
+            defaultIndexTab,
         } = this.props;
         let customWidth = containerWidth ? containerWidth : width;
         let mergeLabelStyle = { ...styles.labelStyle, ...labelStyle };
@@ -128,7 +132,7 @@ export default class Tabs extends React.PureComponent {
                         extrapolate: 'clamp',
                     });
 
-                    if (this.values.length !== tabs.length) {
+                    if (defaultIndexTab === 1) {
                         this.reset();
                     }
 
@@ -137,6 +141,7 @@ export default class Tabs extends React.PureComponent {
                         outputRange: [0, 1],
                         extrapolate: 'clamp',
                     });
+
                     return (
                         <React.Fragment {...{ key }}>
                             <TouchableWithoutFeedback

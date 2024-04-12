@@ -4,6 +4,7 @@ import { Constants } from '../../constants/constants';
 export const usePetTabs = () => {
     return [
         {
+            menu: 'pet',
             path: '/',
             name: 'Pets',
             activeIcon: (
@@ -24,6 +25,7 @@ export const usePetTabs = () => {
             ),
         },
         {
+            menu: 'pet',
             path: '/home',
             name: 'Home',
             activeIcon: (
@@ -44,6 +46,7 @@ export const usePetTabs = () => {
             ),
         },
         {
+            menu: 'pet',
             path: '/shop',
             name: 'Shop',
             activeIcon: (
@@ -64,6 +67,7 @@ export const usePetTabs = () => {
             ),
         },
         // {
+        //     menu: 'pet',
         //     path: '/vet',
         //     name: 'Vet',
         //     activeIcon: (

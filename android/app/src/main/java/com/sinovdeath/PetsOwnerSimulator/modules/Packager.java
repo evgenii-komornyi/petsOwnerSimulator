@@ -30,6 +30,7 @@ public class Packager implements ReactPackage {
         modules.add(new HomeModule(reactApplicationContext));
         modules.add(new HolidayModule(reactApplicationContext));
         modules.add(new SettingsModule(reactApplicationContext));
+        modules.add(new HelpModule(reactApplicationContext));
 
         return modules;
     }

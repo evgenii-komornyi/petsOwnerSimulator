@@ -1,15 +1,6 @@
 import { NativeModules } from 'react-native';
+import { apiHandler } from '../helpers/api.helper';
 
 const { Shelter } = NativeModules;
 
-export const getShelter = async () => {
-    let data = null;
-
-    try {
-        data = await Shelter.getShelter();
-    } catch (error) {
-        console.log(error);
-    }
-
-    return data;
-};
+export const getShelter = async () => apiHandler(Shelter.getShelter);

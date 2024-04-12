@@ -24,12 +24,12 @@ preventAutoHideAsync();
 
 export default () => {
     const { isHolidaysLoaded } = useMainInterval();
-    const isLoaded = useSaveLoadGame();
+    const { isOwnerLoaded, isSettingsLoaded } = useSaveLoadGame();
 
     return (
         <SafeAreaProvider>
             <NativeRouter>
-                {isLoaded && isHolidaysLoaded ? (
+                {isOwnerLoaded && isSettingsLoaded && isHolidaysLoaded ? (
                     <View style={styles.container}>
                         <Header />
                         <RoutesMap />

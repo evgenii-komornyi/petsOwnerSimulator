@@ -1,15 +1,6 @@
 import { NativeModules } from 'react-native';
+import { apiHandler } from '../helpers/api.helper';
 
 const { Home } = NativeModules;
 
-export const calculateHomeStats = async () => {
-    let data = null;
-
-    try {
-        data = await Home.calculateStats();
-    } catch (error) {
-        console.log(error);
-    }
-
-    return data;
-};
+export const calculateHomeStats = async () => apiHandler(Home.calculateStats);

@@ -7,14 +7,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.Image;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Carpet;
-import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Excrete;
-import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Poop;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Smell;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.Window;
-import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
+import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Excrete;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.feeder.Bowl;
-import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.CatHouse;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.litter_box.LitterBox;
+import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.CatHouse;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.scratcher.Sofa;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.InteractToy;
 import com.sinovdeath.PetsOwnerSimulator.entities.items.toy.NonInteractToy;
@@ -34,50 +33,12 @@ public class LivingRoomDeserializer implements JsonDeserializer<LivingRoom> {
         Toy toy = _generateToyByType(context, jsonObject);
         Sofa sofa = context.deserialize(jsonObject.get("sofa"), Sofa.class);
         Bowl bowl = context.deserialize(jsonObject.get("feeder"), Bowl.class);
-
-        JsonElement isWindowOpen = jsonObject.get("isWindowOpen");
-        JsonElement poopOnCarpetCount = jsonObject.get("poopOnCarpetCount");
-        JsonElement smellCount = jsonObject.get("smell");
-
-        Window window = new Window();
-        Excrete excrete = new Excrete();
-        Poop poop = new Poop();
-        Smell smell = new Smell();
-        LivingRoom livingRoom = new LivingRoom();
-
-        if (
-                isWindowOpen != null &&
-                poopOnCarpetCount != null &&
-                smellCount != null &&
-                isWindowOpen.isJsonPrimitive() &&
-                poopOnCarpetCount.isJsonPrimitive() &&
-                smellCount.isJsonPrimitive()
-        ) {
-            window.setIsWindowOpen(isWindowOpen.getAsBoolean());
-            poop.setPoopOnFloorCount(poopOnCarpetCount.getAsInt());
-            smell.setSmell(smellCount.getAsInt());
-            livingRoom.setWindow(window);
-            excrete.setPoop(poop);
-            livingRoom.setExcrete(excrete);
-            livingRoom.setSmell(smell);
-        }
-
-        JsonElement windowObjectElement = jsonObject.get("window");
-        JsonElement excreteObjectElement = jsonObject.get("excrete");
-        JsonElement smellObjectElement = jsonObject.get("smell");
-
-        if (
-                windowObjectElement != null &&
-                excreteObjectElement != null &&
-                smellObjectElement != null
-        ) {
-            smell = context.deserialize(smellObjectElement, Smell.class);
-            livingRoom.setWindow(context.deserialize(windowObjectElement, Window.class));
-            livingRoom.setExcrete(context.deserialize(excreteObjectElement, Excrete.class));
-            livingRoom.setSmell(smell);
-        }
-
+        Window window = context.deserialize(jsonObject.get("window"), Window.class);
         Carpet carpet = context.deserialize(jsonObject.get("carpet"), Carpet.class);
+        Excrete excrete = context.deserialize(jsonObject.get("excrete"), Excrete.class);
+        Smell smell = context.deserialize(jsonObject.get("smell"), Smell.class);
+
+        LivingRoom livingRoom = new LivingRoom();
 
         livingRoom.setRoomType(roomType);
         livingRoom.setImage(roomImage);
@@ -86,6 +47,9 @@ public class LivingRoomDeserializer implements JsonDeserializer<LivingRoom> {
         livingRoom.setToy(toy);
         livingRoom.setSofa(sofa);
         livingRoom.setFeeder(bowl != null && bowl.getId() != null ? bowl : null);
+        livingRoom.setExcrete(excrete);
+        livingRoom.setSmell(smell);
+        livingRoom.setWindow(window);
         livingRoom.setCarpet(carpet);
 
         return livingRoom;
