@@ -1,15 +1,6 @@
 import { NativeModules } from 'react-native';
+import { apiHandler } from '../helpers/api.helper';
 
 const { Shop } = NativeModules;
 
-export const getShop = async () => {
-    let data = null;
-
-    try {
-        data = await Shop.getShop();
-    } catch (error) {
-        console.log(error);
-    }
-
-    return data;
-};
+export const getShop = () => apiHandler(Shop.getShop);

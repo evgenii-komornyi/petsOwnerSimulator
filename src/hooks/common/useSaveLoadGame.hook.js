@@ -5,8 +5,16 @@ import useSettingsStore from '../../app/useSettingsStore';
 import { hideAsync } from 'expo-splash-screen';
 
 export const useSaveLoadGame = () => {
-    const { saveGame, loadGame, isLoaded } = useOwnerStore(state => state);
-    const { loadSettingsFromLocalStorage } = useSettingsStore(state => state);
+    const {
+        saveGame,
+        loadGame,
+        isLoaded: isOwnerLoaded,
+    } = useOwnerStore(state => state);
+    const {
+        loadSettingsFromLocalStorage,
+        getHelp,
+        isLoaded: isSettingsLoaded,
+    } = useSettingsStore(state => state);
 
     useEffect(() => {
         const handleAppStateChange = async nextAppState => {
@@ -21,11 +29,12 @@ export const useSaveLoadGame = () => {
 
         loadGame().then(_ => hideAsync());
         loadSettingsFromLocalStorage();
+        getHelp();
 
         return () => {
             AppState.removeEventListener('change', handleAppStateChange);
         };
     }, []);
 
-    return isLoaded;
+    return { isOwnerLoaded, isSettingsLoaded };
 };

@@ -1,27 +1,11 @@
 import { NativeModules } from 'react-native';
+import { apiHandler } from '../helpers/api.helper';
 
-const { Settings } = NativeModules;
+const { Settings, Help } = NativeModules;
 
-export const setAlarm = async (id, hours, minutes) => {
-    let data = null;
+export const setAlarm = (id, hours, minutes) =>
+    apiHandler(Settings.setAlarm, { id, hours, minutes });
 
-    try {
-        data = await Settings.setAlarm({ id, hours, minutes });
-    } catch (error) {
-        console.log(error);
-    }
+export const cancelAlarm = id => apiHandler(Settings.cancelAlarm, { id });
 
-    return data;
-};
-
-export const cancelAlarm = async id => {
-    let data = null;
-
-    try {
-        data = await Settings.cancelAlarm({ id });
-    } catch (error) {
-        console.log(error);
-    }
-
-    return data;
-};
+export const getHelp = () => apiHandler(Help.getHelp);

@@ -1,16 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
     Dimensions,
     View,
     Animated,
-    Text,
 } from 'react-native';
 import * as shape from 'd3-shape';
 import Svg, { Path } from 'react-native-svg';
 import Tabs from './tabs.component';
-import { styles } from '../navigation.styles';
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 const { width } = Dimensions.get('window');

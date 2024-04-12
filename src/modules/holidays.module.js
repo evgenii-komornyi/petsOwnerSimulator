@@ -1,15 +1,6 @@
 import { NativeModules } from 'react-native';
+import { apiHandler } from '../helpers/api.helper';
 
 const { Holiday } = NativeModules;
 
-export const checkHoliday = async () => {
-    let data = null;
-
-    try {
-        data = await Holiday.checkHoliday();
-    } catch (error) {
-        console.log(error);
-    }
-
-    return data;
-};
+export const checkHoliday = async () => apiHandler(Holiday.checkHoliday);

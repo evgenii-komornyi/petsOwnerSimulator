@@ -41,8 +41,8 @@ export const routes = [
     //     path: '/changelog',
     //     screen: <ChangelogScreen />,
     // },
-    // {
-    //     path: '/help',
-    //     screen: <HelpScreen />,
-    // },
+    {
+        path: '/help',
+        screen: <HelpScreen />,
+    },
 ];

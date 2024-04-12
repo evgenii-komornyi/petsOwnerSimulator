@@ -13,7 +13,8 @@ import { Constants } from '../../constants/constants';
 import { styles } from './navigation.styles';
 
 export const Navigation = () => {
-    const { isUserSettings } = useUserStore(state => state);
+    const { isUserSettings, defaultIndexTab, increaseIndex, isHelpMenu } =
+        useUserStore(state => state);
     const navigate = useNavigate();
     const petTabs = usePetTabs();
     const userTabs = useUserTabs();
@@ -22,19 +23,25 @@ export const Navigation = () => {
         setTimeout(() => {
             navigate(e.path);
         }, 100);
+        increaseIndex();
     };
 
     return (
-        <TabNavigation
-            tabs={isUserSettings ? userTabs : petTabs}
-            tabBarContainerBackground={
-                isUserSettings ? '#000' : Constants.MAIN_COLOR
-            }
-            tabBarBackground="#FFE4E1"
-            activeTabBackground={isUserSettings ? '#000' : Constants.MAIN_COLOR}
-            labelStyle={styles.label}
-            onTabChange={handleTabChange}
-            transitionSpeed={100}
-        />
+        !isHelpMenu && (
+            <TabNavigation
+                tabs={isUserSettings ? userTabs : petTabs}
+                tabBarContainerBackground={
+                    isUserSettings ? '#000' : Constants.MAIN_COLOR
+                }
+                tabBarBackground="#FFE4E1"
+                activeTabBackground={
+                    isUserSettings ? '#000' : Constants.MAIN_COLOR
+                }
+                labelStyle={styles.label}
+                onTabChange={handleTabChange}
+                transitionSpeed={100}
+                defaultIndexTab={defaultIndexTab}
+            />
+        )
     );
 };

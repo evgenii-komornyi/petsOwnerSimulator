@@ -4,6 +4,7 @@ import { Constants } from '../../constants/constants';
 export const useUserTabs = () => {
     return [
         {
+            menu: 'user',
             path: '/account',
             name: 'Account',
             activeIcon: (
@@ -24,6 +25,7 @@ export const useUserTabs = () => {
             ),
         },
         {
+            menu: 'user',
             path: '/settings',
             name: 'Settings',
             activeIcon: (
@@ -44,6 +46,7 @@ export const useUserTabs = () => {
             ),
         },
         // {
+        //     menu: 'user',
         //     path: '/changelog',
         //     name: 'Changelog',
         //     activeIcon: (
@@ -64,6 +67,7 @@ export const useUserTabs = () => {
         //     ),
         // },
         // {
+        //     menu: 'user',
         //     path: '/help',
         //     name: 'Help',
         //     activeIcon: (

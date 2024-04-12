@@ -25,7 +25,7 @@ export const useMainInterval = () => {
         state => state
     );
     const { setImages } = useRelationStore(state => state);
-    const { randomPlaces, generateRandomPetsPosition } = useFreeSlotPropsStore(
+    const { generateRandomPetsPosition } = useFreeSlotPropsStore(
         state => state
     );
 

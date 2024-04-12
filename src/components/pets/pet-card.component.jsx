@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 import { View, Image } from 'react-native';
@@ -20,79 +20,81 @@ const config = {
     directionalOffsetThreshold: 80,
 };
 
-export const PetCard = ({
-    id,
-    currentImage,
-    blinkAnimation,
-    animation,
-    name,
-    img,
-    petIdx,
-    stats,
-    moodIncreasing,
-    touchStart,
-    touchEnd,
-}) => {
-    const [onSwipe] = usePetCard(id, stats, moodIncreasing, config);
-    const { frames } = useHolidayStore(state => state);
+export const PetCard = memo(
+    ({
+        id,
+        currentImage,
+        blinkAnimation,
+        animation,
+        name,
+        img,
+        petIdx,
+        stats,
+        moodIncreasing,
+        touchStart,
+        touchEnd,
+    }) => {
+        const [onSwipe] = usePetCard(id, stats, moodIncreasing, config);
+        const { frames } = useHolidayStore(state => state);
 
-    return (
-        <GestureRecognizer
-            onSwipe={(direction, state) => onSwipe(direction, state)}
-            config={config}
-        >
-            <View
-                style={styles.petCardContainer}
-                onTouchStart={touchStart}
-                onTouchEnd={touchEnd}
+        return (
+            <GestureRecognizer
+                onSwipe={(direction, state) => onSwipe(direction, state)}
+                config={config}
             >
-                <Image
-                    source={{ uri: currentImage }}
-                    style={[
-                        styles.petImage,
-                        styles.imageSize,
-                        {
-                            backgroundColor:
-                                stats.health === 0
-                                    ? 'rgba(0, 0, 0, 0.8)'
-                                    : 'rgba(106, 90, 205, .8)',
-                        },
-                    ]}
-                />
-                {blinkAnimation !== null ? (
+                <View
+                    style={styles.petCardContainer}
+                    onTouchStart={touchStart}
+                    onTouchEnd={touchEnd}
+                >
                     <Image
-                        source={{ uri: blinkAnimation }}
+                        source={{ uri: currentImage }}
                         style={[
-                            { position: 'absolute', zIndex: 12 },
                             styles.petImage,
                             styles.imageSize,
+                            {
+                                backgroundColor:
+                                    stats.health === 0
+                                        ? 'rgba(0, 0, 0, 0.8)'
+                                        : 'rgba(106, 90, 205, .8)',
+                            },
                         ]}
                     />
-                ) : null}
-                {stats.hydration === 0 ? (
-                    <Effect path={img.dehydrated} />
-                ) : null}
-                <Animation petId={id} animation={animation} />
-                {frames.length && petIdx <= frames.length - 1 ? (
-                    <Holiday
-                        imageUri={frames[petIdx].uri}
-                        containerStyles={[holidayStyles.petFrameContainer]}
-                        imageStyles={[holidayStyles.petFrame]}
+                    {blinkAnimation !== null ? (
+                        <Image
+                            source={{ uri: blinkAnimation }}
+                            style={[
+                                { position: 'absolute', zIndex: 12 },
+                                styles.petImage,
+                                styles.imageSize,
+                            ]}
+                        />
+                    ) : null}
+                    {stats.hydration === 0 ? (
+                        <Effect path={img.dehydrated} />
+                    ) : null}
+                    <Animation petId={id} animation={animation} />
+                    {frames.length && petIdx <= frames.length - 1 ? (
+                        <Holiday
+                            imageUri={frames[petIdx].uri}
+                            containerStyles={[holidayStyles.petFrameContainer]}
+                            imageStyles={[holidayStyles.petFrame]}
+                        />
+                    ) : null}
+                    <CustomText
+                        text={name}
+                        style={[
+                            styles.petName,
+                            {
+                                backgroundColor:
+                                    stats.health === 0
+                                        ? 'rgba(255, 255, 255, 0.8)'
+                                        : 'rgba(218, 165, 32, 0.8)',
+                            },
+                        ]}
                     />
-                ) : null}
-                <CustomText
-                    text={name}
-                    style={[
-                        styles.petName,
-                        {
-                            backgroundColor:
-                                stats.health === 0
-                                    ? 'rgba(255, 255, 255, 0.8)'
-                                    : 'rgba(218, 165, 32, 0.8)',
-                        },
-                    ]}
-                />
-            </View>
-        </GestureRecognizer>
-    );
-};
+                </View>
+            </GestureRecognizer>
+        );
+    }
+);
