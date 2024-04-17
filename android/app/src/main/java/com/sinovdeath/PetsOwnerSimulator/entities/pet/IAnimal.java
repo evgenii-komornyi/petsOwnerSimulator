@@ -4,7 +4,10 @@ import com.sinovdeath.PetsOwnerSimulator.entities.items.food.Food;
 
 public interface IAnimal {
     void poop();
+
     void pee();
+
     void eat(Food foodToFeed);
-    void drink();
+
+    boolean drink();
 }

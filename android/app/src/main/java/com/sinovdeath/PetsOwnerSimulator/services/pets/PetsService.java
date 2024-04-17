@@ -2,7 +2,9 @@ package com.sinovdeath.PetsOwnerSimulator.services.pets;
 
 import android.content.Context;
 import android.os.Build;
+
 import androidx.annotation.RequiresApi;
+
 import com.sinovdeath.PetsOwnerSimulator.constants.Constants;
 import com.sinovdeath.PetsOwnerSimulator.entities.alert.Alert;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
@@ -149,14 +151,13 @@ public class PetsService implements IPetsService {
                             }
                         }
 
-                        if (waterBowl != null && !waterBowl.isBowlEmpty() && pet.getStats().getHydration() == 0) {
-                            pet.drink();
-                            tmpAlert = Generator.generateAlertByType("drinkingPet");
-                            currentOwner.setAlert(_checkAndCreateAlert(tmpAlert));
+                        if (pet.getStats().getHydration() <= 5) {
+                            if (pet.drink()) {
+                                tmpAlert = Generator.generateAlertByType("drinkingPet");
+                                currentOwner.setAlert(_checkAndCreateAlert(tmpAlert));
 
-                            pet.pee();
-                            tmpAlert = Generator.generateAlertByType("poopingPet");
-                            currentOwner.setAlert(_checkAndCreateAlert(tmpAlert));
+                                pet.pee();
+                            }
                         }
 
                         if (PetsStatsCalculator.isPetStillHappy(currentHealthLevel, currentSatietyLevel, currentMoodLevel)) {

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { ListItem } from '@rneui/themed';
 
 import { CustomText } from '../../../custom-text/custom-text.component';
+import { SpeedControl } from './speed-control.component';
 import { PetsItem } from './items/pets/pets-item.component';
 import { HomeItem } from './items/home/home-item.component';
 
@@ -17,9 +18,29 @@ export const AccordionSection = () => {
 
     const { isExpanded: petsExpanded, toggle: togglePets } = useToggleButton();
     const { isExpanded: homeExpanded, toggle: toggleHome } = useToggleButton();
+    const { isExpanded: speedControlExpanded, toggle: toggleSpeedControl } =
+        useToggleButton();
 
     return (
         <>
+            <ListItem.Accordion
+                content={
+                    <ListItem.Content>
+                        <ListItem.Title style={{ alignContent: 'center' }}>
+                            <View style={styles.accordionSectionTitleContainer}>
+                                <CustomText
+                                    text="Speed control"
+                                    style={styles.accordionSectionTitle}
+                                />
+                            </View>
+                        </ListItem.Title>
+                    </ListItem.Content>
+                }
+                isExpanded={speedControlExpanded}
+                onPress={toggleSpeedControl}
+            >
+                <SpeedControl />
+            </ListItem.Accordion>
             <ListItem.Accordion
                 content={
                     <ListItem.Content>

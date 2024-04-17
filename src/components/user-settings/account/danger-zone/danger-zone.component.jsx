@@ -8,11 +8,18 @@ import { useAlert } from '../../../../hooks/common/useAlert.hook';
 import { styles } from '../account.styles';
 import useOwnerStore from '../../../../app/useOwnerStore';
 import useSettingsStore from '../../../../app/useSettingsStore';
+import useFreeSlotPropsStore from '../../../../app/useFreeSlotPropsStore';
 
 export const DangerZone = () => {
     const callAlert = useAlert();
     const { resetGame, loadGame } = useOwnerStore(state => state);
     const { clearSettings } = useSettingsStore(state => state);
+    const { resetAvailablePlaces } = useFreeSlotPropsStore(state => state);
+
+    const reset = () => {
+        resetGame();
+        resetAvailablePlaces();
+    };
 
     const clearData = () => {
         callAlert(
@@ -21,7 +28,7 @@ export const DangerZone = () => {
             [
                 {
                     text: 'YES',
-                    onPress: () => resetGame(),
+                    onPress: reset,
                     style: 'default',
                 },
                 {

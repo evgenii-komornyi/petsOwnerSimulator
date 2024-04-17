@@ -26,7 +26,7 @@ export const helpCategories = [
                 id: 'sub-category-4',
                 category: 'Interactions',
                 isButton: false,
-                items: ['Feeding', 'Petting', 'Playing'],
+                items: ['Feeding', 'Petting', 'Playing', 'Poking'],
             },
         ],
     },

@@ -12,8 +12,8 @@ export const useFrontCard = (type, pet) => {
         setOwnerPet(pets.find(op => op.id === pet.id));
     }, []);
 
-    const adopt = async () => {
-        await adoptPet(type, pet);
+    const adopt = () => {
+        adoptPet(type, pet);
         navigate('/');
     };
 

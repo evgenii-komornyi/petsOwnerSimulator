@@ -9,6 +9,7 @@ export const useHelpByVersion = () => {
         oldOwnerVersion,
         filteredHelp: filteredHelpByVersion,
         setFilteredHelp: setFilteredHelpByVersion,
+        setOldOwnerVersion,
         resetFilteredHelp,
     } = useSettingsStore(state => state);
 
@@ -24,7 +25,10 @@ export const useHelpByVersion = () => {
             }
         }
 
-        return () => resetFilteredHelp();
+        return () => {
+            setOldOwnerVersion(currentOwnerVersion);
+            resetFilteredHelp();
+        };
     }, [oldOwnerVersion]);
 
     return {

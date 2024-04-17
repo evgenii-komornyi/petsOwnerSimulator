@@ -51,6 +51,7 @@ const ownerStore = (set, get) => ({
                     name,
                     inventory,
                     home,
+                    alert,
                     settings,
                     version,
                 } = JSON.parse(owner);

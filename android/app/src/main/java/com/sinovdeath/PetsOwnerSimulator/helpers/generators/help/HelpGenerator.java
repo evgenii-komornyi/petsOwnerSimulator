@@ -154,6 +154,16 @@ public class HelpGenerator {
                         "asset:/images/help/interactions/playing.gif"
                 )
         );
+        helpItems.add(
+                _generateHelpItem(
+                        Generator.generateID(),
+                        "Pet poking",
+                        "If you poke the cats in the room, they will respond with a sound.",
+                        "1.8",
+                        Stream.of("poking").collect(Collectors.toList()),
+                        "asset:/images/help/interactions/pet_poking.png"
+                )
+        );
 
         // Home
         helpItems.add(
@@ -301,7 +311,7 @@ public class HelpGenerator {
                         Generator.generateID(),
                         "Settings Screen",
                         "To switch between settings and pets screens press this button.",
-                        "1.8",
+                        "1.0",
                         Stream.of("settings screen").collect(Collectors.toList()),
                         "asset:/images/help/settings/settings.png"
                 )

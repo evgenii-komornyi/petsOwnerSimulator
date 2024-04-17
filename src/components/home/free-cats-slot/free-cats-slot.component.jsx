@@ -1,39 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import React from 'react';
+import { Pressable, Image } from 'react-native';
 
-import { styles } from './free-cats-slot.styles';
-import { useRelation } from '../../../hooks/common/useRelation.hook';
-import { Image } from 'react-native';
-import useOwnerStore from '../../../app/useOwnerStore';
+import { usePetInRoom } from '../../../hooks/logic/pets/usePetInRoom.hook';
+
 import { isObjectExists } from '../../../helpers/objects.helper';
 
-export const FreeCatsSlot = ({ petPlace, petPosition }) => {
-    const { catHouse } = useOwnerStore(state => state.home.livingRoom);
-    const { calculateContainerSizeAndOffsets } = useRelation();
-    const [petSize, setPetSize] = useState({
-        width: 0,
-        height: 0,
-        top: 0,
-        left: 0,
-        topOnCatHouse: 25,
-        leftOnCatHouse: 15,
-    });
+import { styles } from './free-cats-slot.styles';
 
-    useEffect(() => {
-        const { width, height, top, left } =
-            calculateContainerSizeAndOffsets(petPlace);
-        setPetSize({
-            width,
-            height,
-            top,
-            left,
-            topOnCatHouse: petSize.topOnCatHouse + top,
-            leftOnCatHouse: petSize.leftOnCatHouse + left,
-        });
-    }, [petPlace]);
+export const FreeCatsSlot = ({ petPlace, petPosition }) => {
+    const { catHouse, petSize, onPressHandler } = usePetInRoom(petPlace);
 
     return (
-        <View
+        <Pressable
             style={[
                 styles.slotContainer,
                 {
@@ -57,8 +35,9 @@ export const FreeCatsSlot = ({ petPlace, petPosition }) => {
                             : petSize.left,
                 },
             ]}
+            onPress={onPressHandler}
         >
             <Image source={{ uri: petPosition }} style={styles.image} />
-        </View>
+        </Pressable>
     );
 };
