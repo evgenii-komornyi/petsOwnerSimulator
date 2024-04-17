@@ -9,6 +9,7 @@ import { useVibrate } from './useVibrate.hook';
 import useRelationStore from '../../app/useRelationStore';
 import Config from '../../factories/Config';
 import useFreeSlotPropsStore from '../../app/useFreeSlotPropsStore';
+import useSettingsStore from '../../app/useSettingsStore';
 
 let interval = 0;
 
@@ -28,6 +29,7 @@ export const useMainInterval = () => {
     const { generateRandomPetsPosition } = useFreeSlotPropsStore(
         state => state
     );
+    const { intervalTime, setIntervalId } = useSettingsStore(state => state);
 
     const [playSound] = useAudio();
     const [vibrate] = useVibrate();
@@ -44,7 +46,7 @@ export const useMainInterval = () => {
 
         let timeSaveGame = -1;
 
-        interval = setInterval(() => {
+        const startGame = () => {
             timeSaveGame++;
             calculatePetsStats();
             fetchData();
@@ -53,10 +55,13 @@ export const useMainInterval = () => {
                 saveCurrentGame();
                 timeSaveGame = -1;
             }
-        }, Constants.MAIN_INTERVAL * 1000);
+        };
+
+        interval = setInterval(startGame, intervalTime * 1000);
+        setIntervalId(interval);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [intervalTime]);
 
     useEffect(() => {
         checkHoliday();

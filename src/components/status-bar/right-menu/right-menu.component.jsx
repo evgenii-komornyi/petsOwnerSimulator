@@ -13,7 +13,6 @@ export const RightMenu = () => {
     const {
         isHelpMenu,
         isUserSettings,
-        savedPathName,
         toggleMenu,
         resetIndex,
         toggleHelpMenu,
@@ -24,6 +23,10 @@ export const RightMenu = () => {
     const toggleUserMenu = () => {
         toggleMenu();
         navigate(isUserSettings ? '/' : '/account');
+
+        if (isHelpMenu) {
+            toggleHelpMenu();
+        }
 
         setTimeout(() => {
             resetIndex();

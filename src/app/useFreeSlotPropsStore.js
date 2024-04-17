@@ -33,11 +33,13 @@ const freeSlotPropsStore = set => ({
                     const freePlaces = availablePlaces.filter(
                         place => place.isFree
                     );
+
                     const freePlace = freePlaces[getRandom(freePlaces.length)];
 
                     set(state => ({
                         randomPlaces: [...state.randomPlaces, freePlace],
                     }));
+
                     const placeToOccupy = availablePlaces.find(
                         place => place.id === freePlace.id
                     );
@@ -45,6 +47,10 @@ const freeSlotPropsStore = set => ({
                 }
             );
         }
+    },
+    resetAvailablePlaces: () => {
+        availablePlaces.forEach(place => (place.isFree = true));
+        set({ randomPlaces: [] });
     },
 });
 

@@ -8,6 +8,7 @@ import {
     readFromStorage,
     saveToStorage,
 } from '../helpers/storage.helper';
+import { Constants } from '../constants/constants';
 
 const settingsStore = (set, get) => ({
     isAccordionExpanded: true,
@@ -17,10 +18,29 @@ const settingsStore = (set, get) => ({
     help: null,
     filteredHelp: [],
     oldOwnerVersion: null,
+    intervalTime: Constants.MAIN_INTERVAL,
+    intervalId: 0,
+    isCorrectCombination: false,
     isLoaded: false,
+
+    setIntervalTime: intervalTime => {
+        set({ intervalTime });
+    },
+
+    setIntervalId: intervalId => {
+        set({ intervalId });
+    },
+
+    setIsCorrectCombination: isCorrectCombination => {
+        set({ isCorrectCombination });
+    },
 
     setFilteredHelp: filteredHelp => {
         set({ filteredHelp });
+    },
+
+    setOldOwnerVersion: oldOwnerVersion => {
+        set({ oldOwnerVersion });
     },
 
     resetFilteredHelp: () => {

@@ -50,4 +50,21 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
     },
+    speedButtonsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        padding: 20,
+    },
+    speedButton: {
+        borderWidth: 2,
+        borderColor: 'black',
+        borderRadius: 50,
+        padding: 5,
+    },
+    disabledSpeedButton: {
+        borderColor: '#999',
+        color: '#999',
+    },
 });

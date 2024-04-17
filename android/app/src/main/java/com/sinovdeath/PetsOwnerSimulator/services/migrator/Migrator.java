@@ -12,6 +12,12 @@ public class Migrator implements IMigrator {
     public Owner migrateOwnerByVersion(Owner currentOwner) {
         String version = currentOwner.getVersion();
 
+        if (version.equals("1.7")) {
+            currentOwner.setVersion("1.8");
+        }
+
+        version = currentOwner.getVersion();
+
         return currentOwner;
     }
 }
