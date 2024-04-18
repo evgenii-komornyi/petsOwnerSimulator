@@ -153,6 +153,7 @@ public class PetsService implements IPetsService {
 
                         if (pet.getStats().getHydration() <= 5) {
                             if (pet.drink()) {
+                                currentHydrationLevel = currentPetStats.getHydration();
                                 tmpAlert = Generator.generateAlertByType("drinkingPet");
                                 currentOwner.setAlert(_checkAndCreateAlert(tmpAlert));
 
@@ -168,9 +169,7 @@ public class PetsService implements IPetsService {
                     if (currentHydrationLevel == 0) {
                         pet.getStats().setHealth(_lostHealth(pet, 1));
                     } else {
-                        if (currentHydrationLevel != -10) {
-                            pet.getStats().setHydration(PetsStatsCalculator.decreaseHydration(currentHydrationLevel, pet.getStatsReducing().getHydration()));
-                        }
+                        pet.getStats().setHydration(PetsStatsCalculator.decreaseHydration(currentHydrationLevel, pet.getStatsReducing().getHydration()));
                     }
                     ImageManager.changePetImageByStats(pet);
                 }

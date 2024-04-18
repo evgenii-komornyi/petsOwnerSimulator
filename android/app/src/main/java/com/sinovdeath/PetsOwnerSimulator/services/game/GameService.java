@@ -15,15 +15,14 @@ import com.sinovdeath.PetsOwnerSimulator.entities.pet.Animal;
 import com.sinovdeath.PetsOwnerSimulator.entities.settings.Alarm;
 import com.sinovdeath.PetsOwnerSimulator.entities.settings.Notification;
 import com.sinovdeath.PetsOwnerSimulator.entities.settings.Settings;
-import com.sinovdeath.PetsOwnerSimulator.entities.stats.Stats;
 import com.sinovdeath.PetsOwnerSimulator.helpers.checkers.Checker;
 import com.sinovdeath.PetsOwnerSimulator.helpers.generators.Generator;
 import com.sinovdeath.PetsOwnerSimulator.managers.ImageManager;
 import com.sinovdeath.PetsOwnerSimulator.managers.OwnerManager;
 import com.sinovdeath.PetsOwnerSimulator.modules.HomeModule;
+import com.sinovdeath.PetsOwnerSimulator.modules.PetsModule;
 import com.sinovdeath.PetsOwnerSimulator.repositories.game.GameRepository;
 import com.sinovdeath.PetsOwnerSimulator.repositories.game.IGameRepository;
-import com.sinovdeath.PetsOwnerSimulator.modules.PetsModule;
 import com.sinovdeath.PetsOwnerSimulator.services.home.IHomeService;
 import com.sinovdeath.PetsOwnerSimulator.services.pets.IPetsService;
 
@@ -42,6 +41,7 @@ public class GameService implements IGameService {
         this._context = context;
         this._gameRepository = new GameRepository(_context);
     }
+
     @Override
     public void write() {
         _gameRepository.saveToDB();
@@ -93,16 +93,6 @@ public class GameService implements IGameService {
             }
 
             _runCalculations(intervalsCount);
-
-            // Protection from migration
-            for (HashMap<String, Animal> petMap : existingOwnerInDB.getPets()) {
-                for (Animal pet : petMap.values()) {
-                    Stats stats = pet.getStats();
-                    if (stats.getHydration() == -10) {
-                        stats.setHydration(150);
-                    }
-                }
-            }
         }
     }
 
@@ -116,7 +106,7 @@ public class GameService implements IGameService {
         IPetsService petsService = PetsModule.getPetsService();
         IHomeService homeService = HomeModule.getHomeService();
 
-        for(int i = 0; i <= intervalsCount; i++) {
+        for (int i = 0; i <= intervalsCount; i++) {
             if (Checker.IsEveryPetDead(OwnerManager.getCurrentOwner().getPets())) {
                 Log.d("every dead", String.valueOf(Checker.IsEveryPetDead(OwnerManager.getCurrentOwner().getPets())));
                 break;
@@ -160,7 +150,6 @@ public class GameService implements IGameService {
                 pet.getStats().setDigestion(0);
                 pet.getStats().setToyPlayCount(0);
                 ImageManager.changePetImageByStats(pet);
-//                Log.d("health", pet.getName() + " - " + String.valueOf(pet.getStats().getHealth()));
             }
         }
     }
@@ -194,8 +183,12 @@ public class GameService implements IGameService {
             }
         }
 
-        public int getMaxIntervalsPetCanBeAlive() { return maxIntervalsPetCanBeAlive; }
+        public int getMaxIntervalsPetCanBeAlive() {
+            return maxIntervalsPetCanBeAlive;
+        }
 
-        public int getMaxIntervalsPetCanBeWellFed() { return maxIntervalsPetCanBeWellFed; }
+        public int getMaxIntervalsPetCanBeWellFed() {
+            return maxIntervalsPetCanBeWellFed;
+        }
     }
 }

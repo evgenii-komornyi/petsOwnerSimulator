@@ -1,5 +1,6 @@
 package com.sinovdeath.PetsOwnerSimulator.entities.pet;
 
+import com.google.android.exoplayer2.util.Log;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.LivingRoom;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Pee;
 import com.sinovdeath.PetsOwnerSimulator.entities.home.room.excrete.Poop;
@@ -77,26 +78,34 @@ public abstract class Animal implements IAnimal {
         Owner currentOwner = OwnerManager.getCurrentOwner();
         Bowl waterBowl = (Bowl) currentOwner.getHome().getLivingRoom().getFeeder();
 
-        if (waterBowl != null && waterBowl.getCurrentSlots() > 0) {
-            return _tryDrinkFromBowl(waterBowl);
+        if (_tryDrinkFromBowl(waterBowl)) {
+            _generateRandomHydration();
+
+            return true;
         } else {
             return false;
         }
-
     }
 
-    private boolean _tryDrinkFromBowl(Bowl waterBowl) {
-        waterBowl.setCurrentSlots(HomeStatsCalculator.calculateBowlSlotAfterPetDrinking(waterBowl.getCurrentSlots(), 1));
+    private void _generateRandomHydration() {
         int minValue = minValues.getHydration();
         Random random = new Random();
         int randomValue = random.nextInt(maxValues.getHydration() - minValue) + minValue;
         stats.setHydration(randomValue);
+    }
 
-        if (waterBowl.getDirtinessCalmDown() == 0) {
-            stats.setHealth(PetsStatsCalculator.decreaseHealthLevel(stats.getHealth(), 60));
+    private boolean _tryDrinkFromBowl(Bowl waterBowl) {
+        if (waterBowl != null && waterBowl.getCurrentSlots() > 0) {
+            waterBowl.setCurrentSlots(HomeStatsCalculator.calculateBowlSlotAfterPetDrinking(waterBowl.getCurrentSlots(), 1));
+
+            if (waterBowl.getDirtinessCalmDown() == 0) {
+                stats.setHealth(PetsStatsCalculator.decreaseHealthLevel(stats.getHealth(), 60));
+            }
+
+            return true;
+        } else {
+            return false;
         }
-
-        return true;
     }
 
     public String getId() {
