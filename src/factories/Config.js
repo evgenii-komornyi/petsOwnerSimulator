@@ -52,7 +52,7 @@ class Config {
             sofa,
             window,
             carpet,
-            decoration: halloweenDecoration,
+            halloweenDecoration,
             poop,
             pee,
             smell,
